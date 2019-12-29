@@ -7,6 +7,11 @@ describe('deltaCreator', () => {
       .toThrow('Entity name must not be empty.');
   });
 
+  it('Should throw if identifier is empty', () => {
+    expect(() => deltaCreator('entity_name'))
+      .toThrow('Identifier must not be empty.');
+  });
+
   it('Should generate a delta object with type and entity name', () => {
     const strEntityName = 'entity_name';
     const strIdentifier = 'action_identifier';
