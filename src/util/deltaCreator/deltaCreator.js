@@ -1,12 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { KEY_ENTITY_NAME, KEY_IDENTIFER, KEY_PAYLOAD } from './constants';
-
-/**
- * @typedef {object} DeltaObject
- * @property {object} objPayload - Data payload for the delta.
- * @property {string} strIdentifier - Identifier for the delta.
- * @property {string} strEntityName - Entity name the delta is occurring for.
- */
+import DeltaObject from '../../typedef/DeltaObject';
 
 /**
  * @param {string} strEntityName - Entity name the delta is occurring for.
