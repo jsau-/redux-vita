@@ -1,0 +1,32 @@
+{
+  "source": "./src",
+  "destination": "./docs",
+  "plugins": [
+    { "name": "esdoc-ecmascript-proposal-plugin", "option": { "all": true } },
+    {
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "accessor": {
+          "access": ["public", "protected", "private"],
+          "autoPrivate": true
+        },
+        "brand": {
+          "title": "redux-vita",
+          "description": "",
+          "repository": "https://github.com/jsau-/redux-vita",
+          "site": "https://github.com/jsau-/redux-vita",
+          "author": "Jon Saunders"
+        },
+        "manual": {
+          "index": "./README.md",
+          "globalIndex": true,
+          "files": []
+        },
+        "undocumentIdentifier": { "enable": true },
+        "unexportedIdentifier": { "enable": false },
+        "lint": { "enable": true },
+        "typeInference": { "enable": true }
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "name": "redux-vita",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./build/index.js",
+  "scripts": {
+    "predoc": "del-cli \"./docs/**/*\"",
+    "doc": "npm run predoc && esdoc",
+    "prebuild": "npm run doc && del-cli \"./build/**/*\"",
+    "build:es2015": "npm run prebuild && cross-env NODE_ENV=production babel ./src --ignore \"**/*.test.js\" --out-dir ./build",
+    "lint": "./node_modules/.bin/eslint jest.config.js \"./src/**/*.js\" --color",
+    "lint:fix": "./node_modules/.bin/eslint jest.config.js \"./src/**/*.js\" --color --fix",
+    "precommit-message": "echo Executing pre-commit checks... && exit 0",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsau-/redux-vita.git"
+  },
+  "author": "Jon Saunders",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/jsau-/redux-vita/issues"
+  },
+  "homepage": "https://github.com/jsau-/redux-vita#readme",
+  "devDependencies": {
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
+    "@babel/plugin-proposal-decorators": "7.4.4",
+    "@babel/plugin-proposal-export-namespace-from": "7.2.0",
+    "@babel/plugin-proposal-function-sent": "7.2.0",
+    "@babel/plugin-proposal-json-strings": "7.2.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.4.4",
+    "@babel/plugin-proposal-numeric-separator": "7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "7.2.0",
+    "@babel/plugin-proposal-throw-expressions": "7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-syntax-import-meta": "7.2.0",
+    "@babel/preset-env": "7.4.5",
+    "babel-eslint": "10.0.2",
+    "babel-jest": "24.8.0",
+    "babel-loader": "8.0.6",
+    "cross-env": "5.2.0",
+    "del-cli": "2.0.0",
+    "esdoc": "1.1.0",
+    "esdoc-ecmascript-proposal-plugin": "1.0.0",
+    "esdoc-standard-plugin": "1.0.0",
+    "eslint": "5.3.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "5.0.0",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-jsdoc": "8.4.4",
+    "jest": "24.8.0",
+    "lodash": "4.17.15",
+    "pre-commit": "1.2.2",
+    "redux": "4.0.0"
+  },
+  "peerDependencies": {
+    "redux": "4.0.0"
+  },
+  "pre-commit": [
+    "precommit-message",
+    "lint",
+    "build:es2015",
+    "test"
+  ]
+}
