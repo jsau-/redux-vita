@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = state => ({
-  name: state.VitaFoo.name,
+  ...state.VitaFoo,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
