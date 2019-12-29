@@ -24,9 +24,28 @@ class Operation {
       throw new Error('Operation identifier cannot be empty.');
     }
 
+    /**
+     * @private
+     * @type {string}
+     */
     this.strEntityName = strEntityName;
+
+    /**
+     * @private
+     * @type {string}
+     */
     this.strIdentifier = strIdentifier;
+
+    /**
+     * @private
+     * @type {DeltaCreator}
+     */
     this.funcDeltaCreator = funcDeltaCreator;
+
+    /**
+     * @private
+     * @type {DeltaHandler}
+     */
     this.funcDeltaHandler = funcDeltaHandler;
   }
 

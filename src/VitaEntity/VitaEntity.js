@@ -11,8 +11,22 @@ class VitaEntity {
    * returned if attempting to reduce with a null or undefined state.
    */
   constructor(strEntityName, objDefaultReducerState = {}) {
+    /**
+     * @private
+     * @type {string}
+     */
     this.strEntityName = strEntityName;
+
+    /**
+     * @private
+     * @type {object}
+     */
     this.objDefaultReducerState = objDefaultReducerState;
+
+    /**
+     * @private
+     * @type {Map}
+     */
     this.mapOperations = new Map();
 
     // Register default operations
