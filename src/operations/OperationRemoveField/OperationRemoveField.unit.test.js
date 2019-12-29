@@ -3,7 +3,7 @@ import IDENTIFIER_REMOVE_FIELD from './identifier';
 import { KEY_ENTITY_NAME, KEY_IDENTIFER, KEY_PAYLOAD } from '../../util/deltaCreator/constants';
 import deltaCreator from '../../util/deltaCreator';
 
-describe('RemoveField', () => {
+describe('operationRemoveField', () => {
   it('Should throw on creating deltas with no field to remove', () => {
     const strEntityName = 'entity_name';
     const opRemoveField = operationRemoveField(strEntityName);
