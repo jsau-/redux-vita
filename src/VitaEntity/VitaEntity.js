@@ -114,7 +114,7 @@ class VitaEntity {
    * @returns {boolean} Whether the given operation identifier had previously
    * been registered before removal.
    */
-  unregisterOperationWithIdentifier = strOperationIdentifier => this.mapOperations.delete(strOperationIdentifier);
+  unregisterOperationWithIdentifier = (strOperationIdentifier) => this.mapOperations.delete(strOperationIdentifier);
 }
 
 export default VitaEntity;

@@ -3,7 +3,7 @@ import IDENTIFIER_SET_FIELD from './identifier';
 import Operation from '../../Operation';
 import deltaCreator from '../../util/deltaCreator';
 
-export default strEntityName => new Operation(
+export default (strEntityName) => new Operation(
   strEntityName,
   IDENTIFIER_SET_FIELD,
   // Delta creator
