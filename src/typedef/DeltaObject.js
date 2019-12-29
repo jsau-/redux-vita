@@ -1,6 +1,6 @@
 /**
  * @typedef {object} DeltaObject
- * @property {object} objPayload - Data payload for the delta.
- * @property {string} strIdentifier - Identifier for the delta.
- * @property {string} strEntityName - Entity name the delta is occurring for.
+ * @property {object} payload - Data payload for the delta.
+ * @property {string} type - Identifier for the delta.
+ * @property {string} entity - Entity name the delta is occurring for.
  */

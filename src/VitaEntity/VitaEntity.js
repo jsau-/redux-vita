@@ -1,7 +1,10 @@
 import isNil from 'lodash/isNil';
 import Operation from '../Operation';
 import operationRemoveField from '../operations/operationRemoveField';
+import IDENTIFIER_REMOVE_FIELD from '../operations/operationRemoveField/identifier';
 import operationSetField from '../operations/operationSetField';
+import IDENTIFIER_SET_FIELD from '../operations/operationSetField/identifier';
+import DeltaObject from '../typedef/DeltaObject';
 import isReduxActionRelevantToVitaEntity from '../util/isReduxActionRelevantToVitaEntity';
 import { KEY_IDENTIFER } from '../util/deltaCreator/constants';
 
@@ -30,22 +33,23 @@ class VitaEntity {
      */
     this.mapOperations = new Map();
 
-    // Register default operations
-    this.registerOperation(operationRemoveField(strEntityName));
-    this.registerOperation(operationSetField(strEntityName));
+    this.registerDefaultOperations();
   }
 
   /**
    * @returns {undefined}
    */
-  clearAllRegisteredOperations = () => this.mapOperations.clear();
+  clearCustomOperations = () => {
+    this.mapOperations.clear();
+    this.registerDefaultOperations();
+  }
 
   /**
    * @param {string} strOperationIdentifier - Operation identifier to create
    * dispatchable raw object for.
    * @param {...*} varargs - Additional arguments to provide to operation
    * DeltaObject creator function.
-   * @returns {object} Redux-dispatchable raw object.
+   * @returns {DeltaObject} Redux-dispatchable raw object.
    * @throws {Error} If no operation with provided identifier is registered.
    */
   getDispatchableActionObjectForOperation = (strOperationIdentifier, ...varargs) => {
@@ -57,6 +61,26 @@ class VitaEntity {
 
     return uoperation.createDelta(...varargs);
   };
+
+  /**
+   * @param {string} strFieldName - Field name to remove.
+   * @returns {DeltaObject} Redux-dispatachable raw object.
+   */
+  getDispatchableRemoveField = (strFieldName) => this.getDispatchableActionObjectForOperation(
+    IDENTIFIER_REMOVE_FIELD,
+    strFieldName,
+  );
+
+  /**
+   * @param {string} strFieldName - Field name to set.
+   * @param {*} mixedFieldValue - Field value to set.
+   * @returns {DeltaObject} Redux-dispatachable raw object.
+   */
+  getDispatchableSetField = (strFieldName, mixedFieldValue) => this.getDispatchableActionObjectForOperation(
+    IDENTIFIER_SET_FIELD,
+    strFieldName,
+    mixedFieldValue,
+  );
 
   /**
    * @returns {string} Entity name.
@@ -98,6 +122,14 @@ class VitaEntity {
     }
 
     return uoperation.getReducerStateAfterProcessingDelta(objCurrentReducerState, objOccurringReduxAction);
+  };
+
+  /**
+   * @returns {undefined}
+   */
+  registerDefaultOperations = () => {
+    this.registerOperation(operationRemoveField(this.strEntityName));
+    this.registerOperation(operationSetField(this.strEntityName));
   };
 
   /**

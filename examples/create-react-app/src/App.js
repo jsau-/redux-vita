@@ -32,7 +32,7 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  vitafooSetName: (name) => dispatch(VitaFoo.getDispatchableActionObjectForOperation('SET_FIELD', 'name', name)),
+  vitafooSetName: (name) => dispatch(VitaFoo.getDispatchableSetField('name', name)),
 });
 
 const mapStateToProps = state => ({
