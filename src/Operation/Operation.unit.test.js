@@ -81,7 +81,7 @@ describe('Operation', () => {
     const objInitialReducerState = { existing_field: 1 };
     const objOccurringDelta = { delta_field: 1 };
 
-    const objReducerStateAfterProcessing = operation.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterProcessing = operation.getReducerStateAfterProcessingDelta(
       objInitialReducerState,
       objOccurringDelta,
     );
@@ -111,7 +111,7 @@ describe('Operation', () => {
     const objOccurringDeltaPayload = { delta_payload_field: 1 };
     const objOccurringDelta = deltaCreator(strEntityName, strIdentifier, objOccurringDeltaPayload);
 
-    const objReducerStateAfterProcessing = operation.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterProcessing = operation.getReducerStateAfterProcessingDelta(
       objCurrentReducerState,
       objOccurringDelta,
     );

@@ -70,7 +70,7 @@ class Operation {
    * @param {DeltaObject} objOccurringDelta - Occurring delta object to process.
    * @returns {object} Reducer state after processing the delta.
    */
-  getReducerStateAfterProcesssingDelta = (uobjCurrentReducerState, objOccurringDelta) => {
+  getReducerStateAfterProcessingDelta = (uobjCurrentReducerState, objOccurringDelta) => {
     if (!isDeltaObjectRelevantToOperation(this.strEntityName, this.strIdentifier, objOccurringDelta)) {
       return uobjCurrentReducerState;
     }

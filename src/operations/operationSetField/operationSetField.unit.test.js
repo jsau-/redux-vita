@@ -37,7 +37,7 @@ describe('operationSetField', () => {
       {},
     );
 
-    expect(() => opSetField.getReducerStateAfterProcesssingDelta(undefined, objCreatedDelta))
+    expect(() => opSetField.getReducerStateAfterProcessingDelta(undefined, objCreatedDelta))
       .toThrow('No field to set was provided.');
   });
 
@@ -53,7 +53,7 @@ describe('operationSetField', () => {
 
     const objCreatedDelta = opSetField.createDelta(strFieldToSet, mixedFieldValue);
 
-    const objReducerStateAfterProcessingDelta = opSetField.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterProcessingDelta = opSetField.getReducerStateAfterProcessingDelta(
       objInitialReducerState,
       objCreatedDelta,
     );
@@ -73,7 +73,7 @@ describe('operationSetField', () => {
 
     const objCreatedDelta = opSetField.createDelta(strFieldToSet, mixedFieldValue);
 
-    const objReducerStateAfterProcessingDelta = opSetField.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterProcessingDelta = opSetField.getReducerStateAfterProcessingDelta(
       objInitialReducerState,
       objCreatedDelta,
     );

@@ -35,7 +35,7 @@ describe('RemoveField', () => {
       {},
     );
 
-    expect(() => opRemoveField.getReducerStateAfterProcesssingDelta(undefined, objOccurringDelta))
+    expect(() => opRemoveField.getReducerStateAfterProcessingDelta(undefined, objOccurringDelta))
       .toThrow('No field to remove was provided.');
   });
 
@@ -48,7 +48,7 @@ describe('RemoveField', () => {
 
     const objInitialReducerState = { existing_field: 1 };
 
-    const objReducerStateAfterHandlingDelta = opRemoveField.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterHandlingDelta = opRemoveField.getReducerStateAfterProcessingDelta(
       objInitialReducerState,
       objDeltaRemoveField,
     );
@@ -65,7 +65,7 @@ describe('RemoveField', () => {
 
     const objInitialReducerState = { [strFieldToRemove]: 1 };
 
-    const objReducerStateAfterHandlingDelta = opRemoveField.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterHandlingDelta = opRemoveField.getReducerStateAfterProcessingDelta(
       objInitialReducerState,
       objDeltaRemoveField,
     );
