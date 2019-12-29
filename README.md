@@ -32,6 +32,18 @@ function which operates exactly like standard reducer functions.
 By default a `VitaEntity` has a set of standard `Operation`s registered which
 aim to provide a basic set of functionality sufficient for most simple apps.
 
+#### Example Usage
+```
+// Instantiating a default VitaEntity
+const vitaFoo = new VitaEntity('foo', { field: null });
+
+// Registering the reducer for the VitaEntity
+const store = createStore(vitaFoo.reduce);
+
+// Dispatching a Vita DeltaObject
+dispatch(vitaFoo.getDispatchableActionObjectForOperation('REMOVE_FIELD', 'field'));
+```
+
 ### Operation
 
 An operation encompasses a delta creator (a function which creates a raw object
