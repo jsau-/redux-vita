@@ -1,6 +1,7 @@
 import isNil from 'lodash/isNil';
 import Operation from '../Operation';
 import operationRemoveField from '../operations/operationRemoveField';
+import operationSetField from '../operations/operationSetField';
 import isReduxActionRelevantToVitaEntity from '../util/isReduxActionRelevantToVitaEntity';
 import { KEY_IDENTIFER } from '../util/deltaCreator/constants';
 
@@ -31,6 +32,7 @@ class VitaEntity {
 
     // Register default operations
     this.registerOperation(operationRemoveField(strEntityName));
+    this.registerOperation(operationSetField(strEntityName));
   }
 
   /**
