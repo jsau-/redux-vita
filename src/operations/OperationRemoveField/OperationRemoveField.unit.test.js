@@ -1,4 +1,4 @@
-import OperationRemoveField from '.';
+import operationRemoveField from '.';
 import IDENTIFIER_REMOVE_FIELD from './identifier';
 import { KEY_ENTITY_NAME, KEY_IDENTIFER, KEY_PAYLOAD } from '../../util/deltaCreator/constants';
 import deltaCreator from '../../util/deltaCreator';
@@ -6,17 +6,17 @@ import deltaCreator from '../../util/deltaCreator';
 describe('RemoveField', () => {
   it('Should throw on creating deltas with no field to remove', () => {
     const strEntityName = 'entity_name';
-    const operationRemoveField = new OperationRemoveField(strEntityName);
+    const opRemoveField = operationRemoveField(strEntityName);
 
-    expect(() => operationRemoveField.createDelta()).toThrow('No field to remove was provided.');
+    expect(() => opRemoveField.createDelta()).toThrow('No field to remove was provided.');
   });
 
   it('Should generate delta objects', () => {
     const strEntityName = 'entity_name';
     const strFieldToRemove = 'field_to_remove';
-    const operationRemoveField = new OperationRemoveField(strEntityName);
+    const opRemoveField = operationRemoveField(strEntityName);
 
-    const objCreatedDelta = operationRemoveField.createDelta(strFieldToRemove);
+    const objCreatedDelta = opRemoveField.createDelta(strFieldToRemove);
 
     expect(objCreatedDelta).toEqual({
       [KEY_ENTITY_NAME]: strEntityName,
@@ -27,7 +27,7 @@ describe('RemoveField', () => {
 
   it('Should throw on processing deltas with no field to remove', () => {
     const strEntityName = 'entity_name';
-    const operationRemoveField = new OperationRemoveField(strEntityName);
+    const opRemoveField = operationRemoveField(strEntityName);
 
     const objOccurringDelta = deltaCreator(
       strEntityName,
@@ -35,20 +35,20 @@ describe('RemoveField', () => {
       {},
     );
 
-    expect(() => operationRemoveField.getReducerStateAfterProcesssingDelta(undefined, objOccurringDelta))
+    expect(() => opRemoveField.getReducerStateAfterProcesssingDelta(undefined, objOccurringDelta))
       .toThrow('No field to remove was provided.');
   });
 
   it('Shouldn\'t affect reducer state if no matching field was found', () => {
     const strEntityName = 'entity_name';
     const strFieldToRemove = 'field_to_remove';
-    const operationRemoveField = new OperationRemoveField(strEntityName);
+    const opRemoveField = operationRemoveField(strEntityName);
 
-    const objDeltaRemoveField = operationRemoveField.createDelta(strFieldToRemove);
+    const objDeltaRemoveField = opRemoveField.createDelta(strFieldToRemove);
 
     const objInitialReducerState = { existing_field: 1 };
 
-    const objReducerStateAfterHandlingDelta = operationRemoveField.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterHandlingDelta = opRemoveField.getReducerStateAfterProcesssingDelta(
       objInitialReducerState,
       objDeltaRemoveField,
     );
@@ -59,13 +59,13 @@ describe('RemoveField', () => {
   it('Should remove the field from reducer state if found', () => {
     const strEntityName = 'entity_name';
     const strFieldToRemove = 'field_to_remove';
-    const operationRemoveField = new OperationRemoveField(strEntityName);
+    const opRemoveField = operationRemoveField(strEntityName);
 
-    const objDeltaRemoveField = operationRemoveField.createDelta(strFieldToRemove);
+    const objDeltaRemoveField = opRemoveField.createDelta(strFieldToRemove);
 
     const objInitialReducerState = { [strFieldToRemove]: 1 };
 
-    const objReducerStateAfterHandlingDelta = operationRemoveField.getReducerStateAfterProcesssingDelta(
+    const objReducerStateAfterHandlingDelta = opRemoveField.getReducerStateAfterProcesssingDelta(
       objInitialReducerState,
       objDeltaRemoveField,
     );

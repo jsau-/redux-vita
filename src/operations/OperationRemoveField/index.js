@@ -1,1 +1,1 @@
-export { default } from './OperationRemoveField';
+export { default } from './operationRemoveField';
