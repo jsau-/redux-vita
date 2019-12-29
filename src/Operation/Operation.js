@@ -2,9 +2,12 @@ import isEmpty from 'lodash/isEmpty';
 import DeltaCreator from '../typedef/DeltaCreator';
 import DeltaHandler from '../typedef/DeltaHandler';
 import DeltaObject from '../typedef/DeltaObject';
+import isDeltaObjectRelevantToOperation from '../util/isDeltaObjectRelevantToOperation';
+import { KEY_PAYLOAD } from '../util/deltaCreator/constants';
 
 class Operation {
   /**
+   * @param {string} strEntityName - Entity name operation applies to.
    * @param {string} strIdentifier - Operation identifier.
    * @param {DeltaCreator} funcDeltaCreator - Function to generate a raw object
    * representing the operation's delta.
@@ -12,11 +15,16 @@ class Operation {
    * and mutate reducer state in some way.
    * @throws {Error} If identifier is empty.
    */
-  constructor(strIdentifier, funcDeltaCreator, funcDeltaHandler) {
+  constructor(strEntityName, strIdentifier, funcDeltaCreator, funcDeltaHandler) {
+    if (isEmpty(strEntityName)) {
+      throw new Error('Operation entity name cannot be empty.');
+    }
+
     if (isEmpty(strIdentifier)) {
       throw new Error('Operation identifier cannot be empty.');
     }
 
+    this.strEntityName = strEntityName;
     this.strIdentifier = strIdentifier;
     this.funcDeltaCreator = funcDeltaCreator;
     this.funcDeltaHandler = funcDeltaHandler;
@@ -43,8 +51,15 @@ class Operation {
    * @param {DeltaObject} objOccurringDelta - Occurring delta object to process.
    * @returns {object} Reducer state after processing the delta.
    */
-  getReducerStateAfterProcesssingDelta = (uobjCurrentReducerState, objOccurringDelta) =>
-    this.funcDeltaHandler(uobjCurrentReducerState, objOccurringDelta);
+  getReducerStateAfterProcesssingDelta = (uobjCurrentReducerState, objOccurringDelta) => {
+    if (!isDeltaObjectRelevantToOperation(this.strEntityName, this.strIdentifier, objOccurringDelta)) {
+      return uobjCurrentReducerState;
+    }
+
+    const { [KEY_PAYLOAD]: objPayloadForOccurringDelta } = objOccurringDelta;
+
+    return this.funcDeltaHandler(uobjCurrentReducerState, objPayloadForOccurringDelta);
+  }
 }
 
 export default Operation;
