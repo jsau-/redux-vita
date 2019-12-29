@@ -7,5 +7,6 @@ module.exports = {
   ],
   errorOnDeprecated: true,
   notify: true,
+  roots: ['./src'],
   verbose: true,
 };
