@@ -8,6 +8,8 @@ import operationSetField from '../operations/operationSetField';
 import IDENTIFIER_SET_FIELD from '../operations/operationSetField/identifier';
 import operationSetManyFields from '../operations/operationSetManyFields';
 import IDENTIFIER_SET_MANY_FIELDS from '../operations/operationSetManyFields/identifier';
+import DeltaCreator from '../typedef/DeltaCreator';
+import DeltaHandler from '../typedef/DeltaHandler';
 import DeltaObject from '../typedef/DeltaObject';
 import isReduxActionRelevantToVitaEntity from '../util/isReduxActionRelevantToVitaEntity';
 import { KEY_IDENTIFER } from '../util/deltaCreator/constants';
@@ -47,6 +49,21 @@ class VitaEntity {
     this.mapOperations.clear();
     this.registerDefaultOperations();
   }
+
+  /**
+   * @param {string} strOperationIdentifier - Operation identifier.
+   * @param {DeltaCreator} funcDeltaCreator - Delta creator function.
+   * @param {DeltaHandler} [ufuncDeltaHandler] - Delta handler function.
+   * @returns {VitaEntity} This.
+   */
+  createAndRegisterOperation = (strOperationIdentifier, funcDeltaCreator, ufuncDeltaHandler) =>
+    this.registerOperation(new Operation(
+      this.strEntityName,
+      strOperationIdentifier,
+      funcDeltaCreator,
+      ufuncDeltaHandler,
+    ),
+  );
 
   /**
    * @param {string} strOperationIdentifier - Operation identifier to create
