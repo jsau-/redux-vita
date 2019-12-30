@@ -146,27 +146,30 @@ class VitaEntity {
    * @returns {undefined}
    */
   registerDefaultOperations = () => {
-    this.registerOperation(operationClearAll(this.strEntityName));
-    this.registerOperation(operationRemoveField(this.strEntityName));
-    this.registerOperation(operationSetField(this.strEntityName));
-    this.registerOperation(operationSetManyFields(this.strEntityName));
+    this.registerOperation(operationClearAll(this.strEntityName))
+      .registerOperation(operationRemoveField(this.strEntityName))
+      .registerOperation(operationSetField(this.strEntityName))
+      .registerOperation(operationSetManyFields(this.strEntityName));
   };
 
   /**
    * @param {Operation} operation - Operation to register for entity.
-   * @returns {undefined}
+   * @returns {VitaEntity} This.
    */
   registerOperation = (operation) => {
     const strOperationIdentifier = operation.getIdentifer();
     this.mapOperations.set(strOperationIdentifier, operation);
+    return this;
   };
 
   /**
    * @param {string} strOperationIdentifier - Operation identifier to unregister.
-   * @returns {boolean} Whether the given operation identifier had previously
-   * been registered before removal.
+   * @returns {VitaEntity} This.
    */
-  unregisterOperationWithIdentifier = (strOperationIdentifier) => this.mapOperations.delete(strOperationIdentifier);
+  unregisterOperationWithIdentifier = (strOperationIdentifier) => {
+    this.mapOperations.delete(strOperationIdentifier);
+    return this;
+  }
 }
 
 export default VitaEntity;
