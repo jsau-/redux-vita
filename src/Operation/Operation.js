@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
 import DeltaCreator from '../typedef/DeltaCreator';
 import DeltaHandler from '../typedef/DeltaHandler';
 import DeltaObject from '../typedef/DeltaObject';
@@ -11,11 +12,11 @@ class Operation {
    * @param {string} strIdentifier - Operation identifier.
    * @param {DeltaCreator} funcDeltaCreator - Function to generate a raw object
    * representing the operation's delta.
-   * @param {DeltaHandler} funcDeltaHandler - Function to process a delta object instance,
+   * @param {DeltaHandler} [ufuncDeltaHandler] - Function to process a delta object instance,
    * and mutate reducer state in some way.
    * @throws {Error} If identifier is empty.
    */
-  constructor(strEntityName, strIdentifier, funcDeltaCreator, funcDeltaHandler) {
+  constructor(strEntityName, strIdentifier, funcDeltaCreator, ufuncDeltaHandler) {
     if (isEmpty(strEntityName)) {
       throw new Error('Operation entity name cannot be empty.');
     }
@@ -46,7 +47,7 @@ class Operation {
      * @private
      * @type {DeltaHandler}
      */
-    this.funcDeltaHandler = funcDeltaHandler;
+    this.ufuncDeltaHandler = ufuncDeltaHandler;
   }
 
   /**
@@ -71,13 +72,17 @@ class Operation {
    * @returns {object} Reducer state after processing the delta.
    */
   getReducerStateAfterProcessingDelta = (uobjCurrentReducerState, objOccurringDelta) => {
+    if (isNil(this.ufuncDeltaHandler)) {
+      return uobjCurrentReducerState;
+    }
+
     if (!isDeltaObjectRelevantToOperation(this.strEntityName, this.strIdentifier, objOccurringDelta)) {
       return uobjCurrentReducerState;
     }
 
     const { [KEY_PAYLOAD]: objPayloadForOccurringDelta } = objOccurringDelta;
 
-    return this.funcDeltaHandler(uobjCurrentReducerState, objPayloadForOccurringDelta);
+    return this.ufuncDeltaHandler(uobjCurrentReducerState, objPayloadForOccurringDelta);
   }
 }
 

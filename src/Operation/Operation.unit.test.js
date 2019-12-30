@@ -20,7 +20,16 @@ describe('Operation', () => {
     expect(operation.strEntityName).toBe(strEntityName);
     expect(operation.strIdentifier).toBe(strIdentifier);
     expect(operation.funcDeltaCreator).toBe(funcDeltaCreator);
-    expect(operation.funcDeltaHandler).toBe(funcDeltaHandler);
+    expect(operation.ufuncDeltaHandler).toBe(funcDeltaHandler);
+  });
+
+  it('Should allow instantiation without a delta handler', () => {
+    const strEntityName = 'entity_name';
+    const strIdentifier = 'identifier';
+    const funcDeltaCreator = () => 1;
+
+    const operation = new Operation(strEntityName, strIdentifier, funcDeltaCreator);
+    expect(operation.ufuncDeltaHandler).toBe(undefined);
   });
 
   it('Should throw if no operation identifier provided', () => {
@@ -91,6 +100,27 @@ describe('Operation', () => {
 
     // Validate we returned the existing reducer state
     expect(objReducerStateAfterProcessing).toBe(objInitialReducerState);
+  });
+
+  it('Should return current state if no delta handler', () => {
+    const strEntityName = 'entity_name';
+    const strIdentifier = 'identifier';
+    const funcDeltaCreator = () => 1;
+
+    const operation = new Operation(strEntityName, strIdentifier, funcDeltaCreator);
+
+    const objCurrentReducerState = { existing_field: 1 };
+
+    const objOccurringDeltaPayload = { delta_payload_field: 1 };
+    const objOccurringDelta = deltaCreator(strEntityName, strIdentifier, objOccurringDeltaPayload);
+
+    const objReducerStateAfterProcessing = operation.getReducerStateAfterProcessingDelta(
+      objCurrentReducerState,
+      objOccurringDelta,
+    );
+
+    // Validate we returned the expected reducer state after processing the delta
+    expect(objReducerStateAfterProcessing).toBe(objCurrentReducerState);
   });
 
   it('Should process delta objects for relevant entity names', () => {
