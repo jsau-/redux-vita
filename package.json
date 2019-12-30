@@ -61,7 +61,7 @@
   },
   "pre-commit": [
     "precommit-message",
-    "lint:fix",
+    "lint",
     "build:es2015",
     "test"
   ]
