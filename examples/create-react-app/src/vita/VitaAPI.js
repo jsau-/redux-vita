@@ -13,7 +13,6 @@ VitaAPI.registerOperation(new Operation(
     'is_loading': true,
     'loaded_todos': [],
   }),
-  () => {},
 ));
 
 VitaAPI.registerOperation(new Operation(
@@ -39,7 +38,6 @@ VitaAPI.registerOperation(new Operation(
       ),
     );
   },
-  () => {},
 ));
 
 export default VitaAPI;
