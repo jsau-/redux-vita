@@ -8,14 +8,36 @@ const VitaAPI = new VitaEntity(
 
 VitaAPI.registerOperation(new Operation(
   'todos',
+  'fetch_todos_begin',
+  () => VitaAPI.getDispatchableSetManyFields({
+    'is_loading': true,
+    'loaded_todos': [],
+  }),
+  () => {},
+));
+
+VitaAPI.registerOperation(new Operation(
+  'todos',
+  'fetch_todos_finish',
+  arrTodos => VitaAPI.getDispatchableSetManyFields({
+    'is_loading': false,
+    'loaded_todos': arrTodos,
+  }),
+  () => {},
+));
+
+VitaAPI.registerOperation(new Operation(
+  'todos',
   'fetch_todos',
   () => (dispatch) => {
-    dispatch(VitaAPI.getDispatchableSetField('is_loading', true));
+    dispatch(VitaAPI.getDispatchableActionObjectForOperation('fetch_todos_begin'));
 
-    fetch.fetchUrl("https://jsonplaceholder.typicode.com/todos/", function(error, meta, body) {
-      dispatch(VitaAPI.getDispatchableSetField('is_loading', false));
-      dispatch(VitaAPI.getDispatchableSetField('loaded_todos', JSON.parse(body)));
-    });
+    fetch.fetchUrl(
+      "https://jsonplaceholder.typicode.com/todos/",
+      (error, meta, body) => dispatch(
+        VitaAPI.getDispatchableActionObjectForOperation('fetch_todos_finish', JSON.parse(body)),
+      ),
+    );
   },
   () => {},
 ));

@@ -6,6 +6,8 @@ import operationRemoveField from '../operations/operationRemoveField';
 import IDENTIFIER_REMOVE_FIELD from '../operations/operationRemoveField/identifier';
 import operationSetField from '../operations/operationSetField';
 import IDENTIFIER_SET_FIELD from '../operations/operationSetField/identifier';
+import operationSetManyFields from '../operations/operationSetManyFields';
+import IDENTIFIER_SET_MANY_FIELDS from '../operations/operationSetManyFields/identifier';
 import DeltaObject from '../typedef/DeltaObject';
 import isReduxActionRelevantToVitaEntity from '../util/isReduxActionRelevantToVitaEntity';
 import { KEY_IDENTIFER } from '../util/deltaCreator/constants';
@@ -90,6 +92,15 @@ class VitaEntity {
   );
 
   /**
+   * @param {object} objFieldsToSet - Fields to set.
+   * @returns {DeltaObject} Redux dispatchable raw object.
+   */
+  getDispatchableSetManyFields = (objFieldsToSet) => this.getDispatchableActionObjectForOperation(
+    IDENTIFIER_SET_MANY_FIELDS,
+    objFieldsToSet,
+  );
+
+  /**
    * @returns {string} Entity name.
    */
   getEntityName = () => this.strEntityName;
@@ -138,6 +149,7 @@ class VitaEntity {
     this.registerOperation(operationClearAll(this.strEntityName));
     this.registerOperation(operationRemoveField(this.strEntityName));
     this.registerOperation(operationSetField(this.strEntityName));
+    this.registerOperation(operationSetManyFields(this.strEntityName));
   };
 
   /**
