@@ -1,6 +1,8 @@
 /**
  * @typedef {object} DeltaObject
- * @property {object} payload - Data payload for the delta.
- * @property {string} type - Identifier for the delta.
- * @property {string} entity - Entity name the delta is occurring for.
+ * @property {object} objPayload - Data payload for the delta.
+ * debug tools, etc.
+ * @property {string} strEntity - Entity name the delta is occurring for.
+ * @property {string} strIdentifier - Identifier for the action type.
+ * @property {string} type - Redux action type identifier, presented in
  */
