@@ -62,8 +62,7 @@ class VitaEntity {
       strOperationIdentifier,
       funcDeltaCreator,
       ufuncDeltaHandler,
-    ),
-  );
+    ));
 
   /**
    * @param {string} strOperationIdentifier - Operation identifier to create
