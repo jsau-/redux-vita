@@ -1,5 +1,7 @@
 import isNil from 'lodash/isNil';
 import Operation from '../Operation';
+import operationClearAll from '../operations/operationClearAll';
+import IDENTIFIER_CLEAR_ALL from '../operations/operationClearAll/identifier';
 import operationRemoveField from '../operations/operationRemoveField';
 import IDENTIFIER_REMOVE_FIELD from '../operations/operationRemoveField/identifier';
 import operationSetField from '../operations/operationSetField';
@@ -61,6 +63,11 @@ class VitaEntity {
 
     return uoperation.createDelta(...varargs);
   };
+
+  /**
+   * @returns {DeltaObject} Redux dispatchable raw object.
+   */
+  getDispatchableClearAll = () => this.getDispatchableActionObjectForOperation(IDENTIFIER_CLEAR_ALL);
 
   /**
    * @param {string} strFieldName - Field name to remove.
@@ -128,6 +135,7 @@ class VitaEntity {
    * @returns {undefined}
    */
   registerDefaultOperations = () => {
+    this.registerOperation(operationClearAll(this.strEntityName));
     this.registerOperation(operationRemoveField(this.strEntityName));
     this.registerOperation(operationSetField(this.strEntityName));
   };
