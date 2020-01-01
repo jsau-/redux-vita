@@ -18,6 +18,7 @@ jobs:
       script: npm run build:es2015
     - stage: deploy
       deploy:
+        edge: true
         provider: npm
         email: "$NPM_EMAIL"
         api_key: "$NPM_API_TOKEN"
