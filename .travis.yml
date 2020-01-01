@@ -18,13 +18,13 @@ jobs:
       script: npm run test
     - stage: deploy_to_github_pages
       deploy:
-      provider: pages
-      skip_cleanup: true
-      github_token: "$GITHUB_TOKEN"
-      keep_history: true
-      local_dir: "./docs"
-      on:
-        branch: master
+        provider: pages
+        skip_cleanup: true
+        github_token: "$GITHUB_TOKEN"
+        keep_history: true
+        local_dir: "./docs"
+        on:
+          branch: master
     - stage: deploy_to_npm
       deploy:
         edge: true
