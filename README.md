@@ -1,5 +1,6 @@
 # redux-vita
 
+[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)
 [![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)
 
 **NOTE:** This library is currently under development. It should _not_ be used
@@ -8,6 +9,10 @@ introduced.
 
 This library is an experiment in trying to solve some of the issues with code
 duplication and boilerplate found in bootstrapping simple Redux applications.
+
+## Documentation
+
+Check out the [documentation page](https://jsau-.github.io/redux-vita).
 
 ## Getting Started
 
