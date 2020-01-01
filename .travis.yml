@@ -18,6 +18,7 @@ jobs:
       script: npm run test
     - stage: deploy_to_github_pages
       deploy:
+        edge: true
         provider: pages
         skip_cleanup: true
         github_token: "$GITHUB_TOKEN"
