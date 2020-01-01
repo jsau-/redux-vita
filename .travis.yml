@@ -3,6 +3,8 @@ version: 1.0
 sudo: false
 node_js:
   - 10
+before_script:
+  - npm run build:es2015
 install:
   - npm ci
 stages:
@@ -14,8 +16,6 @@ jobs:
     - stage: test
       script: npm run lint
       script: npm run test
-    - stage: build
-      script: npm run build:es2015
     - stage: deploy
       deploy:
         edge: true

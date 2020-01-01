@@ -36,4 +36,3 @@ jest.config.js
 package-lock.json
 src/**/*
 examples/**/*
-README.md
