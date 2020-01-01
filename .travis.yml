@@ -6,11 +6,18 @@ install:
   - npm ci
 jobs:
   include:
-    - stage: "Tests"
+    - stage: test
       script: npm run lint
       script: npm run test
-    - stage: "Build"
+    - stage: build
       script: npm run build:es2015
+    - stage: deploy
+      provider: npm
+      email: "$NPM_EMAIL"
+      api_key: "$NPM_API_TOKEN"
+      skip_cleanup: true
+      on:
+        tags: true
 notifications:
   email:
     on_success: change
