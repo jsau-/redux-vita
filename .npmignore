@@ -1,5 +1,4 @@
-# NB: We have an explicit .npmignore file - any changes here should be made
-# there too to prevent bundling any irrelevant files
+# .gitignore
 .DS_STORE
 node_modules
 scripts/flow/*/.flowconfig
@@ -25,3 +24,13 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+
+# Repository files to not bundle
+.babelrc
+.esdoc.json
+.eslintrc.js
+.gitattributes
+.gitignore
+.travis.yml
+jest.config.js
+package-lock.json
