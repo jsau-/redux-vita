@@ -1,5 +1,7 @@
 # redux-vita
 
+[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)
+
 **NOTE:** This library is currently under development. It should _not_ be used
 in a production environment. At thist time breaking changes will frequently be
 introduced.
