@@ -7,7 +7,7 @@ scripts/flow/*/.flowconfig
 .grunt
 _SpecRunner.html
 __benchmarks__
-build/
+# build/ - NB: This has been removed to include builds on published versions
 docs/
 remote-repo/
 coverage/
@@ -34,3 +34,5 @@ chrome-user-data
 .travis.yml
 jest.config.js
 package-lock.json
+src/**/*
+examples/**/*
