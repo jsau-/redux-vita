@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/VitaEntity/VitaEntity.js | redux-vita</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/jsau-/redux-vita"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vitaentity">VitaEntity</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/VitaEntity/VitaEntity.js~VitaEntity.html">VitaEntity</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#makeactioncreator">makeActionCreator</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-makeActionCreator">makeActionCreator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-KEY_TYPE">KEY_TYPE</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/VitaEntity/VitaEntity.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import isNil from &apos;lodash/isNil&apos;;
+import { KEY_TYPE } from &apos;../makeActionCreator/constants&apos;;
+
+class VitaEntity {
+  /**
+   * @param {object} objDefaultReducerState - Default reducer state to be
+   * returned if attempting to reduce with a null or undefined state.
+   */
+  constructor(objDefaultReducerState = {}) {
+    /**
+     * @private
+     * @type {?object}
+     */
+    this.objDefaultReducerState = objDefaultReducerState;
+
+    /**
+     * @private
+     * @type {Map}
+     */
+    this.mapActionCreators = new Map();
+
+    /**
+     * @private
+     * @type {Map}
+     */
+    this.mapReducerFunctions = new Map();
+  }
+
+  /**
+   * Clear all registered action creators.
+   *
+   * @returns {VitaEntity} This.
+   */
+  clearAllActionCreators = () =&gt; {
+    this.mapActionCreators.clear();
+    return this;
+  };
+
+  /**
+   * Clear all registered reducers for handling actions.
+   *
+   * @returns {VitaEntity} This.
+   */
+  clearAllReducers = () =&gt; {
+    this.mapReducerFunctions.clear();
+    return this;
+  }
+
+  /**
+   * Gets dispatchable Redux action object for a given action type.
+   *
+   * @param {string} strActionType - Action type to generate dispatchable
+   * object for.
+   * @param {...*} varargsActionCreator - Arguments to pass to the registered
+   * function.
+   * @returns {object} Action object.
+   */
+  getDispatchable = (strActionType, ...varargsActionCreator) =&gt; {
+    const ufuncActionCreator = this.mapActionCreators.get(strActionType);
+
+    if (isNil(ufuncActionCreator)) {
+      throw new Error(`No action creator was registered for type ${strActionType}`);
+    }
+
+    return ufuncActionCreator(...varargsActionCreator);
+  };
+
+  /**
+   * Reducer function.
+   *
+   * @param {object} [uobjCurrentReducerState] - Current reducer state.
+   * @param {object} objAction - Occurring Redux action.
+   * @returns {object} New reducer state.
+   */
+  reduce = (uobjCurrentReducerState, objAction) =&gt; {
+    const objCurrentReducerState = isNil(uobjCurrentReducerState) ?
+      this.objDefaultReducerState :
+      uobjCurrentReducerState;
+
+    /*
+     * We shouldn&apos;t have to error check here since all valid Redux actions are
+     * required to have a &apos;type&apos; property. See:
+     * https://redux.js.org/basics/actions/
+     */
+    const { [KEY_TYPE]: strTypeForAction } = objAction;
+
+    const ufuncReducerForAction = this.mapReducerFunctions.get(strTypeForAction);
+
+    // If we have no registered handler, just fallback to current state
+    if (isNil(ufuncReducerForAction)) {
+      return objCurrentReducerState;
+    }
+
+    return ufuncReducerForAction(objCurrentReducerState, objAction);
+  };
+
+  /**
+   * Create and register an action creator function.
+   *
+   * @param {string} strActionType - Action type.
+   * @param {Function} [funcActionCreator] - Action creator function.
+   * @returns {VitaEntity} This.
+   */
+  registerActionCreator = (strActionType, funcActionCreator) =&gt; {
+    this.mapActionCreators.set(strActionType, funcActionCreator);
+    return this;
+  }
+
+  /**
+   * Register a reducer function to handle on receiving an action with a
+   * given type.
+   *
+   * @param {string} strActionType - Action type to invoke reducer function
+   * on.
+   * @param {Function} funcReducer - Reducer function to invoke on reducing
+   * action with type.
+   * @returns {VitaEntity} This.
+   */
+  registerReducer = (strActionType, funcReducer) =&gt; {
+    this.mapReducerFunctions.set(strActionType, funcReducer);
+    return this;
+  }
+
+  /**
+   * Unregister an action creator for a given action type.
+   *
+   * @param {string} strActionType - Action type to unregister action creator
+   * function for.
+   * @returns {VitaEntity} This.
+   */
+  unregisterActionCreator = (strActionType) =&gt; {
+    this.mapActionCreators.delete(strActionType);
+    return this;
+  }
+
+  /**
+   * Unregister a reducer function for a given action type.
+   *
+   * @param {string} strActionType - Action type to unregister handling reducer
+   * function for.
+   * @returns {VitaEntity} This.
+   */
+  unregisterReducer = (strActionType) =&gt; {
+    this.mapReducerFunctions.delete(strActionType);
+    return this;
+  }
+}
+
+export default VitaEntity;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

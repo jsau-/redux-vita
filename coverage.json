@@ -1,0 +1,26 @@
+{
+  "coverage": "86.66%",
+  "expectCount": 15,
+  "actualCount": 13,
+  "files": {
+    "src/VitaEntity/VitaEntity.js": {
+      "expectCount": 13,
+      "actualCount": 12,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/makeActionCreator/constants.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/makeActionCreator/makeActionCreator.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    }
+  }
+}

@@ -1,0 +1,1187 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/VitaEntity/VitaEntity.js",
+    "content": "import isNil from 'lodash/isNil';\nimport { KEY_TYPE } from '../makeActionCreator/constants';\n\nclass VitaEntity {\n  /**\n   * @param {object} objDefaultReducerState - Default reducer state to be\n   * returned if attempting to reduce with a null or undefined state.\n   */\n  constructor(objDefaultReducerState = {}) {\n    /**\n     * @private\n     * @type {?object}\n     */\n    this.objDefaultReducerState = objDefaultReducerState;\n\n    /**\n     * @private\n     * @type {Map}\n     */\n    this.mapActionCreators = new Map();\n\n    /**\n     * @private\n     * @type {Map}\n     */\n    this.mapReducerFunctions = new Map();\n  }\n\n  /**\n   * Clear all registered action creators.\n   *\n   * @returns {VitaEntity} This.\n   */\n  clearAllActionCreators = () => {\n    this.mapActionCreators.clear();\n    return this;\n  };\n\n  /**\n   * Clear all registered reducers for handling actions.\n   *\n   * @returns {VitaEntity} This.\n   */\n  clearAllReducers = () => {\n    this.mapReducerFunctions.clear();\n    return this;\n  }\n\n  /**\n   * Gets dispatchable Redux action object for a given action type.\n   *\n   * @param {string} strActionType - Action type to generate dispatchable\n   * object for.\n   * @param {...*} varargsActionCreator - Arguments to pass to the registered\n   * function.\n   * @returns {object} Action object.\n   */\n  getDispatchable = (strActionType, ...varargsActionCreator) => {\n    const ufuncActionCreator = this.mapActionCreators.get(strActionType);\n\n    if (isNil(ufuncActionCreator)) {\n      throw new Error(`No action creator was registered for type ${strActionType}`);\n    }\n\n    return ufuncActionCreator(...varargsActionCreator);\n  };\n\n  /**\n   * Reducer function.\n   *\n   * @param {object} [uobjCurrentReducerState] - Current reducer state.\n   * @param {object} objAction - Occurring Redux action.\n   * @returns {object} New reducer state.\n   */\n  reduce = (uobjCurrentReducerState, objAction) => {\n    const objCurrentReducerState = isNil(uobjCurrentReducerState) ?\n      this.objDefaultReducerState :\n      uobjCurrentReducerState;\n\n    /*\n     * We shouldn't have to error check here since all valid Redux actions are\n     * required to have a 'type' property. See:\n     * https://redux.js.org/basics/actions/\n     */\n    const { [KEY_TYPE]: strTypeForAction } = objAction;\n\n    const ufuncReducerForAction = this.mapReducerFunctions.get(strTypeForAction);\n\n    // If we have no registered handler, just fallback to current state\n    if (isNil(ufuncReducerForAction)) {\n      return objCurrentReducerState;\n    }\n\n    return ufuncReducerForAction(objCurrentReducerState, objAction);\n  };\n\n  /**\n   * Create and register an action creator function.\n   *\n   * @param {string} strActionType - Action type.\n   * @param {Function} [funcActionCreator] - Action creator function.\n   * @returns {VitaEntity} This.\n   */\n  registerActionCreator = (strActionType, funcActionCreator) => {\n    this.mapActionCreators.set(strActionType, funcActionCreator);\n    return this;\n  }\n\n  /**\n   * Register a reducer function to handle on receiving an action with a\n   * given type.\n   *\n   * @param {string} strActionType - Action type to invoke reducer function\n   * on.\n   * @param {Function} funcReducer - Reducer function to invoke on reducing\n   * action with type.\n   * @returns {VitaEntity} This.\n   */\n  registerReducer = (strActionType, funcReducer) => {\n    this.mapReducerFunctions.set(strActionType, funcReducer);\n    return this;\n  }\n\n  /**\n   * Unregister an action creator for a given action type.\n   *\n   * @param {string} strActionType - Action type to unregister action creator\n   * function for.\n   * @returns {VitaEntity} This.\n   */\n  unregisterActionCreator = (strActionType) => {\n    this.mapActionCreators.delete(strActionType);\n    return this;\n  }\n\n  /**\n   * Unregister a reducer function for a given action type.\n   *\n   * @param {string} strActionType - Action type to unregister handling reducer\n   * function for.\n   * @returns {VitaEntity} This.\n   */\n  unregisterReducer = (strActionType) => {\n    this.mapReducerFunctions.delete(strActionType);\n    return this;\n  }\n}\n\nexport default VitaEntity;\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/VitaEntity/VitaEntity.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "VitaEntity",
+    "memberof": "src/VitaEntity/VitaEntity.js",
+    "static": true,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/VitaEntity/VitaEntity.js",
+    "importStyle": "VitaEntity",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objDefaultReducerState",
+        "description": "Default reducer state to be\nreturned if attempting to reduce with a null or undefined state."
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "objDefaultReducerState",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#objDefaultReducerState",
+    "access": "private",
+    "description": "",
+    "lineNumber": 14,
+    "type": {
+      "nullable": true,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "mapActionCreators",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#mapActionCreators",
+    "access": "private",
+    "description": "",
+    "lineNumber": 20,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Map"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "mapReducerFunctions",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#mapReducerFunctions",
+    "access": "private",
+    "description": "",
+    "lineNumber": 26,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Map"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "clearAllActionCreators",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#clearAllActionCreators",
+    "access": "public",
+    "description": "Clear all registered action creators.",
+    "lineNumber": 34,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{VitaEntity} This."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "VitaEntity"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "clearAllReducers",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#clearAllReducers",
+    "access": "public",
+    "description": "Clear all registered reducers for handling actions.",
+    "lineNumber": 44,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{VitaEntity} This."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "VitaEntity"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "member",
+    "name": "getDispatchable",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#getDispatchable",
+    "access": "public",
+    "description": "Gets dispatchable Redux action object for a given action type.",
+    "lineNumber": 58,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Action object."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strActionType",
+        "description": "Action type to generate dispatchable\nobject for."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "...*"
+        ],
+        "spread": true,
+        "optional": false,
+        "name": "varargsActionCreator",
+        "description": "Arguments to pass to the registered\nfunction."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Action object."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "member",
+    "name": "reduce",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#reduce",
+    "access": "public",
+    "description": "Reducer function.",
+    "lineNumber": 75,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} New reducer state."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "uobjCurrentReducerState",
+        "description": "Current reducer state."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objAction",
+        "description": "Occurring Redux action."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "New reducer state."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "member",
+    "name": "registerActionCreator",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#registerActionCreator",
+    "access": "public",
+    "description": "Create and register an action creator function.",
+    "lineNumber": 104,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{VitaEntity} This."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strActionType",
+        "description": "Action type."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "funcActionCreator",
+        "description": "Action creator function."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "VitaEntity"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "member",
+    "name": "registerReducer",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#registerReducer",
+    "access": "public",
+    "description": "Register a reducer function to handle on receiving an action with a\ngiven type.",
+    "lineNumber": 119,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{VitaEntity} This."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strActionType",
+        "description": "Action type to invoke reducer function\non."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "funcReducer",
+        "description": "Reducer function to invoke on reducing\naction with type."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "VitaEntity"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "member",
+    "name": "unregisterActionCreator",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#unregisterActionCreator",
+    "access": "public",
+    "description": "Unregister an action creator for a given action type.",
+    "lineNumber": 131,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{VitaEntity} This."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strActionType",
+        "description": "Action type to unregister action creator\nfunction for."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "VitaEntity"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "member",
+    "name": "unregisterReducer",
+    "memberof": "src/VitaEntity/VitaEntity.js~VitaEntity",
+    "static": false,
+    "longname": "src/VitaEntity/VitaEntity.js~VitaEntity#unregisterReducer",
+    "access": "public",
+    "description": "Unregister a reducer function for a given action type.",
+    "lineNumber": 143,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{VitaEntity} This."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strActionType",
+        "description": "Action type to unregister handling reducer\nfunction for."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "VitaEntity"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "file",
+    "name": "src/VitaEntity/index.js",
+    "content": "export { default } from './VitaEntity';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/VitaEntity/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 63,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "export { default as makeActionCreator } from './makeActionCreator';\nexport { default as VitaEntity } from './VitaEntity';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 64,
+    "kind": "file",
+    "name": "src/makeActionCreator/constants.js",
+    "content": "export const KEY_TYPE = 'type';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/makeActionCreator/constants.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 65,
+    "kind": "variable",
+    "name": "KEY_TYPE",
+    "memberof": "src/makeActionCreator/constants.js",
+    "static": true,
+    "longname": "src/makeActionCreator/constants.js~KEY_TYPE",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/makeActionCreator/constants.js",
+    "importStyle": "{KEY_TYPE}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "file",
+    "name": "src/makeActionCreator/index.js",
+    "content": "export { default } from './makeActionCreator';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/makeActionCreator/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 67,
+    "kind": "file",
+    "name": "src/makeActionCreator/makeActionCreator.js",
+    "content": "import isEmpty from 'lodash/isEmpty';\nimport isNil from 'lodash/isNil';\nimport isPlainObject from 'lodash/isPlainObject';\nimport { KEY_TYPE } from './constants';\n\n/**\n * @param {string} strType - Action type.\n * @param {Function} [ufuncPropertyCreator] - Optional function to\n * generate additional properties to the action.\n * @returns {Function} Function that creates action objects.\n * @throws {Error} If action type is empty, or additional generated properties\n * were not a plain object.\n */\nexport default (strType, ufuncPropertyCreator) => (...varargsPropertyCreator) => {\n  if (isEmpty(strType)) {\n    throw new Error('Type must not be empty.');\n  }\n\n  const objAdditionalProperties = isNil(ufuncPropertyCreator) ?\n    {} :\n    ufuncPropertyCreator(...varargsPropertyCreator);\n\n  /*\n   * Sanity-check our property creator function actually generated a plain\n   * object (otherwise we'll run into issues w/ Redux later...)\n   */\n  if (!isPlainObject(objAdditionalProperties)) {\n    throw new Error(\n      `Property creator function generated an invalid type. Expected plain \\\nobject, got '${typeof objAdditionalProperties}'`,\n    );\n  }\n\n  return {\n    ...objAdditionalProperties,\n    [KEY_TYPE]: strType,\n  };\n};\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/makeActionCreator/makeActionCreator.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 68,
+    "kind": "function",
+    "name": "makeActionCreator",
+    "memberof": "src/makeActionCreator/makeActionCreator.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/makeActionCreator/makeActionCreator.js~makeActionCreator",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/makeActionCreator/makeActionCreator.js",
+    "importStyle": "makeActionCreator",
+    "description": "",
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Function} Function that creates action objects."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strType",
+        "description": "Action type."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "ufuncPropertyCreator",
+        "description": "Optional function to\ngenerate additional properties to the action."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Function"
+      ],
+      "spread": false,
+      "description": "Function that creates action objects."
+    },
+    "throws": [
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "If action type is empty, or additional generated properties\nwere not a plain object."
+      }
+    ]
+  },
+  {
+    "kind": "index",
+    "content": "# redux-vita\n\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n**NOTE:** This library is currently under development. It should _not_ be used\nin a production environment. At thist time breaking changes will frequently be\nintroduced.\n\nThis library is an experiment in trying to solve some of the issues with code\nduplication and boilerplate found in bootstrapping simple Redux applications.\n\n## Getting Started\n\n```\n# Install project dependencies\nnpm ci\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.",
+    "longname": "/home/travis/build/jsau-/redux-vita/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"redux-vita\",\n  \"version\": \"0.0.3\",\n  \"description\": \"\",\n  \"main\": \"./build/index.js\",\n  \"scripts\": {\n    \"predoc\": \"del-cli \\\"./docs/**/*\\\"\",\n    \"doc\": \"npm run predoc && esdoc\",\n    \"prebuild\": \"npm run doc && del-cli \\\"./build/**/*\\\"\",\n    \"build:es2015\": \"npm run prebuild && cross-env NODE_ENV=production babel ./src --ignore \\\"**/*.test.js\\\" --out-dir ./build\",\n    \"lint\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color\",\n    \"lint:fix\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color --fix\",\n    \"precommit-message\": \"echo Executing pre-commit checks... && exit 0\",\n    \"test\": \"jest\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/jsau-/redux-vita.git\"\n  },\n  \"author\": \"Jon Saunders\",\n  \"license\": \"SEE LICENSE IN LICENSE.md\",\n  \"bugs\": {\n    \"url\": \"https://github.com/jsau-/redux-vita/issues\"\n  },\n  \"homepage\": \"https://github.com/jsau-/redux-vita#readme\",\n  \"devDependencies\": {\n    \"@babel/cli\": \"7.4.4\",\n    \"@babel/core\": \"7.4.5\",\n    \"@babel/plugin-proposal-class-properties\": \"7.4.4\",\n    \"@babel/plugin-proposal-decorators\": \"7.4.4\",\n    \"@babel/plugin-proposal-export-namespace-from\": \"7.2.0\",\n    \"@babel/plugin-proposal-function-sent\": \"7.2.0\",\n    \"@babel/plugin-proposal-json-strings\": \"7.2.0\",\n    \"@babel/plugin-proposal-nullish-coalescing-operator\": \"7.4.4\",\n    \"@babel/plugin-proposal-numeric-separator\": \"7.2.0\",\n    \"@babel/plugin-proposal-optional-chaining\": \"7.2.0\",\n    \"@babel/plugin-proposal-throw-expressions\": \"7.2.0\",\n    \"@babel/plugin-syntax-dynamic-import\": \"7.2.0\",\n    \"@babel/plugin-syntax-import-meta\": \"7.2.0\",\n    \"@babel/preset-env\": \"7.4.5\",\n    \"babel-eslint\": \"10.0.3\",\n    \"babel-jest\": \"24.9.0\",\n    \"cross-env\": \"5.2.0\",\n    \"del-cli\": \"2.0.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"eslint\": \"6.6.0\",\n    \"eslint-config-airbnb-base\": \"14.0.0\",\n    \"eslint-config-prettier\": \"5.0.0\",\n    \"eslint-plugin-import\": \"2.19.1\",\n    \"eslint-plugin-jsdoc\": \"8.4.4\",\n    \"jest\": \"24.9.0\",\n    \"lodash\": \"4.17.15\",\n    \"pre-commit\": \"1.2.2\",\n    \"redux\": \"4.0.0\"\n  },\n  \"peerDependencies\": {\n    \"lodash\": \"4.17.15\",\n    \"redux\": \"4.0.0\"\n  },\n  \"pre-commit\": [\n    \"precommit-message\",\n    \"lint\",\n    \"build:es2015\",\n    \"test\"\n  ]\n}\n",
+    "longname": "/home/travis/build/jsau-/redux-vita/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manualIndex",
+    "globalIndex": true,
+    "content": "# redux-vita\n\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n**NOTE:** This library is currently under development. It should _not_ be used\nin a production environment. At thist time breaking changes will frequently be\nintroduced.\n\nThis library is an experiment in trying to solve some of the issues with code\nduplication and boilerplate found in bootstrapping simple Redux applications.\n\n## Getting Started\n\n```\n# Install project dependencies\nnpm ci\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.",
+    "longname": "/home/travis/build/jsau-/redux-vita/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  }
+]
