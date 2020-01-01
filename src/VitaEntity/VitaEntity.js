@@ -1,35 +1,15 @@
 import isNil from 'lodash/isNil';
-import Operation from '../Operation';
-import operationClearAll from '../operations/operationClearAll';
-import IDENTIFIER_CLEAR_ALL from '../operations/operationClearAll/identifier';
-import operationRemoveField from '../operations/operationRemoveField';
-import IDENTIFIER_REMOVE_FIELD from '../operations/operationRemoveField/identifier';
-import operationSetField from '../operations/operationSetField';
-import IDENTIFIER_SET_FIELD from '../operations/operationSetField/identifier';
-import operationSetManyFields from '../operations/operationSetManyFields';
-import IDENTIFIER_SET_MANY_FIELDS from '../operations/operationSetManyFields/identifier';
-import DeltaCreator from '../typedef/DeltaCreator';
-import DeltaHandler from '../typedef/DeltaHandler';
-import DeltaObject from '../typedef/DeltaObject';
-import isReduxActionRelevantToVitaEntity from '../util/isReduxActionRelevantToVitaEntity';
-import { KEY_IDENTIFER } from '../util/deltaCreator/constants';
+import { KEY_TYPE } from '../makeActionCreator/constants';
 
 class VitaEntity {
   /**
-   * @param {string} strEntityName - Entity name.
-   * @param {object} [objDefaultReducerState={}] - Default reducer state to be
+   * @param {object} objDefaultReducerState - Default reducer state to be
    * returned if attempting to reduce with a null or undefined state.
    */
-  constructor(strEntityName, objDefaultReducerState = {}) {
+  constructor(objDefaultReducerState = {}) {
     /**
      * @private
-     * @type {string}
-     */
-    this.strEntityName = strEntityName;
-
-    /**
-     * @private
-     * @type {object}
+     * @type {?object}
      */
     this.objDefaultReducerState = objDefaultReducerState;
 
@@ -37,153 +17,131 @@ class VitaEntity {
      * @private
      * @type {Map}
      */
-    this.mapOperations = new Map();
+    this.mapActionCreators = new Map();
 
-    this.registerDefaultOperations();
+    /**
+     * @private
+     * @type {Map}
+     */
+    this.mapReducerFunctions = new Map();
   }
 
   /**
-   * @returns {undefined}
-   */
-  clearCustomOperations = () => {
-    this.mapOperations.clear();
-    this.registerDefaultOperations();
-  }
-
-  /**
-   * @param {string} strOperationIdentifier - Operation identifier.
-   * @param {DeltaCreator} funcDeltaCreator - Delta creator function.
-   * @param {DeltaHandler} [ufuncDeltaHandler] - Delta handler function.
+   * Clear all registered action creators.
+   *
    * @returns {VitaEntity} This.
    */
-  createAndRegisterOperation = (strOperationIdentifier, funcDeltaCreator, ufuncDeltaHandler) =>
-    this.registerOperation(new Operation(
-      this.strEntityName,
-      strOperationIdentifier,
-      funcDeltaCreator,
-      ufuncDeltaHandler,
-    ));
-
-  /**
-   * @param {string} strOperationIdentifier - Operation identifier to create
-   * dispatchable raw object for.
-   * @param {...*} varargs - Additional arguments to provide to operation
-   * DeltaObject creator function.
-   * @returns {DeltaObject} Redux-dispatchable raw object.
-   * @throws {Error} If no operation with provided identifier is registered.
-   */
-  getDispatchableActionObjectForOperation = (strOperationIdentifier, ...varargs) => {
-    const uoperation = this.mapOperations.get(strOperationIdentifier);
-
-    if (isNil(uoperation)) {
-      throw new Error(`No registered operation with identifier ${strOperationIdentifier}`);
-    }
-
-    return uoperation.createDelta(...varargs);
-  };
-
-  /**
-   * @returns {DeltaObject} Redux dispatchable raw object.
-   */
-  getDispatchableClearAll = () => this.getDispatchableActionObjectForOperation(IDENTIFIER_CLEAR_ALL);
-
-  /**
-   * @param {string} strFieldName - Field name to remove.
-   * @returns {DeltaObject} Redux-dispatachable raw object.
-   */
-  getDispatchableRemoveField = (strFieldName) => this.getDispatchableActionObjectForOperation(
-    IDENTIFIER_REMOVE_FIELD,
-    strFieldName,
-  );
-
-  /**
-   * @param {string} strFieldName - Field name to set.
-   * @param {*} mixedFieldValue - Field value to set.
-   * @returns {DeltaObject} Redux-dispatachable raw object.
-   */
-  getDispatchableSetField = (strFieldName, mixedFieldValue) => this.getDispatchableActionObjectForOperation(
-    IDENTIFIER_SET_FIELD,
-    strFieldName,
-    mixedFieldValue,
-  );
-
-  /**
-   * @param {object} objFieldsToSet - Fields to set.
-   * @returns {DeltaObject} Redux dispatchable raw object.
-   */
-  getDispatchableSetManyFields = (objFieldsToSet) => this.getDispatchableActionObjectForOperation(
-    IDENTIFIER_SET_MANY_FIELDS,
-    objFieldsToSet,
-  );
-
-  /**
-   * @returns {string} Entity name.
-   */
-  getEntityName = () => this.strEntityName;
-
-  /**
-   * @param {object} [uobjCurrentReducerState] - Current Redux reducer state.
-   * @param {object} objOccurringReduxAction - Occurring Redux action.
-   * @returns {object} New reducer state after processing occurring Redux action.
-   */
-  reduce = (uobjCurrentReducerState, objOccurringReduxAction) => {
-    /**
-     * Reducers in Redux default to undefined. In that case, fallback to the
-     * default state provided in the ctor
-     */
-    const objCurrentReducerState = isNil(uobjCurrentReducerState) ?
-      this.objDefaultReducerState :
-      uobjCurrentReducerState;
-
-    /**
-     * If the provided Redux action isn't relevant here (whether for a different
-     * entity, or of an unexpected format eg. from an action not generated by
-     * this library, then just return current state)
-     */
-    if (!isReduxActionRelevantToVitaEntity(this.strEntityName, objOccurringReduxAction)) {
-      return objCurrentReducerState;
-    }
-
-    const { [KEY_IDENTIFER]: strOperationIdentifier } = objOccurringReduxAction;
-    const uoperation = this.mapOperations.get(strOperationIdentifier);
-
-    /**
-     * If we have no operation registered matching the operation identifier,
-     * then just return current state
-     */
-    if (isNil(uoperation)) {
-      return objCurrentReducerState;
-    }
-
-    return uoperation.getReducerStateAfterProcessingDelta(objCurrentReducerState, objOccurringReduxAction);
-  };
-
-  /**
-   * @returns {undefined}
-   */
-  registerDefaultOperations = () => {
-    this.registerOperation(operationClearAll(this.strEntityName))
-      .registerOperation(operationRemoveField(this.strEntityName))
-      .registerOperation(operationSetField(this.strEntityName))
-      .registerOperation(operationSetManyFields(this.strEntityName));
-  };
-
-  /**
-   * @param {Operation} operation - Operation to register for entity.
-   * @returns {VitaEntity} This.
-   */
-  registerOperation = (operation) => {
-    const strOperationIdentifier = operation.getIdentifer();
-    this.mapOperations.set(strOperationIdentifier, operation);
+  clearAllActionCreators = () => {
+    this.mapActionCreators.clear();
     return this;
   };
 
   /**
-   * @param {string} strOperationIdentifier - Operation identifier to unregister.
+   * Clear all registered reducers for handling actions.
+   *
    * @returns {VitaEntity} This.
    */
-  unregisterOperationWithIdentifier = (strOperationIdentifier) => {
-    this.mapOperations.delete(strOperationIdentifier);
+  clearAllReducers = () => {
+    this.mapReducerFunctions.clear();
+    return this;
+  }
+
+  /**
+   * Gets dispatchable Redux action object for a given action type.
+   *
+   * @param {string} strActionType - Action type to generate dispatchable
+   * object for.
+   * @param {...*} varargsActionCreator - Arguments to pass to the registered
+   * function.
+   * @returns {object} Action object.
+   */
+  getDispatchable = (strActionType, ...varargsActionCreator) => {
+    const ufuncActionCreator = this.mapActionCreators.get(strActionType);
+
+    if (isNil(ufuncActionCreator)) {
+      throw new Error(`No action creator was registered for type ${strActionType}`);
+    }
+
+    return ufuncActionCreator(...varargsActionCreator);
+  };
+
+  /**
+   * Reducer function.
+   *
+   * @param {object} [uobjCurrentReducerState] - Current reducer state.
+   * @param {object} objAction - Occurring Redux action.
+   * @returns {object} New reducer state.
+   */
+  reduce = (uobjCurrentReducerState, objAction) => {
+    const objCurrentReducerState = isNil(uobjCurrentReducerState) ?
+      this.objDefaultReducerState :
+      uobjCurrentReducerState;
+
+    /*
+     * We shouldn't have to error check here since all valid Redux actions are
+     * required to have a 'type' property. See:
+     * https://redux.js.org/basics/actions/
+     */
+    const { [KEY_TYPE]: strTypeForAction } = objAction;
+
+    const ufuncReducerForAction = this.mapReducerFunctions.get(strTypeForAction);
+
+    // If we have no registered handler, just fallback to current state
+    if (isNil(ufuncReducerForAction)) {
+      return objCurrentReducerState;
+    }
+
+    return ufuncReducerForAction(objCurrentReducerState, objAction);
+  };
+
+  /**
+   * Create and register an action creator function.
+   *
+   * @param {string} strActionType - Action type.
+   * @param {Function} [funcActionCreator] - Action creator function.
+   * @returns {VitaEntity} This.
+   */
+  registerActionCreator = (strActionType, funcActionCreator) => {
+    this.mapActionCreators.set(strActionType, funcActionCreator);
+    return this;
+  }
+
+  /**
+   * Register a reducer function to handle on receiving an action with a
+   * given type.
+   *
+   * @param {string} strActionType - Action type to invoke reducer function
+   * on.
+   * @param {Function} funcReducer - Reducer function to invoke on reducing
+   * action with type.
+   * @returns {VitaEntity} This.
+   */
+  registerReducer = (strActionType, funcReducer) => {
+    this.mapReducerFunctions.set(strActionType, funcReducer);
+    return this;
+  }
+
+  /**
+   * Unregister an action creator for a given action type.
+   *
+   * @param {string} strActionType - Action type to unregister action creator
+   * function for.
+   * @returns {VitaEntity} This.
+   */
+  unregisterActionCreator = (strActionType) => {
+    this.mapActionCreators.delete(strActionType);
+    return this;
+  }
+
+  /**
+   * Unregister a reducer function for a given action type.
+   *
+   * @param {string} strActionType - Action type to unregister handling reducer
+   * function for.
+   * @returns {VitaEntity} This.
+   */
+  unregisterReducer = (strActionType) => {
+    this.mapReducerFunctions.delete(strActionType);
     return this;
   }
 }

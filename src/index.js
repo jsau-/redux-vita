@@ -1,5 +1,5 @@
-import * as operations from './operations';
+import * as reducerHelpers from './reducerHelpers';
 
-export { default as Operation } from './Operation';
+export { default as makeActionCreator } from './makeActionCreator';
 export { default as VitaEntity } from './VitaEntity';
-export { operations };
+export { reducerHelpers };
