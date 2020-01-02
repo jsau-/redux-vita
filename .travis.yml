@@ -17,6 +17,7 @@ jobs:
       script: npm run lint
       script: npm run test
     - stage: deploy_to_github_pages
+      if: type != cron
       deploy:
         provider: pages
         skip_cleanup: true
@@ -26,6 +27,7 @@ jobs:
         on:
           branch: master
     - stage: deploy_to_npm
+      if: type != cron
       deploy:
         edge: true
         provider: npm
