@@ -1,7 +1,7 @@
 import isNil from 'lodash/isNil';
 import { KEY_TYPE } from '../makeActionCreator/constants';
 
-class VitaEntity {
+class Vita {
   /**
    * @param {object} objDefaultReducerState - Default reducer state to be
    * returned if attempting to reduce with a null or undefined state.
@@ -29,7 +29,7 @@ class VitaEntity {
   /**
    * Clear all registered action creators.
    *
-   * @returns {VitaEntity} This.
+   * @returns {Vita} This.
    */
   clearAllActionCreators = () => {
     this.mapActionCreators.clear();
@@ -39,7 +39,7 @@ class VitaEntity {
   /**
    * Clear all registered reducers for handling actions.
    *
-   * @returns {VitaEntity} This.
+   * @returns {Vita} This.
    */
   clearAllReducers = () => {
     this.mapReducerFunctions.clear();
@@ -99,7 +99,7 @@ class VitaEntity {
    *
    * @param {string} strActionType - Action type.
    * @param {Function} [funcActionCreator] - Action creator function.
-   * @returns {VitaEntity} This.
+   * @returns {Vita} This.
    */
   registerActionCreator = (strActionType, funcActionCreator) => {
     this.mapActionCreators.set(strActionType, funcActionCreator);
@@ -114,7 +114,7 @@ class VitaEntity {
    * on.
    * @param {Function} funcReducer - Reducer function to invoke on reducing
    * action with type.
-   * @returns {VitaEntity} This.
+   * @returns {Vita} This.
    */
   registerReducer = (strActionType, funcReducer) => {
     this.mapReducerFunctions.set(strActionType, funcReducer);
@@ -126,7 +126,7 @@ class VitaEntity {
    *
    * @param {string} strActionType - Action type to unregister action creator
    * function for.
-   * @returns {VitaEntity} This.
+   * @returns {Vita} This.
    */
   unregisterActionCreator = (strActionType) => {
     this.mapActionCreators.delete(strActionType);
@@ -138,7 +138,7 @@ class VitaEntity {
    *
    * @param {string} strActionType - Action type to unregister handling reducer
    * function for.
-   * @returns {VitaEntity} This.
+   * @returns {Vita} This.
    */
   unregisterReducer = (strActionType) => {
     this.mapReducerFunctions.delete(strActionType);
@@ -146,4 +146,4 @@ class VitaEntity {
   }
 }
 
-export default VitaEntity;
+export default Vita;
