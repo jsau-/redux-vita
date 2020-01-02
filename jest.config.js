@@ -1,10 +1,7 @@
 module.exports = {
   bail: 1,
   collectCoverage: true,
-  collectCoverageFrom: [
-    './src/**/*.js',
-    '!./src/typedef/**',
-  ],
+  collectCoverageFrom: ['./src/**/*.js'],
   coverageThreshold: {
     global: {
       branches: 100,
