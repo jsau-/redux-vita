@@ -3,7 +3,7 @@
   "expectCount": 15,
   "actualCount": 13,
   "files": {
-    "src/VitaEntity/VitaEntity.js": {
+    "src/Vita/Vita.js": {
       "expectCount": 13,
       "actualCount": 12,
       "undocumentLines": [

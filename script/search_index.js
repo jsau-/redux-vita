@@ -6,9 +6,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-vita/src/vitaentity/vitaentity.js~vitaentity",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html",
-    "<span>VitaEntity</span> <span class=\"search-result-import-path\">redux-vita/src/VitaEntity/VitaEntity.js</span>",
+    "redux-vita/src/vita/vita.js~vita",
+    "class/src/Vita/Vita.js~Vita.html",
+    "<span>Vita</span> <span class=\"search-result-import-path\">redux-vita/src/Vita/Vita.js</span>",
     "class"
   ],
   [
@@ -300,87 +300,87 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/vitaentity/vitaentity.js",
-    "file/src/VitaEntity/VitaEntity.js.html",
-    "src/VitaEntity/VitaEntity.js",
+    "src/vita/vita.js",
+    "file/src/Vita/Vita.js.html",
+    "src/Vita/Vita.js",
     "file"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#clearallactioncreators",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-clearAllActionCreators",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#clearAllActionCreators",
+    "src/vita/vita.js~vita#_mapactioncreators",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-_mapActionCreators",
+    "src/Vita/Vita.js~Vita#_mapActionCreators",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#clearallreducers",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-clearAllReducers",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#clearAllReducers",
+    "src/vita/vita.js~vita#_mapreducerfunctions",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-_mapReducerFunctions",
+    "src/Vita/Vita.js~Vita#_mapReducerFunctions",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#constructor",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-constructor-constructor",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#constructor",
+    "src/vita/vita.js~vita#_objdefaultreducerstate",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-_objDefaultReducerState",
+    "src/Vita/Vita.js~Vita#_objDefaultReducerState",
+    "member"
+  ],
+  [
+    "src/vita/vita.js~vita#clearallactioncreators",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-clearAllActionCreators",
+    "src/Vita/Vita.js~Vita#clearAllActionCreators",
+    "member"
+  ],
+  [
+    "src/vita/vita.js~vita#clearallreducers",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-clearAllReducers",
+    "src/Vita/Vita.js~Vita#clearAllReducers",
+    "member"
+  ],
+  [
+    "src/vita/vita.js~vita#constructor",
+    "class/src/Vita/Vita.js~Vita.html#instance-constructor-constructor",
+    "src/Vita/Vita.js~Vita#constructor",
     "method"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#getdispatchable",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-getDispatchable",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#getDispatchable",
+    "src/vita/vita.js~vita#getdispatchable",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-getDispatchable",
+    "src/Vita/Vita.js~Vita#getDispatchable",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#mapactioncreators",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-mapActionCreators",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#mapActionCreators",
+    "src/vita/vita.js~vita#reduce",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-reduce",
+    "src/Vita/Vita.js~Vita#reduce",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#mapreducerfunctions",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-mapReducerFunctions",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#mapReducerFunctions",
+    "src/vita/vita.js~vita#registeractioncreator",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-registerActionCreator",
+    "src/Vita/Vita.js~Vita#registerActionCreator",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#objdefaultreducerstate",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-objDefaultReducerState",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#objDefaultReducerState",
+    "src/vita/vita.js~vita#registerreducer",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-registerReducer",
+    "src/Vita/Vita.js~Vita#registerReducer",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#reduce",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-reduce",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#reduce",
+    "src/vita/vita.js~vita#unregisteractioncreator",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-unregisterActionCreator",
+    "src/Vita/Vita.js~Vita#unregisterActionCreator",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#registeractioncreator",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-registerActionCreator",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#registerActionCreator",
+    "src/vita/vita.js~vita#unregisterreducer",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-unregisterReducer",
+    "src/Vita/Vita.js~Vita#unregisterReducer",
     "member"
   ],
   [
-    "src/vitaentity/vitaentity.js~vitaentity#registerreducer",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-registerReducer",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#registerReducer",
-    "member"
-  ],
-  [
-    "src/vitaentity/vitaentity.js~vitaentity#unregisteractioncreator",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-unregisterActionCreator",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#unregisterActionCreator",
-    "member"
-  ],
-  [
-    "src/vitaentity/vitaentity.js~vitaentity#unregisterreducer",
-    "class/src/VitaEntity/VitaEntity.js~VitaEntity.html#instance-member-unregisterReducer",
-    "src/VitaEntity/VitaEntity.js~VitaEntity#unregisterReducer",
-    "member"
-  ],
-  [
-    "src/vitaentity/index.js",
-    "file/src/VitaEntity/index.js.html",
-    "src/VitaEntity/index.js",
+    "src/vita/index.js",
+    "file/src/Vita/index.js.html",
+    "src/Vita/index.js",
     "file"
   ],
   [

@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 122,
+  "end": 110,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 122,
+    "end": 110,
     "loc": {
       "start": {
         "line": 1,
@@ -118,7 +118,7 @@
       {
         "type": "ExportNamedDeclaration",
         "start": 68,
-        "end": 121,
+        "end": 109,
         "loc": {
           "start": {
             "line": 2,
@@ -126,7 +126,7 @@
           },
           "end": {
             "line": 2,
-            "column": 53
+            "column": 41
           }
         },
         "declaration": null,
@@ -134,7 +134,7 @@
           {
             "type": "ExportSpecifier",
             "start": 77,
-            "end": 98,
+            "end": 92,
             "loc": {
               "start": {
                 "line": 2,
@@ -142,7 +142,7 @@
               },
               "end": {
                 "line": 2,
-                "column": 30
+                "column": 24
               }
             },
             "local": {
@@ -165,7 +165,7 @@
             "exported": {
               "type": "Identifier",
               "start": 88,
-              "end": 98,
+              "end": 92,
               "loc": {
                 "start": {
                   "line": 2,
@@ -173,33 +173,33 @@
                 },
                 "end": {
                   "line": 2,
-                  "column": 30
+                  "column": 24
                 },
-                "identifierName": "VitaEntity"
+                "identifierName": "Vita"
               },
-              "name": "VitaEntity"
+              "name": "Vita"
             }
           }
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 106,
-          "end": 120,
+          "start": 100,
+          "end": 108,
           "loc": {
             "start": {
               "line": 2,
-              "column": 38
+              "column": 32
             },
             "end": {
               "line": 2,
-              "column": 52
+              "column": 40
             }
           },
           "extra": {
-            "rawValue": "./VitaEntity",
-            "raw": "'./VitaEntity'"
+            "rawValue": "./Vita",
+            "raw": "'./Vita'"
           },
-          "value": "./VitaEntity"
+          "value": "./Vita"
         }
       }
     ],
@@ -563,9 +563,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "VitaEntity",
+      "value": "Vita",
       "start": 88,
-      "end": 98,
+      "end": 92,
       "loc": {
         "start": {
           "line": 2,
@@ -573,7 +573,7 @@
         },
         "end": {
           "line": 2,
-          "column": 30
+          "column": 24
         }
       }
     },
@@ -589,16 +589,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 99,
-      "end": 100,
+      "start": 93,
+      "end": 94,
       "loc": {
         "start": {
           "line": 2,
-          "column": 31
+          "column": 25
         },
         "end": {
           "line": 2,
-          "column": 32
+          "column": 26
         }
       }
     },
@@ -615,16 +615,16 @@
         "binop": null
       },
       "value": "from",
-      "start": 101,
-      "end": 105,
+      "start": 95,
+      "end": 99,
       "loc": {
         "start": {
           "line": 2,
-          "column": 33
+          "column": 27
         },
         "end": {
           "line": 2,
-          "column": 37
+          "column": 31
         }
       }
     },
@@ -641,17 +641,17 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "./VitaEntity",
-      "start": 106,
-      "end": 120,
+      "value": "./Vita",
+      "start": 100,
+      "end": 108,
       "loc": {
         "start": {
           "line": 2,
-          "column": 38
+          "column": 32
         },
         "end": {
           "line": 2,
-          "column": 52
+          "column": 40
         }
       }
     },
@@ -668,16 +668,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 120,
-      "end": 121,
+      "start": 108,
+      "end": 109,
       "loc": {
         "start": {
           "line": 2,
-          "column": 52
+          "column": 40
         },
         "end": {
           "line": 2,
-          "column": 53
+          "column": 41
         }
       }
     },
@@ -694,8 +694,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 122,
-      "end": 122,
+      "start": 110,
+      "end": 110,
       "loc": {
         "start": {
           "line": 3,

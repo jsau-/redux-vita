@@ -29,7 +29,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vitaentity">VitaEntity</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/VitaEntity/VitaEntity.js~VitaEntity.html">VitaEntity</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vita">Vita</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vita/Vita.js~Vita.html">Vita</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#makeactioncreator">makeActionCreator</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-makeActionCreator">makeActionCreator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-KEY_TYPE">KEY_TYPE</a></span></span></li>
 </ul>
@@ -38,17 +38,66 @@
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="redux-vita">redux-vita</h1><p><a href="https://badge.fury.io/js/redux-vita"><img src="https://badge.fury.io/js/redux-vita.svg" alt="npm version"></a>
 <a href="https://travis-ci.com/jsau-/redux-vita"><img src="https://travis-ci.com/jsau-/redux-vita.svg?branch=master" alt="Build Status"></a></p>
-<p><strong>NOTE:</strong> This library is currently under development. It should <em>not</em> be used
-in a production environment. At thist time breaking changes will frequently be
-introduced.</p>
-<p>This library is an experiment in trying to solve some of the issues with code
-duplication and boilerplate found in bootstrapping simple Redux applications.</p>
-<h2 id="documentation">Documentation</h2><p>Check out the <a href="https://jsau-.github.io/redux-vita">documentation page</a>.</p>
-<h2 id="getting-started">Getting Started</h2><pre><code><code class="source-code prettyprint"># Install project dependencies
-npm ci</code>
+<h2 id="installing">Installing</h2><p><code>npm install redux-vita</code></p>
+<h2 id="using-the-library">Using the Library</h2><p>Find basic snippets below - for full API documentation check out the
+<a href="https://jsau-.github.io/redux-vita">documentation page</a>.</p>
+<h4 id="instantiating--code-vita--code-">Instantiating <code>Vita</code></h4><pre><code><code class="source-code prettyprint">import { Vita } from &apos;redux-vita&apos;;
+
+// Default instantiation (with no default reducer state)
+const vita = new Vita();
+
+// Instantiating with default reducer state
+const default_reducer_state = { field_one: &apos;default&apos; };
+const vitaWithDefaultState = new Vita(default_reducer_state);</code>
+</code></pre><h4 id="registering-an-action-creator-function">Registering an Action Creator Function</h4><p>You can register action creators on a <code>Vita</code>, allowing you to create a
+dispatchable Redux action object by just passing the action&apos;s type at a later
+time.</p>
+<p>Additionally, when defining an action creator you can additionally pass a
+second parameter, which is a function for generating additional properties on
+the generated action object.</p>
+<pre><code><code class="source-code prettyprint">import { Vita, makeActionCreator } from &apos;redux-vita&apos;;
+
+const vita = new Vita();
+
+// Action creator which has no additional fields
+const actionCreator = makeActionCreator(&apos;action_type&apos;);
+vita.registerActionCreator(&apos;action_type&apos;, actionCreator);
+
+// Action creator which accepts some params
+const actionCreatorWithParams = makeActionCreator(&apos;action_wparams&apos;, (argone, argtwo) =&gt; ({ argone, argtwo }));
+vita.registerActionCreator(&apos;action_params&apos;, actionCreatorWithParams);</code>
+</code></pre><h4 id="getting-a-dispatchable-object-for-an-action-creator">Getting a Dispatchable Object for an Action Creator</h4><p>Generate a Redux action object for a registered action type. Note that any
+subsequent parameters after the type are provided as parameters to the property
+generator function (if provided when registering the creator).</p>
+<pre><code><code class="source-code prettyprint">// Returns { type: &apos;action_type&apos; }
+const objectAction = vita.getDispatchable(&apos;action_type&apos;);
+
+// Returns { argone: 1, argtwo: 2 }
+const objectAction = vita.getDispatchable(&apos;action_wparams&apos;, 1, 2);</code>
+</code></pre><h4 id="registering-a-reducer-function">Registering a Reducer Function</h4><p>You can register reducer functions to handle given action types. If no matching
+handler is found on invoking <code>Vita::reduce</code> then the current state is
+returned. If no current state is set, the default reducer state is returned.</p>
+<pre><code><code class="source-code prettyprint">vita.registerReducer(&apos;increment_counter&apos;, (state) =&gt; ({ ...state, counter: state.counter + 1 }));</code>
+</code></pre><h4 id="using-the-reducer-within-redux">Using the Reducer Within Redux</h4><p>Instances of <code>Vita</code> expose a function <code>reduce</code>. This can be registered as
+a reducer in Redux as you would a normal reducer function.</p>
+<pre><code><code class="source-code prettyprint">combineReducers({ my_reducer_name: vita.reduce });</code>
 </code></pre><h2 id="contributing">Contributing</h2><p>While contributions are appreciated, they may be rejected if not in line with
 the intended project direction. It&apos;s recommended to check before undertaking a
 major piece of work and/or refactoring.</p>
+<p>Contributions should be based off the <code>develop</code> branch, and any pull requests
+made into <code>develop</code>.</p>
+<p>Note that this project uses <a href="https://travis-ci.org/">TravisCI</a> for continuous
+integration. Any pull requests failing automated tests will be rejected.</p>
+<h4 id="getting-started">Getting Started</h4><pre><code><code class="source-code prettyprint">// Install dependencies
+npm ci
+
+// Run tests
+npm run lint
+npm run test
+
+// Build the library
+npm run build:es2015</code>
+</code></pre><h2 id="feedback-and-support">Feedback and Support</h2><p>For suggestions, issues, and/or support raise a GitHub issue!</p>
 </div>
 </div>
 
