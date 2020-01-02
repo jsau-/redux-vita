@@ -74,7 +74,7 @@ module.exports = {
     'no-extend-native': 'error',
     'no-eval': 'error',
     'no-tabs': 'error',
-    'no-underscore-dangle': ['error'],
+    'no-underscore-dangle': 'off',
     'no-warning-comments': [
       'error',
       {
