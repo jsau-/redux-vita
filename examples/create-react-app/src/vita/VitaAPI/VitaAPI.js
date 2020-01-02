@@ -1,9 +1,9 @@
 import fetch from 'fetch';
-import { VitaEntity, makeActionCreator } from 'redux-vita';
+import { Vita, makeActionCreator } from 'redux-vita';
 import { FETCH_TODOS, FETCH_TODOS_BEGIN, FETCH_TODOS_FINISH } from './actions';
 import { FIELD_IS_LOADING, FIELD_LOADED_TODOS } from './fields';
 
-const VitaAPI = new VitaEntity({ is_loading: false, loaded_todos: [] });
+const VitaAPI = new Vita({ is_loading: false, loaded_todos: [] });
 
 VitaAPI
   .registerActionCreator(

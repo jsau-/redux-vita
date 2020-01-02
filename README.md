@@ -12,8 +12,10 @@
 Find basic snippets below - for full API documentation check out the
 [documentation page](https://jsau-.github.io/redux-vita).
 
-#### Instantiating `VitaEntity`
+#### Instantiating `Vita`
 ```
+import { Vita } from 'redux-vita';
+
 // Default instantiation (with no default reducer state)
 const vita = new Vita();
 
@@ -23,7 +25,7 @@ const vitaWithDefaultState = new Vita(default_reducer_state);
 ```
 
 #### Registering an Action Creator Function
-You can register action creators on a `VitaEntity`, allowing you to create a
+You can register action creators on a `Vita`, allowing you to create a
 dispatchable Redux action object by just passing the action's type at a later
 time.
 
@@ -32,6 +34,8 @@ second parameter, which is a function for generating additional properties on
 the generated action object.
 
 ```
+import { Vita, makeActionCreator } from 'redux-vita';
+
 const vita = new Vita();
 
 // Action creator which has no additional fields
@@ -58,7 +62,7 @@ const objectAction = vita.getDispatchable('action_wparams', 1, 2);
 
 #### Registering a Reducer Function
 You can register reducer functions to handle given action types. If no matching
-handler is found on invoking `VitaEntity::reduce` then the current state is
+handler is found on invoking `Vita::reduce` then the current state is
 returned. If no current state is set, the default reducer state is returned.
 
 ```
@@ -66,7 +70,7 @@ vita.registerReducer('increment_counter', (state) => ({ ...state, counter: state
 ```
 
 #### Using the Reducer Within Redux
-Instances of `VitaEntity` expose a function `reduce`. This can be registered as
+Instances of `Vita` expose a function `reduce`. This can be registered as
 a reducer in Redux as you would a normal reducer function.
 
 ```
