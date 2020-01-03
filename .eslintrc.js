@@ -85,6 +85,6 @@ module.exports = {
     'operator-linebreak': ['error', 'after'],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'sort-keys': ['error', 'asc', { natural: true }],
-    yoda: 'error',
+    yoda: ['error', 'always'],
   },
 };

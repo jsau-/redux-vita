@@ -9,8 +9,12 @@
 
 ## Using the Library
 
-Find basic snippets below - for full API documentation check out the
+Find basic snippets below.
+
+For full API documentation check out the
 [documentation page](https://jsau-.github.io/redux-vita).
+
+For examples check out the `examples` directory.
 
 #### Instantiating `Vita`
 ```
@@ -67,6 +71,30 @@ returned. If no current state is set, the default reducer state is returned.
 
 ```
 vita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));
+```
+
+Note that the library exposes some standard reducer functions that may be useful
+in your applications. For a full list of available reducer functions see the
+[documentation page](https://jsau-.github.io/redux-vita).
+
+```
+import { reducerDecrementField } from 'redux-vita';
+vita.registerReducer('decrement_counter', (state) => reducerDecrementField(state, 'counter'));
+
+import { reducerIncrementField } from 'redux-vita';
+vita.registerReducer('increment_counter', (state) => reducerIncrementField(state, 'counter'));
+
+import { reducerRemoveField } from 'redux-vita';
+vita.registerReducer('clear_counter', (state) => reducerClearField(state, 'counter'));
+
+import { reducerSetField } from 'redux-vita';
+vita.registerReducer('maximise_counter', (state) => reducerSetField(state, 'counter', MAX_COUNTER_VALUE));
+
+import { reducerSetManyFields } from 'redux-vita';
+vita.registerReducer('reset_form', (state) => reducerSetManyFields(state, { field_one: 'default_one', field_two: 'default_two' }));
+
+import { reducerToggleBooleanField } from 'redux-vita';
+vita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));
 ```
 
 #### Using the Reducer Within Redux
