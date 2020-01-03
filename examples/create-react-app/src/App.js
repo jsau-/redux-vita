@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Form from './components/Form';
 import VitaAPI from './vita/VitaAPI';
 import { FETCH_TODOS } from './vita/VitaAPI/actions';
 import { FIELD_IS_LOADING, FIELD_LOADED_TODOS } from './vita/VitaAPI/fields';
@@ -10,6 +11,7 @@ class App extends React.Component {
 
     return (
       <div>
+        <Form />
         <h5>API Example:</h5>
         <pre>VitaAPI: {JSON.stringify(stateVitaAPI)}</pre>
         <button onClick={fetchTodos}>Fetch data from API</button>
