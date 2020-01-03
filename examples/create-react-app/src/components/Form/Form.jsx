@@ -18,7 +18,7 @@ class Form extends React.Component {
 
     return (
       <div>
-        <h5>Form Example:</h5>
+        <h5>Form Example  (See components/Form.jsx):</h5>
         <pre>VitaForm: {JSON.stringify(stateVitaForm)}</pre>
         <p>Time: {has(stateVitaForm, Fields.FIELD_TIME) ? stateVitaForm[Fields.FIELD_TIME].toString() : 'None set'}</p>
         <button onClick={clearTime}>Clear time</button>
