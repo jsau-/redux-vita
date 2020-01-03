@@ -1,4 +1,4 @@
-import has from 'lodash/has';
+import isNil from 'lodash/isNil';
 import React from 'react';
 import { connect } from 'react-redux';
 import VitaForm from '../../vita/VitaForm';
@@ -11,6 +11,7 @@ class Form extends React.Component {
       clearTime,
       decrementCounter,
       incrementCounter,
+      restoreDefaults,
       setTimeToNow,
       stateVitaForm,
       toggleEnabled,
@@ -20,7 +21,8 @@ class Form extends React.Component {
       <div>
         <h5>Form Example  (See components/Form.jsx):</h5>
         <pre>VitaForm: {JSON.stringify(stateVitaForm)}</pre>
-        <p>Time: {has(stateVitaForm, Fields.FIELD_TIME) ? stateVitaForm[Fields.FIELD_TIME].toString() : 'None set'}</p>
+        <button onClick={restoreDefaults}>Restore defaults</button>
+        <p>Time: {isNil(stateVitaForm[Fields.FIELD_TIME]) ? 'None set' : stateVitaForm[Fields.FIELD_TIME].toString()}</p>
         <button onClick={clearTime}>Clear time</button>
         <button onClick={setTimeToNow}>Set time to now</button>
         <p>Counter: {stateVitaForm[Fields.FIELD_COUNTER]}</p>
@@ -37,6 +39,7 @@ const mapDispatchToProps = (dispatch) => ({
   clearTime: () => dispatch(VitaForm.getDispatchable(Actions.CLEAR_TIME)),
   decrementCounter: () => dispatch(VitaForm.getDispatchable(Actions.DECREMENT_COUNTER)),
   incrementCounter: () => dispatch(VitaForm.getDispatchable(Actions.INCREMENT_COUNTER)),
+  restoreDefaults: () => dispatch(VitaForm.getDispatchable(Actions.RESTORE_DEFAULTS)),
   setTimeToNow: () => dispatch(VitaForm.getDispatchable(Actions.SET_TIME_TO_NOW)),
   toggleEnabled: () => dispatch(VitaForm.getDispatchable(Actions.TOGGLE_ENABLED)),
 });
