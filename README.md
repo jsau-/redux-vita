@@ -9,8 +9,12 @@
 
 ## Using the Library
 
-Find basic snippets below - for full API documentation check out the
+Find basic snippets below.
+
+For full API documentation check out the
 [documentation page](https://jsau-.github.io/redux-vita).
+
+For examples check out the `examples` directory.
 
 #### Instantiating `Vita`
 ```
