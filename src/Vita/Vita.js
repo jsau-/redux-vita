@@ -1,5 +1,6 @@
 import isNil from 'lodash/isNil';
 import { KEY_TYPE } from '../makeActionCreator/constants';
+import makeActionCreator from '../makeActionCreator';
 
 class Vita {
   /**
@@ -98,7 +99,7 @@ class Vita {
    * Create and register an action creator function.
    *
    * @param {string} strActionType - Action type.
-   * @param {Function} [funcActionCreator] - Action creator function.
+   * @param {Function} funcActionCreator - Action creator function.
    * @returns {Vita} This.
    */
   registerActionCreator = (strActionType, funcActionCreator) => {
@@ -118,6 +119,27 @@ class Vita {
    */
   registerReducer = (strActionType, funcReducer) => {
     this._mapReducerFunctions.set(strActionType, funcReducer);
+    return this;
+  }
+
+  /**
+   * Register an action creator and reducer function at the same time. Note
+   * that the action creator param is optional. Omitting it will generate
+   * a default action creator.
+   *
+   * @param {string} strActionType - Action type.
+   * @param {Function} funcReducer - Reducer function to invoke on reducing
+   * action with type.
+   * @param {Function} [ufuncActionCreator] - Action creator function.
+   * @returns {Vita} This.
+   */
+  registerSlice = (strActionType, funcReducer, ufuncActionCreator) => {
+    const funcActionCreator = isNil(ufuncActionCreator) ?
+      makeActionCreator(strActionType) :
+      ufuncActionCreator;
+
+    this.registerActionCreator(strActionType, funcActionCreator);
+    this.registerReducer(strActionType, funcReducer);
     return this;
   }
 
@@ -142,6 +164,18 @@ class Vita {
    */
   unregisterReducer = (strActionType) => {
     this._mapReducerFunctions.delete(strActionType);
+    return this;
+  }
+
+  /**
+   * Unregister an action creator and reducer at the same time.
+   *
+   * @param {string} strActionType - Action type to unregister.
+   * @returns {Vita} This.
+   */
+  unregisterSlice = (strActionType) => {
+    this.unregisterActionCreator(strActionType);
+    this.unregisterReducer(strActionType);
     return this;
   }
 }
