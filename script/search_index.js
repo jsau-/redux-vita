@@ -402,6 +402,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/vita/vita.js~vita#registerslice",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-registerSlice",
+    "src/Vita/Vita.js~Vita#registerSlice",
+    "member"
+  ],
+  [
     "src/vita/vita.js~vita#unregisteractioncreator",
     "class/src/Vita/Vita.js~Vita.html#instance-member-unregisterActionCreator",
     "src/Vita/Vita.js~Vita#unregisterActionCreator",
@@ -411,6 +417,12 @@ window.esdocSearchIndex = [
     "src/vita/vita.js~vita#unregisterreducer",
     "class/src/Vita/Vita.js~Vita.html#instance-member-unregisterReducer",
     "src/Vita/Vita.js~Vita#unregisterReducer",
+    "member"
+  ],
+  [
+    "src/vita/vita.js~vita#unregisterslice",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-unregisterSlice",
+    "src/Vita/Vita.js~Vita#unregisterSlice",
     "member"
   ],
   [

@@ -1,13 +1,13 @@
 {
-  "coverage": "90.47%",
-  "expectCount": 21,
-  "actualCount": 19,
+  "coverage": "91.3%",
+  "expectCount": 23,
+  "actualCount": 21,
   "files": {
     "src/Vita/Vita.js": {
-      "expectCount": 13,
-      "actualCount": 12,
+      "expectCount": 15,
+      "actualCount": 14,
       "undocumentLines": [
-        4
+        5
       ]
     },
     "src/makeActionCreator/constants.js": {

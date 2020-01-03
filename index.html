@@ -106,6 +106,21 @@ vita.registerReducer(&apos;reset_form&apos;, (state) =&gt; reducerSetManyFields(
 
 import { reducerToggleBooleanField } from &apos;redux-vita&apos;;
 vita.registerReducer(&apos;toggle_counter_enabled&apos;, (state) =&gt; reducerToggleBooleanField(state, &apos;counter_enabled&apos;));</code>
+</code></pre><h4 id="registering-a-slice">Registering a Slice</h4><p>It&apos;s possible to register an action creator and reducer function at the same
+time using <code>Vita::registerSlice</code>. Note that the action creator param is
+optional, and will default to <code>makeActionCreator(ACTION_TYPE)</code>.</p>
+<pre><code><code class="source-code prettyprint">// Without specifying an action creator
+vita.registerSlice(
+  &apos;action_type&apos;,
+  (state) =&gt; reducerClearField(state, &apos;field_to_clear&apos;),
+);
+
+// Specifying an action creator
+vita.registerSlice(
+  &apos;action_type&apos;,
+  (state) =&gt; reducerClearField(state, &apos;field_to_clear&apos;),
+  makeActionCreator(&apos;action_type&apos;),
+);</code>
 </code></pre><h4 id="using-the-reducer-within-redux">Using the Reducer Within Redux</h4><p>Instances of <code>Vita</code> expose a function <code>reduce</code>. This can be registered as
 a reducer in Redux as you would a normal reducer function.</p>
 <pre><code><code class="source-code prettyprint">combineReducers({ my_reducer_name: vita.reduce });</code>
