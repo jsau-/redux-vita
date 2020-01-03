@@ -97,6 +97,26 @@ import { reducerToggleBooleanField } from 'redux-vita';
 vita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));
 ```
 
+#### Registering a Slice
+It's possible to register an action creator and reducer function at the same
+time using `Vita::registerSlice`. Note that the action creator param is
+optional, and will default to `makeActionCreator(ACTION_TYPE)`.
+
+```
+// Without specifying an action creator
+vita.registerSlice(
+  'action_type',
+  (state) => reducerClearField(state, 'field_to_clear'),
+);
+
+// Specifying an action creator
+vita.registerSlice(
+  'action_type',
+  (state) => reducerClearField(state, 'field_to_clear'),
+  makeActionCreator('action_type'),
+);
+```
+
 #### Using the Reducer Within Redux
 Instances of `Vita` expose a function `reduce`. This can be registered as
 a reducer in Redux as you would a normal reducer function.
