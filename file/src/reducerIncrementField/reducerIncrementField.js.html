@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/makeActionCreator/index.js | redux-vita</title>
+  <title data-ice="title">src/reducerIncrementField/reducerIncrementField.js | redux-vita</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -42,8 +42,36 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/makeActionCreator/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { default } from &apos;./makeActionCreator&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/reducerIncrementField/reducerIncrementField.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import has from &apos;lodash/has&apos;;
+
+/**
+ * Reducer function for incrementing a numeric field.
+ *
+ * @param {object} objReducerState - Current reducer state.
+ * @param {string} strFieldName - Field to increment.
+ * @returns {object} Reducer state after incrementing field.
+ * @throws {Error} If field does not exists.
+ * @throws {TypeError} If field is not a number.
+ */
+export default (objReducerState, strFieldName) =&gt; {
+  if (!has(objReducerState, strFieldName)) {
+    throw new Error(`Field &apos;${strFieldName}&apos; does not exist on current state, and hence cannot be incremented.`);
+  }
+
+  const mixedFieldValue = objReducerState[strFieldName];
+
+  if (&apos;number&apos; !== typeof mixedFieldValue) {
+    throw new TypeError(
+      `Invalid type for incrementing field &apos;${strFieldName}&apos;. Expected &apos;number&apos;, got &apos;${typeof mixedFieldValue}&apos;`,
+    );
+  }
+
+  return {
+    ...objReducerState,
+    [strFieldName]: mixedFieldValue + 1,
+  };
+};
 </code></pre>
 
 </div>

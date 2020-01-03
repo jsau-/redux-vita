@@ -18,6 +18,42 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "redux-vita/src/reducerdecrementfield/reducerdecrementfield.js~reducerdecrementfield",
+    "function/index.html#static-function-reducerDecrementField",
+    "<span>reducerDecrementField</span> <span class=\"search-result-import-path\">redux-vita/src/reducerDecrementField/reducerDecrementField.js</span>",
+    "function"
+  ],
+  [
+    "redux-vita/src/reducerincrementfield/reducerincrementfield.js~reducerincrementfield",
+    "function/index.html#static-function-reducerIncrementField",
+    "<span>reducerIncrementField</span> <span class=\"search-result-import-path\">redux-vita/src/reducerIncrementField/reducerIncrementField.js</span>",
+    "function"
+  ],
+  [
+    "redux-vita/src/reducerremovefield/reducerremovefield.js~reducerremovefield",
+    "function/index.html#static-function-reducerRemoveField",
+    "<span>reducerRemoveField</span> <span class=\"search-result-import-path\">redux-vita/src/reducerRemoveField/reducerRemoveField.js</span>",
+    "function"
+  ],
+  [
+    "redux-vita/src/reducersetfield/reducersetfield.js~reducersetfield",
+    "function/index.html#static-function-reducerSetField",
+    "<span>reducerSetField</span> <span class=\"search-result-import-path\">redux-vita/src/reducerSetField/reducerSetField.js</span>",
+    "function"
+  ],
+  [
+    "redux-vita/src/reducersetmanyfields/reducersetmanyfields.js~reducersetmanyfields",
+    "function/index.html#static-function-reducerSetManyFields",
+    "<span>reducerSetManyFields</span> <span class=\"search-result-import-path\">redux-vita/src/reducerSetManyFields/reducerSetManyFields.js</span>",
+    "function"
+  ],
+  [
+    "redux-vita/src/reducertogglebooleanfield/reducertogglebooleanfield.js~reducertogglebooleanfield",
+    "function/index.html#static-function-reducerToggleBooleanField",
+    "<span>reducerToggleBooleanField</span> <span class=\"search-result-import-path\">redux-vita/src/reducerToggleBooleanField/reducerToggleBooleanField.js</span>",
+    "function"
+  ],
+  [
     "src/.external-ecmascript.js~array",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
     "src/.external-ecmascript.js~Array",
@@ -405,6 +441,78 @@ window.esdocSearchIndex = [
     "src/makeactioncreator/makeactioncreator.js",
     "file/src/makeActionCreator/makeActionCreator.js.html",
     "src/makeActionCreator/makeActionCreator.js",
+    "file"
+  ],
+  [
+    "src/reducerdecrementfield/index.js",
+    "file/src/reducerDecrementField/index.js.html",
+    "src/reducerDecrementField/index.js",
+    "file"
+  ],
+  [
+    "src/reducerdecrementfield/reducerdecrementfield.js",
+    "file/src/reducerDecrementField/reducerDecrementField.js.html",
+    "src/reducerDecrementField/reducerDecrementField.js",
+    "file"
+  ],
+  [
+    "src/reducerincrementfield/index.js",
+    "file/src/reducerIncrementField/index.js.html",
+    "src/reducerIncrementField/index.js",
+    "file"
+  ],
+  [
+    "src/reducerincrementfield/reducerincrementfield.js",
+    "file/src/reducerIncrementField/reducerIncrementField.js.html",
+    "src/reducerIncrementField/reducerIncrementField.js",
+    "file"
+  ],
+  [
+    "src/reducerremovefield/index.js",
+    "file/src/reducerRemoveField/index.js.html",
+    "src/reducerRemoveField/index.js",
+    "file"
+  ],
+  [
+    "src/reducerremovefield/reducerremovefield.js",
+    "file/src/reducerRemoveField/reducerRemoveField.js.html",
+    "src/reducerRemoveField/reducerRemoveField.js",
+    "file"
+  ],
+  [
+    "src/reducersetfield/index.js",
+    "file/src/reducerSetField/index.js.html",
+    "src/reducerSetField/index.js",
+    "file"
+  ],
+  [
+    "src/reducersetfield/reducersetfield.js",
+    "file/src/reducerSetField/reducerSetField.js.html",
+    "src/reducerSetField/reducerSetField.js",
+    "file"
+  ],
+  [
+    "src/reducersetmanyfields/index.js",
+    "file/src/reducerSetManyFields/index.js.html",
+    "src/reducerSetManyFields/index.js",
+    "file"
+  ],
+  [
+    "src/reducersetmanyfields/reducersetmanyfields.js",
+    "file/src/reducerSetManyFields/reducerSetManyFields.js.html",
+    "src/reducerSetManyFields/reducerSetManyFields.js",
+    "file"
+  ],
+  [
+    "src/reducertogglebooleanfield/index.js",
+    "file/src/reducerToggleBooleanField/index.js.html",
+    "src/reducerToggleBooleanField/index.js",
+    "file"
+  ],
+  [
+    "src/reducertogglebooleanfield/reducertogglebooleanfield.js",
+    "file/src/reducerToggleBooleanField/reducerToggleBooleanField.js.html",
+    "src/reducerToggleBooleanField/reducerToggleBooleanField.js",
     "file"
   ]
 ]

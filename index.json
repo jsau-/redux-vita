@@ -1039,7 +1039,7 @@
     "__docId__": 63,
     "kind": "file",
     "name": "src/index.js",
-    "content": "export { default as makeActionCreator } from './makeActionCreator';\nexport { default as Vita } from './Vita';\n",
+    "content": "export { default as makeActionCreator } from './makeActionCreator';\nexport { default as reducerDecrementField } from './reducerDecrementField';\nexport { default as reducerIncrementField } from './reducerIncrementField';\nexport { default as reducerRemoveField } from './reducerRemoveField';\nexport { default as reducerSetField } from './reducerSetField';\nexport { default as reducerSetManyFields } from './reducerSetManyFields';\nexport { default as reducerToggleBooleanField } from './reducerToggleBooleanField';\nexport { default as Vita } from './Vita';\n",
     "static": true,
     "longname": "/home/travis/build/jsau-/redux-vita/src/index.js",
     "access": "public",
@@ -1160,8 +1160,504 @@
     ]
   },
   {
+    "__docId__": 69,
+    "kind": "file",
+    "name": "src/reducerDecrementField/index.js",
+    "content": "export { default } from './reducerDecrementField';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerDecrementField/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 70,
+    "kind": "file",
+    "name": "src/reducerDecrementField/reducerDecrementField.js",
+    "content": "import has from 'lodash/has';\n\n/**\n * Reducer function for decrementing a numeric field.\n *\n * @param {object} objReducerState - Current reducer state.\n * @param {string} strFieldName - Field to decrement.\n * @returns {object} Reducer state after decrementing field.\n * @throws {Error} If field does not exists.\n * @throws {TypeError} If field is not a number.\n */\nexport default (objReducerState, strFieldName) => {\n  if (!has(objReducerState, strFieldName)) {\n    throw new Error(`Field '${strFieldName}' does not exist on current state, and hence cannot be decremented.`);\n  }\n\n  const mixedFieldValue = objReducerState[strFieldName];\n\n  if ('number' !== typeof mixedFieldValue) {\n    throw new TypeError(\n      `Invalid type for decrementing field '${strFieldName}'. Expected 'number', got '${typeof mixedFieldValue}'`,\n    );\n  }\n\n  return {\n    ...objReducerState,\n    [strFieldName]: mixedFieldValue - 1,\n  };\n};\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerDecrementField/reducerDecrementField.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 71,
+    "kind": "function",
+    "name": "reducerDecrementField",
+    "memberof": "src/reducerDecrementField/reducerDecrementField.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/reducerDecrementField/reducerDecrementField.js~reducerDecrementField",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/reducerDecrementField/reducerDecrementField.js",
+    "importStyle": "reducerDecrementField",
+    "description": "Reducer function for decrementing a numeric field.",
+    "lineNumber": 12,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Reducer state after decrementing field."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objReducerState",
+        "description": "Current reducer state."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strFieldName",
+        "description": "Field to decrement."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Reducer state after decrementing field."
+    },
+    "throws": [
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "If field does not exists."
+      },
+      {
+        "types": [
+          "TypeError"
+        ],
+        "description": "If field is not a number."
+      }
+    ]
+  },
+  {
+    "__docId__": 72,
+    "kind": "file",
+    "name": "src/reducerIncrementField/index.js",
+    "content": "export { default } from './reducerIncrementField';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerIncrementField/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/reducerIncrementField/reducerIncrementField.js",
+    "content": "import has from 'lodash/has';\n\n/**\n * Reducer function for incrementing a numeric field.\n *\n * @param {object} objReducerState - Current reducer state.\n * @param {string} strFieldName - Field to increment.\n * @returns {object} Reducer state after incrementing field.\n * @throws {Error} If field does not exists.\n * @throws {TypeError} If field is not a number.\n */\nexport default (objReducerState, strFieldName) => {\n  if (!has(objReducerState, strFieldName)) {\n    throw new Error(`Field '${strFieldName}' does not exist on current state, and hence cannot be incremented.`);\n  }\n\n  const mixedFieldValue = objReducerState[strFieldName];\n\n  if ('number' !== typeof mixedFieldValue) {\n    throw new TypeError(\n      `Invalid type for incrementing field '${strFieldName}'. Expected 'number', got '${typeof mixedFieldValue}'`,\n    );\n  }\n\n  return {\n    ...objReducerState,\n    [strFieldName]: mixedFieldValue + 1,\n  };\n};\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerIncrementField/reducerIncrementField.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "function",
+    "name": "reducerIncrementField",
+    "memberof": "src/reducerIncrementField/reducerIncrementField.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/reducerIncrementField/reducerIncrementField.js~reducerIncrementField",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/reducerIncrementField/reducerIncrementField.js",
+    "importStyle": "reducerIncrementField",
+    "description": "Reducer function for incrementing a numeric field.",
+    "lineNumber": 12,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Reducer state after incrementing field."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objReducerState",
+        "description": "Current reducer state."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strFieldName",
+        "description": "Field to increment."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Reducer state after incrementing field."
+    },
+    "throws": [
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "If field does not exists."
+      },
+      {
+        "types": [
+          "TypeError"
+        ],
+        "description": "If field is not a number."
+      }
+    ]
+  },
+  {
+    "__docId__": 75,
+    "kind": "file",
+    "name": "src/reducerRemoveField/index.js",
+    "content": "export { default } from './reducerRemoveField';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerRemoveField/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 76,
+    "kind": "file",
+    "name": "src/reducerRemoveField/reducerRemoveField.js",
+    "content": "/**\n * Reducer function for removing a field.\n *\n * @param {object} objReducerState - Current reducer state.\n * @param {string} strFieldName - Field name to remove.\n * @returns {object} Reducer state after removing field.\n */\nexport default (objReducerState, strFieldName) => {\n  const {\n    [strFieldName]: mixedFieldToRemove,\n    ...objReducerStateWithoutRemovedField\n  } = objReducerState;\n\n  return objReducerStateWithoutRemovedField;\n};\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerRemoveField/reducerRemoveField.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 77,
+    "kind": "function",
+    "name": "reducerRemoveField",
+    "memberof": "src/reducerRemoveField/reducerRemoveField.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/reducerRemoveField/reducerRemoveField.js~reducerRemoveField",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/reducerRemoveField/reducerRemoveField.js",
+    "importStyle": "reducerRemoveField",
+    "description": "Reducer function for removing a field.",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Reducer state after removing field."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objReducerState",
+        "description": "Current reducer state."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strFieldName",
+        "description": "Field name to remove."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Reducer state after removing field."
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "file",
+    "name": "src/reducerSetField/index.js",
+    "content": "export { default } from './reducerSetField';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerSetField/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 79,
+    "kind": "file",
+    "name": "src/reducerSetField/reducerSetField.js",
+    "content": "/**\n * Reducer function for setting a field.\n *\n * @param {object} objReducerState - Current reducer state.\n * @param {string} strFieldName - Field name to set.\n * @param {*} mixedFieldValue - Field value to set.\n * @returns {object} Reducer state after setting field.\n */\nexport default (objReducerState, strFieldName, mixedFieldValue) => ({\n  ...objReducerState,\n  [strFieldName]: mixedFieldValue,\n});\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerSetField/reducerSetField.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 80,
+    "kind": "function",
+    "name": "reducerSetField",
+    "memberof": "src/reducerSetField/reducerSetField.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/reducerSetField/reducerSetField.js~reducerSetField",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/reducerSetField/reducerSetField.js",
+    "importStyle": "reducerSetField",
+    "description": "Reducer function for setting a field.",
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Reducer state after setting field."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objReducerState",
+        "description": "Current reducer state."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strFieldName",
+        "description": "Field name to set."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "mixedFieldValue",
+        "description": "Field value to set."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Reducer state after setting field."
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "file",
+    "name": "src/reducerSetManyFields/index.js",
+    "content": "export { default } from './reducerSetManyFields';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerSetManyFields/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 82,
+    "kind": "file",
+    "name": "src/reducerSetManyFields/reducerSetManyFields.js",
+    "content": "/**\n * Reducer function for setting many fields.\n *\n * @param {object} objReducerState - Current reducer state.\n * @param {object} objFieldsToSet - Fields to set.\n * @returns {object} Reducer state after setting fields.\n */\nexport default (objReducerState, objFieldsToSet) => ({\n  ...objReducerState,\n  ...objFieldsToSet,\n});\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerSetManyFields/reducerSetManyFields.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 83,
+    "kind": "function",
+    "name": "reducerSetManyFields",
+    "memberof": "src/reducerSetManyFields/reducerSetManyFields.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/reducerSetManyFields/reducerSetManyFields.js~reducerSetManyFields",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/reducerSetManyFields/reducerSetManyFields.js",
+    "importStyle": "reducerSetManyFields",
+    "description": "Reducer function for setting many fields.",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Reducer state after setting fields."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objReducerState",
+        "description": "Current reducer state."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objFieldsToSet",
+        "description": "Fields to set."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Reducer state after setting fields."
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "file",
+    "name": "src/reducerToggleBooleanField/index.js",
+    "content": "export { default } from './reducerToggleBooleanField';\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerToggleBooleanField/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 85,
+    "kind": "file",
+    "name": "src/reducerToggleBooleanField/reducerToggleBooleanField.js",
+    "content": "import has from 'lodash/has';\n\n/**\n * Reducer function for toggling a boolean field.\n *\n * @param {object} objReducerState - Current reducer state.\n * @param {string} strFieldName - Field to toggle.\n * @returns {object} Reducer state after toggling field.\n * @throws {Error} If field does not exists.\n * @throws {TypeError} If field is not a boolean.\n */\nexport default (objReducerState, strFieldName) => {\n  if (!has(objReducerState, strFieldName)) {\n    throw new Error(`Field '${strFieldName}' does not exist on current state, and hence cannot be toggled.`);\n  }\n\n  const mixedFieldValue = objReducerState[strFieldName];\n\n  if ('boolean' !== typeof mixedFieldValue) {\n    throw new TypeError(\n      `Invalid type for toggling field '${strFieldName}'. Expected 'boolean', got '${typeof mixedFieldValue}'`,\n    );\n  }\n\n  return {\n    ...objReducerState,\n    [strFieldName]: !mixedFieldValue,\n  };\n};\n",
+    "static": true,
+    "longname": "/home/travis/build/jsau-/redux-vita/src/reducerToggleBooleanField/reducerToggleBooleanField.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 86,
+    "kind": "function",
+    "name": "reducerToggleBooleanField",
+    "memberof": "src/reducerToggleBooleanField/reducerToggleBooleanField.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/reducerToggleBooleanField/reducerToggleBooleanField.js~reducerToggleBooleanField",
+    "access": "public",
+    "export": true,
+    "importPath": "redux-vita/src/reducerToggleBooleanField/reducerToggleBooleanField.js",
+    "importStyle": "reducerToggleBooleanField",
+    "description": "Reducer function for toggling a boolean field.",
+    "lineNumber": 12,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} Reducer state after toggling field."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "objReducerState",
+        "description": "Current reducer state."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "strFieldName",
+        "description": "Field to toggle."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "Reducer state after toggling field."
+    },
+    "throws": [
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "If field does not exists."
+      },
+      {
+        "types": [
+          "TypeError"
+        ],
+        "description": "If field is not a boolean."
+      }
+    ]
+  },
+  {
     "kind": "index",
-    "content": "# redux-vita\n\n[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n## Installing\n\n`npm install redux-vita`\n\n## Using the Library\n\nFind basic snippets below - for full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n#### Instantiating `Vita`\n```\nimport { Vita } from 'redux-vita';\n\n// Default instantiation (with no default reducer state)\nconst vita = new Vita();\n\n// Instantiating with default reducer state\nconst default_reducer_state = { field_one: 'default' };\nconst vitaWithDefaultState = new Vita(default_reducer_state);\n```\n\n#### Registering an Action Creator Function\nYou can register action creators on a `Vita`, allowing you to create a\ndispatchable Redux action object by just passing the action's type at a later\ntime.\n\nAdditionally, when defining an action creator you can additionally pass a\nsecond parameter, which is a function for generating additional properties on\nthe generated action object.\n\n```\nimport { Vita, makeActionCreator } from 'redux-vita';\n\nconst vita = new Vita();\n\n// Action creator which has no additional fields\nconst actionCreator = makeActionCreator('action_type');\nvita.registerActionCreator('action_type', actionCreator);\n\n// Action creator which accepts some params\nconst actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));\nvita.registerActionCreator('action_params', actionCreatorWithParams);\n```\n\n#### Getting a Dispatchable Object for an Action Creator\nGenerate a Redux action object for a registered action type. Note that any\nsubsequent parameters after the type are provided as parameters to the property\ngenerator function (if provided when registering the creator).\n\n```\n// Returns { type: 'action_type' }\nconst objectAction = vita.getDispatchable('action_type');\n\n// Returns { argone: 1, argtwo: 2 }\nconst objectAction = vita.getDispatchable('action_wparams', 1, 2);\n```\n\n#### Registering a Reducer Function\nYou can register reducer functions to handle given action types. If no matching\nhandler is found on invoking `Vita::reduce` then the current state is\nreturned. If no current state is set, the default reducer state is returned.\n\n```\nvita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));\n```\n\n#### Using the Reducer Within Redux\nInstances of `Vita` expose a function `reduce`. This can be registered as\na reducer in Redux as you would a normal reducer function.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
+    "content": "# redux-vita\n\n[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n## Installing\n\n`npm install redux-vita`\n\n## Using the Library\n\nFind basic snippets below.\n\nFor full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\nFor examples check out the `examples` directory.\n\n#### Instantiating `Vita`\n```\nimport { Vita } from 'redux-vita';\n\n// Default instantiation (with no default reducer state)\nconst vita = new Vita();\n\n// Instantiating with default reducer state\nconst default_reducer_state = { field_one: 'default' };\nconst vitaWithDefaultState = new Vita(default_reducer_state);\n```\n\n#### Registering an Action Creator Function\nYou can register action creators on a `Vita`, allowing you to create a\ndispatchable Redux action object by just passing the action's type at a later\ntime.\n\nAdditionally, when defining an action creator you can additionally pass a\nsecond parameter, which is a function for generating additional properties on\nthe generated action object.\n\n```\nimport { Vita, makeActionCreator } from 'redux-vita';\n\nconst vita = new Vita();\n\n// Action creator which has no additional fields\nconst actionCreator = makeActionCreator('action_type');\nvita.registerActionCreator('action_type', actionCreator);\n\n// Action creator which accepts some params\nconst actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));\nvita.registerActionCreator('action_params', actionCreatorWithParams);\n```\n\n#### Getting a Dispatchable Object for an Action Creator\nGenerate a Redux action object for a registered action type. Note that any\nsubsequent parameters after the type are provided as parameters to the property\ngenerator function (if provided when registering the creator).\n\n```\n// Returns { type: 'action_type' }\nconst objectAction = vita.getDispatchable('action_type');\n\n// Returns { argone: 1, argtwo: 2 }\nconst objectAction = vita.getDispatchable('action_wparams', 1, 2);\n```\n\n#### Registering a Reducer Function\nYou can register reducer functions to handle given action types. If no matching\nhandler is found on invoking `Vita::reduce` then the current state is\nreturned. If no current state is set, the default reducer state is returned.\n\n```\nvita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));\n```\n\nNote that the library exposes some standard reducer functions that may be useful\nin your applications. For a full list of available reducer functions see the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n```\nimport { reducerDecrementField } from 'redux-vita';\nvita.registerReducer('decrement_counter', (state) => reducerDecrementField(state, 'counter'));\n\nimport { reducerIncrementField } from 'redux-vita';\nvita.registerReducer('increment_counter', (state) => reducerIncrementField(state, 'counter'));\n\nimport { reducerRemoveField } from 'redux-vita';\nvita.registerReducer('clear_counter', (state) => reducerClearField(state, 'counter'));\n\nimport { reducerSetField } from 'redux-vita';\nvita.registerReducer('maximise_counter', (state) => reducerSetField(state, 'counter', MAX_COUNTER_VALUE));\n\nimport { reducerSetManyFields } from 'redux-vita';\nvita.registerReducer('reset_form', (state) => reducerSetManyFields(state, { field_one: 'default_one', field_two: 'default_two' }));\n\nimport { reducerToggleBooleanField } from 'redux-vita';\nvita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));\n```\n\n#### Using the Reducer Within Redux\nInstances of `Vita` expose a function `reduce`. This can be registered as\na reducer in Redux as you would a normal reducer function.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
     "longname": "/home/travis/build/jsau-/redux-vita/README.md",
     "name": "./README.md",
     "static": true,
@@ -1169,7 +1665,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"redux-vita\",\n  \"version\": \"1.1.0\",\n  \"description\": \"\",\n  \"main\": \"./build/index.js\",\n  \"scripts\": {\n    \"predoc\": \"del-cli \\\"./docs/**/*\\\"\",\n    \"doc\": \"npm run predoc && esdoc\",\n    \"prebuild\": \"npm run doc && del-cli \\\"./build/**/*\\\"\",\n    \"build:es2015\": \"npm run prebuild && cross-env NODE_ENV=production babel ./src --ignore \\\"**/*.test.js\\\" --out-dir ./build\",\n    \"lint\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color\",\n    \"lint:fix\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color --fix\",\n    \"precommit-message\": \"echo Executing pre-commit checks... && exit 0\",\n    \"test\": \"jest\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/jsau-/redux-vita.git\"\n  },\n  \"author\": \"Jon Saunders\",\n  \"license\": \"SEE LICENSE IN LICENSE.md\",\n  \"bugs\": {\n    \"url\": \"https://github.com/jsau-/redux-vita/issues\"\n  },\n  \"homepage\": \"https://github.com/jsau-/redux-vita#readme\",\n  \"devDependencies\": {\n    \"@babel/cli\": \"7.4.4\",\n    \"@babel/core\": \"7.4.5\",\n    \"@babel/plugin-proposal-class-properties\": \"7.4.4\",\n    \"@babel/plugin-proposal-decorators\": \"7.4.4\",\n    \"@babel/plugin-proposal-export-namespace-from\": \"7.2.0\",\n    \"@babel/plugin-proposal-function-sent\": \"7.2.0\",\n    \"@babel/plugin-proposal-json-strings\": \"7.2.0\",\n    \"@babel/plugin-proposal-nullish-coalescing-operator\": \"7.4.4\",\n    \"@babel/plugin-proposal-numeric-separator\": \"7.2.0\",\n    \"@babel/plugin-proposal-optional-chaining\": \"7.2.0\",\n    \"@babel/plugin-proposal-throw-expressions\": \"7.2.0\",\n    \"@babel/plugin-syntax-dynamic-import\": \"7.2.0\",\n    \"@babel/plugin-syntax-import-meta\": \"7.2.0\",\n    \"@babel/preset-env\": \"7.4.5\",\n    \"babel-eslint\": \"10.0.3\",\n    \"babel-jest\": \"24.9.0\",\n    \"cross-env\": \"5.2.0\",\n    \"del-cli\": \"2.0.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"eslint\": \"6.6.0\",\n    \"eslint-config-airbnb-base\": \"14.0.0\",\n    \"eslint-config-prettier\": \"5.0.0\",\n    \"eslint-plugin-import\": \"2.19.1\",\n    \"eslint-plugin-jsdoc\": \"8.4.4\",\n    \"jest\": \"24.9.0\",\n    \"lodash\": \"4.17.15\",\n    \"pre-commit\": \"1.2.2\",\n    \"redux\": \"4.0.0\"\n  },\n  \"peerDependencies\": {\n    \"lodash\": \"^4.17.15\",\n    \"redux\": \"^4.0.0\"\n  },\n  \"pre-commit\": [\n    \"precommit-message\",\n    \"lint\",\n    \"build:es2015\",\n    \"test\"\n  ]\n}\n",
+    "content": "{\n  \"name\": \"redux-vita\",\n  \"version\": \"1.2.0\",\n  \"description\": \"\",\n  \"main\": \"./build/index.js\",\n  \"scripts\": {\n    \"predoc\": \"del-cli \\\"./docs/**/*\\\"\",\n    \"doc\": \"npm run predoc && esdoc\",\n    \"prebuild\": \"npm run doc && del-cli \\\"./build/**/*\\\"\",\n    \"build:es2015\": \"npm run prebuild && cross-env NODE_ENV=production babel ./src --ignore \\\"**/*.test.js\\\" --out-dir ./build\",\n    \"lint\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color\",\n    \"lint:fix\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color --fix\",\n    \"precommit-message\": \"echo Executing pre-commit checks... && exit 0\",\n    \"test\": \"jest\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/jsau-/redux-vita.git\"\n  },\n  \"author\": \"Jon Saunders\",\n  \"license\": \"SEE LICENSE IN LICENSE.md\",\n  \"bugs\": {\n    \"url\": \"https://github.com/jsau-/redux-vita/issues\"\n  },\n  \"homepage\": \"https://github.com/jsau-/redux-vita#readme\",\n  \"devDependencies\": {\n    \"@babel/cli\": \"7.4.4\",\n    \"@babel/core\": \"7.4.5\",\n    \"@babel/plugin-proposal-class-properties\": \"7.4.4\",\n    \"@babel/plugin-proposal-decorators\": \"7.4.4\",\n    \"@babel/plugin-proposal-export-namespace-from\": \"7.2.0\",\n    \"@babel/plugin-proposal-function-sent\": \"7.2.0\",\n    \"@babel/plugin-proposal-json-strings\": \"7.2.0\",\n    \"@babel/plugin-proposal-nullish-coalescing-operator\": \"7.4.4\",\n    \"@babel/plugin-proposal-numeric-separator\": \"7.2.0\",\n    \"@babel/plugin-proposal-optional-chaining\": \"7.2.0\",\n    \"@babel/plugin-proposal-throw-expressions\": \"7.2.0\",\n    \"@babel/plugin-syntax-dynamic-import\": \"7.2.0\",\n    \"@babel/plugin-syntax-import-meta\": \"7.2.0\",\n    \"@babel/preset-env\": \"7.4.5\",\n    \"babel-eslint\": \"10.0.3\",\n    \"babel-jest\": \"24.9.0\",\n    \"cross-env\": \"5.2.0\",\n    \"del-cli\": \"2.0.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"eslint\": \"6.6.0\",\n    \"eslint-config-airbnb-base\": \"14.0.0\",\n    \"eslint-config-prettier\": \"5.0.0\",\n    \"eslint-plugin-import\": \"2.19.1\",\n    \"eslint-plugin-jsdoc\": \"8.4.4\",\n    \"jest\": \"24.9.0\",\n    \"lodash\": \"4.17.15\",\n    \"pre-commit\": \"1.2.2\",\n    \"redux\": \"4.0.0\"\n  },\n  \"peerDependencies\": {\n    \"lodash\": \"^4.17.15\",\n    \"redux\": \"^4.0.0\"\n  },\n  \"pre-commit\": [\n    \"precommit-message\",\n    \"lint\",\n    \"build:es2015\",\n    \"test\"\n  ]\n}\n",
     "longname": "/home/travis/build/jsau-/redux-vita/package.json",
     "name": "package.json",
     "static": true,
@@ -1178,7 +1674,7 @@
   {
     "kind": "manualIndex",
     "globalIndex": true,
-    "content": "# redux-vita\n\n[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n## Installing\n\n`npm install redux-vita`\n\n## Using the Library\n\nFind basic snippets below - for full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n#### Instantiating `Vita`\n```\nimport { Vita } from 'redux-vita';\n\n// Default instantiation (with no default reducer state)\nconst vita = new Vita();\n\n// Instantiating with default reducer state\nconst default_reducer_state = { field_one: 'default' };\nconst vitaWithDefaultState = new Vita(default_reducer_state);\n```\n\n#### Registering an Action Creator Function\nYou can register action creators on a `Vita`, allowing you to create a\ndispatchable Redux action object by just passing the action's type at a later\ntime.\n\nAdditionally, when defining an action creator you can additionally pass a\nsecond parameter, which is a function for generating additional properties on\nthe generated action object.\n\n```\nimport { Vita, makeActionCreator } from 'redux-vita';\n\nconst vita = new Vita();\n\n// Action creator which has no additional fields\nconst actionCreator = makeActionCreator('action_type');\nvita.registerActionCreator('action_type', actionCreator);\n\n// Action creator which accepts some params\nconst actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));\nvita.registerActionCreator('action_params', actionCreatorWithParams);\n```\n\n#### Getting a Dispatchable Object for an Action Creator\nGenerate a Redux action object for a registered action type. Note that any\nsubsequent parameters after the type are provided as parameters to the property\ngenerator function (if provided when registering the creator).\n\n```\n// Returns { type: 'action_type' }\nconst objectAction = vita.getDispatchable('action_type');\n\n// Returns { argone: 1, argtwo: 2 }\nconst objectAction = vita.getDispatchable('action_wparams', 1, 2);\n```\n\n#### Registering a Reducer Function\nYou can register reducer functions to handle given action types. If no matching\nhandler is found on invoking `Vita::reduce` then the current state is\nreturned. If no current state is set, the default reducer state is returned.\n\n```\nvita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));\n```\n\n#### Using the Reducer Within Redux\nInstances of `Vita` expose a function `reduce`. This can be registered as\na reducer in Redux as you would a normal reducer function.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
+    "content": "# redux-vita\n\n[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n## Installing\n\n`npm install redux-vita`\n\n## Using the Library\n\nFind basic snippets below.\n\nFor full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\nFor examples check out the `examples` directory.\n\n#### Instantiating `Vita`\n```\nimport { Vita } from 'redux-vita';\n\n// Default instantiation (with no default reducer state)\nconst vita = new Vita();\n\n// Instantiating with default reducer state\nconst default_reducer_state = { field_one: 'default' };\nconst vitaWithDefaultState = new Vita(default_reducer_state);\n```\n\n#### Registering an Action Creator Function\nYou can register action creators on a `Vita`, allowing you to create a\ndispatchable Redux action object by just passing the action's type at a later\ntime.\n\nAdditionally, when defining an action creator you can additionally pass a\nsecond parameter, which is a function for generating additional properties on\nthe generated action object.\n\n```\nimport { Vita, makeActionCreator } from 'redux-vita';\n\nconst vita = new Vita();\n\n// Action creator which has no additional fields\nconst actionCreator = makeActionCreator('action_type');\nvita.registerActionCreator('action_type', actionCreator);\n\n// Action creator which accepts some params\nconst actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));\nvita.registerActionCreator('action_params', actionCreatorWithParams);\n```\n\n#### Getting a Dispatchable Object for an Action Creator\nGenerate a Redux action object for a registered action type. Note that any\nsubsequent parameters after the type are provided as parameters to the property\ngenerator function (if provided when registering the creator).\n\n```\n// Returns { type: 'action_type' }\nconst objectAction = vita.getDispatchable('action_type');\n\n// Returns { argone: 1, argtwo: 2 }\nconst objectAction = vita.getDispatchable('action_wparams', 1, 2);\n```\n\n#### Registering a Reducer Function\nYou can register reducer functions to handle given action types. If no matching\nhandler is found on invoking `Vita::reduce` then the current state is\nreturned. If no current state is set, the default reducer state is returned.\n\n```\nvita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));\n```\n\nNote that the library exposes some standard reducer functions that may be useful\nin your applications. For a full list of available reducer functions see the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n```\nimport { reducerDecrementField } from 'redux-vita';\nvita.registerReducer('decrement_counter', (state) => reducerDecrementField(state, 'counter'));\n\nimport { reducerIncrementField } from 'redux-vita';\nvita.registerReducer('increment_counter', (state) => reducerIncrementField(state, 'counter'));\n\nimport { reducerRemoveField } from 'redux-vita';\nvita.registerReducer('clear_counter', (state) => reducerClearField(state, 'counter'));\n\nimport { reducerSetField } from 'redux-vita';\nvita.registerReducer('maximise_counter', (state) => reducerSetField(state, 'counter', MAX_COUNTER_VALUE));\n\nimport { reducerSetManyFields } from 'redux-vita';\nvita.registerReducer('reset_form', (state) => reducerSetManyFields(state, { field_one: 'default_one', field_two: 'default_two' }));\n\nimport { reducerToggleBooleanField } from 'redux-vita';\nvita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));\n```\n\n#### Using the Reducer Within Redux\nInstances of `Vita` expose a function `reduce`. This can be registered as\na reducer in Redux as you would a normal reducer function.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
     "longname": "/home/travis/build/jsau-/redux-vita/README.md",
     "name": "./README.md",
     "static": true,

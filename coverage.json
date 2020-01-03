@@ -1,7 +1,7 @@
 {
-  "coverage": "86.66%",
-  "expectCount": 15,
-  "actualCount": 13,
+  "coverage": "90.47%",
+  "expectCount": 21,
+  "actualCount": 19,
   "files": {
     "src/Vita/Vita.js": {
       "expectCount": 13,
@@ -18,6 +18,36 @@
       ]
     },
     "src/makeActionCreator/makeActionCreator.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/reducerDecrementField/reducerDecrementField.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/reducerIncrementField/reducerIncrementField.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/reducerRemoveField/reducerRemoveField.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/reducerSetField/reducerSetField.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/reducerSetManyFields/reducerSetManyFields.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/reducerToggleBooleanField/reducerToggleBooleanField.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

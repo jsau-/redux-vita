@@ -32,6 +32,12 @@
   <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vita">Vita</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vita/Vita.js~Vita.html">Vita</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#makeactioncreator">makeActionCreator</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-makeActionCreator">makeActionCreator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-KEY_TYPE">KEY_TYPE</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducerdecrementfield">reducerDecrementField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerDecrementField">reducerDecrementField</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducerincrementfield">reducerIncrementField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerIncrementField">reducerIncrementField</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducerremovefield">reducerRemoveField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerRemoveField">reducerRemoveField</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducersetfield">reducerSetField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerSetField">reducerSetField</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducersetmanyfields">reducerSetManyFields</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerSetManyFields">reducerSetManyFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducertogglebooleanfield">reducerToggleBooleanField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerToggleBooleanField">reducerToggleBooleanField</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -39,8 +45,10 @@
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="redux-vita">redux-vita</h1><p><a href="https://badge.fury.io/js/redux-vita"><img src="https://badge.fury.io/js/redux-vita.svg" alt="npm version"></a>
 <a href="https://travis-ci.com/jsau-/redux-vita"><img src="https://travis-ci.com/jsau-/redux-vita.svg?branch=master" alt="Build Status"></a></p>
 <h2 id="installing">Installing</h2><p><code>npm install redux-vita</code></p>
-<h2 id="using-the-library">Using the Library</h2><p>Find basic snippets below - for full API documentation check out the
+<h2 id="using-the-library">Using the Library</h2><p>Find basic snippets below.</p>
+<p>For full API documentation check out the
 <a href="https://jsau-.github.io/redux-vita">documentation page</a>.</p>
+<p>For examples check out the <code>examples</code> directory.</p>
 <h4 id="instantiating--code-vita--code-">Instantiating <code>Vita</code></h4><pre><code><code class="source-code prettyprint">import { Vita } from &apos;redux-vita&apos;;
 
 // Default instantiation (with no default reducer state)
@@ -78,6 +86,26 @@ const objectAction = vita.getDispatchable(&apos;action_wparams&apos;, 1, 2);</co
 handler is found on invoking <code>Vita::reduce</code> then the current state is
 returned. If no current state is set, the default reducer state is returned.</p>
 <pre><code><code class="source-code prettyprint">vita.registerReducer(&apos;increment_counter&apos;, (state) =&gt; ({ ...state, counter: state.counter + 1 }));</code>
+</code></pre><p>Note that the library exposes some standard reducer functions that may be useful
+in your applications. For a full list of available reducer functions see the
+<a href="https://jsau-.github.io/redux-vita">documentation page</a>.</p>
+<pre><code><code class="source-code prettyprint">import { reducerDecrementField } from &apos;redux-vita&apos;;
+vita.registerReducer(&apos;decrement_counter&apos;, (state) =&gt; reducerDecrementField(state, &apos;counter&apos;));
+
+import { reducerIncrementField } from &apos;redux-vita&apos;;
+vita.registerReducer(&apos;increment_counter&apos;, (state) =&gt; reducerIncrementField(state, &apos;counter&apos;));
+
+import { reducerRemoveField } from &apos;redux-vita&apos;;
+vita.registerReducer(&apos;clear_counter&apos;, (state) =&gt; reducerClearField(state, &apos;counter&apos;));
+
+import { reducerSetField } from &apos;redux-vita&apos;;
+vita.registerReducer(&apos;maximise_counter&apos;, (state) =&gt; reducerSetField(state, &apos;counter&apos;, MAX_COUNTER_VALUE));
+
+import { reducerSetManyFields } from &apos;redux-vita&apos;;
+vita.registerReducer(&apos;reset_form&apos;, (state) =&gt; reducerSetManyFields(state, { field_one: &apos;default_one&apos;, field_two: &apos;default_two&apos; }));
+
+import { reducerToggleBooleanField } from &apos;redux-vita&apos;;
+vita.registerReducer(&apos;toggle_counter_enabled&apos;, (state) =&gt; reducerToggleBooleanField(state, &apos;counter_enabled&apos;));</code>
 </code></pre><h4 id="using-the-reducer-within-redux">Using the Reducer Within Redux</h4><p>Instances of <code>Vita</code> expose a function <code>reduce</code>. This can be registered as
 a reducer in Redux as you would a normal reducer function.</p>
 <pre><code><code class="source-code prettyprint">combineReducers({ my_reducer_name: vita.reduce });</code>
