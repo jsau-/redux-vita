@@ -90,6 +90,9 @@ vita.registerReducer('clear_counter', (state) => reducerClearField(state, 'count
 import { reducerSetField } from 'redux-vita';
 vita.registerReducer('maximise_counter', (state) => reducerSetField(state, 'counter', MAX_COUNTER_VALUE));
 
+import { reducerSetManyFields } from 'redux-vita';
+vita.registerReducer('reset_form', (state) => reducerSetManyFields(state, { field_one: 'default_one', field_two: 'default_two' }));
+
 import { reducerToggleBooleanField } from 'redux-vita';
 vita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));
 ```
