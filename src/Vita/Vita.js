@@ -88,17 +88,17 @@ class Vita {
    * @param {object} [uobjCurrentReducerState] - Current reducer state.
    * @param {object} objAction - Occurring Redux action.
    * @returns {object} New reducer state.
+   * @throws {Error} On attempting to reduce actions without a type key.
    */
   reduce = (uobjCurrentReducerState, objAction) => {
     const objCurrentReducerState = isNil(uobjCurrentReducerState) ?
       this._objDefaultReducerState :
       uobjCurrentReducerState;
 
-    /*
-     * We shouldn't have to error check here since all valid Redux actions are
-     * required to have a 'type' property. See:
-     * https://redux.js.org/basics/actions/
-     */
+    if (!has(objAction, KEY_TYPE)) {
+      throw new Error(`Action object has no '${KEY_TYPE}' key. This is invalid.`);
+    }
+
     const { [KEY_TYPE]: strTypeForAction } = objAction;
 
     const ufuncReducerForAction = this._mapReducerFunctions.get(strTypeForAction);

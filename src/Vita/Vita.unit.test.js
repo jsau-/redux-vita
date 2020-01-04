@@ -141,6 +141,19 @@ describe('Vita', () => {
     expect(objReducedState).toBe(objCurrentState);
   });
 
+  it('Should throw on reducing an action without a type key', () => {
+    const strActionType = 'set_count';
+    const objCurrentState = { count: 10, other_field: true };
+
+    const mockFuncReducer = jest.fn((state) => state);
+
+    const vita = new Vita();
+    vita.registerReducer(strActionType, mockFuncReducer);
+
+    expect(() => vita.reduce(objCurrentState, { count: 50 }))
+      .toThrow(`Action object has no '${KEY_TYPE}' key. This is invalid.`);
+  });
+
   it('Should return result of reducer function for registered handler', () => {
     const strActionType = 'set_count';
     const objCurrentState = { count: 10, other_field: true };
