@@ -56,8 +56,6 @@ class Vita {
    * @param {...*} varargsActionCreator - Arguments to pass to the registered
    * function.
    * @returns {object} Action object.
-   * @throws {Error} On action creator returning non-objects, or objects missing
-   * a type key.
    */
   getDispatchable = (strActionType, ...varargsActionCreator) => {
     const ufuncActionCreator = this._mapActionCreators.get(strActionType);
