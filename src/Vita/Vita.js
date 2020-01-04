@@ -1,4 +1,6 @@
+import has from 'lodash/has';
 import isNil from 'lodash/isNil';
+import isPlainObject from 'lodash/isPlainObject';
 import { KEY_TYPE } from '../makeActionCreator/constants';
 import makeActionCreator from '../makeActionCreator';
 
@@ -55,6 +57,8 @@ class Vita {
    * @param {...*} varargsActionCreator - Arguments to pass to the registered
    * function.
    * @returns {object} Action object.
+   * @throws {Error} On action creator returning non-objects, or objects missing
+   * a type key.
    */
   getDispatchable = (strActionType, ...varargsActionCreator) => {
     const ufuncActionCreator = this._mapActionCreators.get(strActionType);
@@ -63,7 +67,19 @@ class Vita {
       throw new Error(`No action creator was registered for type '${strActionType}'`);
     }
 
-    return ufuncActionCreator(...varargsActionCreator);
+    const objAction = ufuncActionCreator(...varargsActionCreator);
+
+    // Validate our action creator function actually generated a plain object
+    if (!isPlainObject(objAction)) {
+      throw new Error(`Created action object is of invalid type. Expected 'object', got '${typeof objAction}'`);
+    }
+
+    // Validate our action creator function has a type key (required by Redux)
+    if (!has(objAction, KEY_TYPE)) {
+      throw new Error(`Created action object has no '${KEY_TYPE}' key. This is invalid.`);
+    }
+
+    return objAction;
   };
 
   /**
