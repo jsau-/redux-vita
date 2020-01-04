@@ -44,11 +44,11 @@ const vita = new Vita();
 
 // Action creator which has no additional fields
 const actionCreator = makeActionCreator('action_type');
-vita.registerActionCreator('action_type', actionCreator);
+vita.registerAction('action_type', actionCreator);
 
 // Action creator which accepts some params
 const actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));
-vita.registerActionCreator('action_params', actionCreatorWithParams);
+vita.registerAction('action_params', actionCreatorWithParams);
 ```
 
 #### Getting a Dispatchable Object for an Action Creator
