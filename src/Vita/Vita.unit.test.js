@@ -49,7 +49,7 @@ describe('Vita', () => {
     const mockFuncActionCreator = jest.fn(() => objMockReturnedAction);
     vita.registerActionCreator(strActionType, mockFuncActionCreator);
 
-    const objReceivedAction = vita.getDispatchable(strActionType);
+    const objReceivedAction = vita.action(strActionType);
 
     expect(objReceivedAction).toBe(objMockReturnedAction);
     expect(mockFuncActionCreator).toHaveBeenCalledTimes(1);
@@ -67,7 +67,7 @@ describe('Vita', () => {
 
     vita.registerActionCreator(strActionType, mockFuncActionCreator);
 
-    const objReceivedAction = vita.getDispatchable(strActionType, 1, 2);
+    const objReceivedAction = vita.action(strActionType, 1, 2);
 
     expect(objReceivedAction).toEqual({
       [KEY_TYPE]: strActionType,
@@ -83,7 +83,7 @@ describe('Vita', () => {
   it('Should throw on attempting to get dispatchable object for unregistered action creator', () => {
     const vita = new Vita();
 
-    expect(() => vita.getDispatchable('action_not_found'))
+    expect(() => vita.action('action_not_found'))
       .toThrow('No action creator was registered for type \'action_not_found\'');
   });
 

@@ -29,6 +29,25 @@ class Vita {
   }
 
   /**
+   * Gets dispatchable Redux action object for a given action type.
+   *
+   * @param {string} strActionType - Action type to generate dispatchable
+   * object for.
+   * @param {...*} varargsActionCreator - Arguments to pass to the registered
+   * function.
+   * @returns {object} Action object.
+   */
+  action = (strActionType, ...varargsActionCreator) => {
+    const ufuncActionCreator = this._mapActionCreators.get(strActionType);
+
+    if (isNil(ufuncActionCreator)) {
+      throw new Error(`No action creator was registered for type '${strActionType}'`);
+    }
+
+    return ufuncActionCreator(...varargsActionCreator);
+  };
+
+  /**
    * Clear all registered action creators.
    *
    * @returns {Vita} This.
@@ -47,25 +66,6 @@ class Vita {
     this._mapReducerFunctions.clear();
     return this;
   }
-
-  /**
-   * Gets dispatchable Redux action object for a given action type.
-   *
-   * @param {string} strActionType - Action type to generate dispatchable
-   * object for.
-   * @param {...*} varargsActionCreator - Arguments to pass to the registered
-   * function.
-   * @returns {object} Action object.
-   */
-  getDispatchable = (strActionType, ...varargsActionCreator) => {
-    const ufuncActionCreator = this._mapActionCreators.get(strActionType);
-
-    if (isNil(ufuncActionCreator)) {
-      throw new Error(`No action creator was registered for type '${strActionType}'`);
-    }
-
-    return ufuncActionCreator(...varargsActionCreator);
-  };
 
   /**
    * Reducer function.
