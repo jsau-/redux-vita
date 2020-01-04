@@ -58,10 +58,10 @@ generator function (if provided when registering the creator).
 
 ```
 // Returns { type: 'action_type' }
-const objectAction = vita.getDispatchable('action_type');
+const objectAction = vita.action('action_type');
 
 // Returns { argone: 1, argtwo: 2 }
-const objectAction = vita.getDispatchable('action_wparams', 1, 2);
+const objectAction = vita.action('action_wparams', 1, 2);
 ```
 
 #### Registering a Reducer Function
