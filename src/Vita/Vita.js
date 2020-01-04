@@ -105,7 +105,7 @@ class Vita {
    * @param {Function} [ufuncActionCreator] - Action creator function.
    * @returns {Vita} This.
    */
-  registerActionCreator = (strActionType, ufuncActionCreator) => {
+  registerAction = (strActionType, ufuncActionCreator) => {
     const funcActionCreator = isNil(ufuncActionCreator) ?
       makeActionCreator(strActionType) :
       ufuncActionCreator;
@@ -141,7 +141,7 @@ class Vita {
    * @returns {Vita} This.
    */
   registerSlice = (strActionType, funcReducer, ufuncActionCreator) => {
-    this.registerActionCreator(strActionType, ufuncActionCreator);
+    this.registerAction(strActionType, ufuncActionCreator);
     this.registerReducer(strActionType, funcReducer);
     return this;
   }
@@ -153,7 +153,7 @@ class Vita {
    * function for.
    * @returns {Vita} This.
    */
-  unregisterActionCreator = (strActionType) => {
+  unregisterAction = (strActionType) => {
     this._mapActionCreators.delete(strActionType);
     return this;
   }
@@ -177,7 +177,7 @@ class Vita {
    * @returns {Vita} This.
    */
   unregisterSlice = (strActionType) => {
-    this.unregisterActionCreator(strActionType);
+    this.unregisterAction(strActionType);
     this.unregisterReducer(strActionType);
     return this;
   }

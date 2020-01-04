@@ -15,7 +15,7 @@ VitaAPI
     (state, action) => reducerSetManyFields(state, { [FIELD_IS_LOADING]: false, [FIELD_LOADED_TODOS]: action[FIELD_LOADED_TODOS] }),
     makeActionCreator(FETCH_TODOS_FINISH, arrTodos => ({ [FIELD_LOADED_TODOS]: arrTodos })),
   )
-  .registerActionCreator(
+  .registerAction(
     FETCH_TODOS,
     () => (dispatch) => {
       dispatch(VitaAPI.action(FETCH_TODOS_BEGIN));
