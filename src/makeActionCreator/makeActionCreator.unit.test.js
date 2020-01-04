@@ -3,8 +3,7 @@ import { KEY_TYPE } from './constants';
 
 describe('makeActionCreator', () => {
   it('Should throw if type is empty', () => {
-    const actionCreator = makeActionCreator();
-    expect(() => actionCreator()).toThrow('Type must not be empty.');
+    expect(() => makeActionCreator()).toThrow('Type must not be empty.');
   });
 
   it('Should create an action with type', () => {

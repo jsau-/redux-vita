@@ -45,7 +45,7 @@ describe('Vita', () => {
     const strActionType = 'action_type';
     const vita = new Vita();
 
-    const objMockReturnedAction = { mock_field: true };
+    const objMockReturnedAction = { [KEY_TYPE]: strActionType };
     const mockFuncActionCreator = jest.fn(() => objMockReturnedAction);
     vita.registerActionCreator(strActionType, mockFuncActionCreator);
 
@@ -59,12 +59,18 @@ describe('Vita', () => {
     const strActionType = 'action_type';
     const vita = new Vita();
 
-    const mockFuncActionCreator = jest.fn((argone, argtwo) => ({ argone: argone * 10, argtwo: argtwo * 20 }));
+    const mockFuncActionCreator = jest.fn((argone, argtwo) => ({
+      [KEY_TYPE]: strActionType,
+      argone: argone * 10,
+      argtwo: argtwo * 20,
+    }));
+
     vita.registerActionCreator(strActionType, mockFuncActionCreator);
 
     const objReceivedAction = vita.getDispatchable(strActionType, 1, 2);
 
     expect(objReceivedAction).toEqual({
+      [KEY_TYPE]: strActionType,
       argone: 10,
       argtwo: 40,
     });
@@ -103,6 +109,19 @@ describe('Vita', () => {
     const objReducedState = vita.reduce(objCurrentState, { [KEY_TYPE]: 'action_not_found' });
 
     expect(objReducedState).toBe(objCurrentState);
+  });
+
+  it('Should throw on reducing an action without a type key', () => {
+    const strActionType = 'set_count';
+    const objCurrentState = { count: 10, other_field: true };
+
+    const mockFuncReducer = jest.fn((state) => state);
+
+    const vita = new Vita();
+    vita.registerReducer(strActionType, mockFuncReducer);
+
+    expect(() => vita.reduce(objCurrentState, { count: 50 }))
+      .toThrow(`Action object has no '${KEY_TYPE}' key. This is invalid.`);
   });
 
   it('Should return result of reducer function for registered handler', () => {
