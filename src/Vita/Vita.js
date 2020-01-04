@@ -29,6 +29,25 @@ class Vita {
   }
 
   /**
+   * Gets dispatchable Redux action object for a given action type.
+   *
+   * @param {string} strActionType - Action type to generate dispatchable
+   * object for.
+   * @param {...*} varargsActionCreator - Arguments to pass to the registered
+   * function.
+   * @returns {object} Action object.
+   */
+  action = (strActionType, ...varargsActionCreator) => {
+    const ufuncActionCreator = this._mapActionCreators.get(strActionType);
+
+    if (isNil(ufuncActionCreator)) {
+      throw new Error(`No action creator was registered for type '${strActionType}'`);
+    }
+
+    return ufuncActionCreator(...varargsActionCreator);
+  };
+
+  /**
    * Clear all registered action creators.
    *
    * @returns {Vita} This.
@@ -47,25 +66,6 @@ class Vita {
     this._mapReducerFunctions.clear();
     return this;
   }
-
-  /**
-   * Gets dispatchable Redux action object for a given action type.
-   *
-   * @param {string} strActionType - Action type to generate dispatchable
-   * object for.
-   * @param {...*} varargsActionCreator - Arguments to pass to the registered
-   * function.
-   * @returns {object} Action object.
-   */
-  getDispatchable = (strActionType, ...varargsActionCreator) => {
-    const ufuncActionCreator = this._mapActionCreators.get(strActionType);
-
-    if (isNil(ufuncActionCreator)) {
-      throw new Error(`No action creator was registered for type '${strActionType}'`);
-    }
-
-    return ufuncActionCreator(...varargsActionCreator);
-  };
 
   /**
    * Reducer function.
@@ -97,13 +97,19 @@ class Vita {
   };
 
   /**
-   * Create and register an action creator function.
+   * Create and register an action creator function. Note that the action
+   * creator function param is optional. Omitting it will generate a default
+   * action creator.
    *
    * @param {string} strActionType - Action type.
-   * @param {Function} funcActionCreator - Action creator function.
+   * @param {Function} [ufuncActionCreator] - Action creator function.
    * @returns {Vita} This.
    */
-  registerActionCreator = (strActionType, funcActionCreator) => {
+  registerAction = (strActionType, ufuncActionCreator) => {
+    const funcActionCreator = isNil(ufuncActionCreator) ?
+      makeActionCreator(strActionType) :
+      ufuncActionCreator;
+
     this._mapActionCreators.set(strActionType, funcActionCreator);
     return this;
   }
@@ -135,11 +141,7 @@ class Vita {
    * @returns {Vita} This.
    */
   registerSlice = (strActionType, funcReducer, ufuncActionCreator) => {
-    const funcActionCreator = isNil(ufuncActionCreator) ?
-      makeActionCreator(strActionType) :
-      ufuncActionCreator;
-
-    this.registerActionCreator(strActionType, funcActionCreator);
+    this.registerAction(strActionType, ufuncActionCreator);
     this.registerReducer(strActionType, funcReducer);
     return this;
   }
@@ -151,7 +153,7 @@ class Vita {
    * function for.
    * @returns {Vita} This.
    */
-  unregisterActionCreator = (strActionType) => {
+  unregisterAction = (strActionType) => {
     this._mapActionCreators.delete(strActionType);
     return this;
   }
@@ -175,7 +177,7 @@ class Vita {
    * @returns {Vita} This.
    */
   unregisterSlice = (strActionType) => {
-    this.unregisterActionCreator(strActionType);
+    this.unregisterAction(strActionType);
     this.unregisterReducer(strActionType);
     return this;
   }

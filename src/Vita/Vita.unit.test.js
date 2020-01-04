@@ -25,7 +25,7 @@ describe('Vita', () => {
 
   it('Should clear all action creators', () => {
     const vita = new Vita();
-    vita.registerActionCreator('action_type', () => {});
+    vita.registerAction('action_type', () => {});
     expect(vita._mapActionCreators.size).toEqual(1);
 
     vita.clearAllActionCreators();
@@ -47,9 +47,9 @@ describe('Vita', () => {
 
     const objMockReturnedAction = { [KEY_TYPE]: strActionType };
     const mockFuncActionCreator = jest.fn(() => objMockReturnedAction);
-    vita.registerActionCreator(strActionType, mockFuncActionCreator);
+    vita.registerAction(strActionType, mockFuncActionCreator);
 
-    const objReceivedAction = vita.getDispatchable(strActionType);
+    const objReceivedAction = vita.action(strActionType);
 
     expect(objReceivedAction).toBe(objMockReturnedAction);
     expect(mockFuncActionCreator).toHaveBeenCalledTimes(1);
@@ -65,9 +65,9 @@ describe('Vita', () => {
       argtwo: argtwo * 20,
     }));
 
-    vita.registerActionCreator(strActionType, mockFuncActionCreator);
+    vita.registerAction(strActionType, mockFuncActionCreator);
 
-    const objReceivedAction = vita.getDispatchable(strActionType, 1, 2);
+    const objReceivedAction = vita.action(strActionType, 1, 2);
 
     expect(objReceivedAction).toEqual({
       [KEY_TYPE]: strActionType,
@@ -83,7 +83,7 @@ describe('Vita', () => {
   it('Should throw on attempting to get dispatchable object for unregistered action creator', () => {
     const vita = new Vita();
 
-    expect(() => vita.getDispatchable('action_not_found'))
+    expect(() => vita.action('action_not_found'))
       .toThrow('No action creator was registered for type \'action_not_found\'');
   });
 
@@ -148,15 +148,27 @@ describe('Vita', () => {
 
     expect(vita._mapActionCreators.size).toBe(0);
 
-    vita.registerActionCreator(strActionType, funcActionCreator);
+    vita.registerAction(strActionType, funcActionCreator);
 
     expect(vita._mapActionCreators.size).toBe(1);
     expect(vita._mapActionCreators).toEqual(new Map([[strActionType, funcActionCreator]]));
   });
 
+  it('Should register an action creator with default creator function', () => {
+    const vita = new Vita();
+
+    expect(vita._mapActionCreators.size).toBe(0);
+
+    vita.registerAction('action_type');
+
+    expect(vita._mapActionCreators.size).toBe(1);
+    expect(makeActionCreator).toHaveBeenCalledTimes(1);
+    expect(makeActionCreator.mock.calls[0][0]).toBe('action_type');
+  });
+
   it('Should return self on registering an action creator', () => {
     const vita = new Vita();
-    const vitaReturned = vita.registerActionCreator('action_one');
+    const vitaReturned = vita.registerAction('action_one');
     expect(vitaReturned).toBe(vita);
   });
 
@@ -220,21 +232,21 @@ describe('Vita', () => {
   it('Should unregister an action creator', () => {
     const vita = new Vita();
 
-    vita.registerActionCreator('action_one', () => {});
-    vita.registerActionCreator('action_two', () => {});
+    vita.registerAction('action_one', () => {});
+    vita.registerAction('action_two', () => {});
 
     expect(vita._mapActionCreators.size).toBe(2);
 
-    vita.unregisterActionCreator('action_two');
+    vita.unregisterAction('action_two');
     expect(vita._mapActionCreators.size).toBe(1);
 
-    vita.unregisterActionCreator('action_one');
+    vita.unregisterAction('action_one');
     expect(vita._mapActionCreators.size).toBe(0);
   });
 
   it('Should return self on unregistering an action creator', () => {
     const vita = new Vita();
-    const vitaReturned = vita.unregisterActionCreator('action_one');
+    const vitaReturned = vita.unregisterAction('action_one');
     expect(vitaReturned).toBe(vita);
   });
 
