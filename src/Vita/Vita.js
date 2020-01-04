@@ -97,13 +97,19 @@ class Vita {
   };
 
   /**
-   * Create and register an action creator function.
+   * Create and register an action creator function. Note that the action
+   * creator function param is optional. Omitting it will generate a default
+   * action creator.
    *
    * @param {string} strActionType - Action type.
-   * @param {Function} funcActionCreator - Action creator function.
+   * @param {Function} [ufuncActionCreator] - Action creator function.
    * @returns {Vita} This.
    */
-  registerActionCreator = (strActionType, funcActionCreator) => {
+  registerActionCreator = (strActionType, ufuncActionCreator) => {
+    const funcActionCreator = isNil(ufuncActionCreator) ?
+      makeActionCreator(strActionType) :
+      ufuncActionCreator;
+
     this._mapActionCreators.set(strActionType, funcActionCreator);
     return this;
   }
@@ -135,11 +141,7 @@ class Vita {
    * @returns {Vita} This.
    */
   registerSlice = (strActionType, funcReducer, ufuncActionCreator) => {
-    const funcActionCreator = isNil(ufuncActionCreator) ?
-      makeActionCreator(strActionType) :
-      ufuncActionCreator;
-
-    this.registerActionCreator(strActionType, funcActionCreator);
+    this.registerActionCreator(strActionType, ufuncActionCreator);
     this.registerReducer(strActionType, funcReducer);
     return this;
   }

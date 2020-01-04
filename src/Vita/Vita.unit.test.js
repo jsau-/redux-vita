@@ -154,6 +154,18 @@ describe('Vita', () => {
     expect(vita._mapActionCreators).toEqual(new Map([[strActionType, funcActionCreator]]));
   });
 
+  it('Should create a default action creator on registering action creator if none provided', () => {
+    const vita = new Vita();
+
+    expect(vita._mapActionCreators.size).toBe(0);
+
+    vita.registerActionCreator('action_type');
+
+    expect(vita._mapActionCreators.size).toBe(1);
+    expect(makeActionCreator).toHaveBeenCalledTimes(1);
+    expect(makeActionCreator.mock.calls[0][0]).toBe('action_type');
+  });
+
   it('Should return self on registering an action creator', () => {
     const vita = new Vita();
     const vitaReturned = vita.registerActionCreator('action_one');
