@@ -66,9 +66,7 @@ class Vita {
       throw new Error(`No action creator was registered for type '${strActionType}'`);
     }
 
-    const objAction = ufuncActionCreator(...varargsActionCreator);
-
-    return objAction;
+    return ufuncActionCreator(...varargsActionCreator);
   };
 
   /**
