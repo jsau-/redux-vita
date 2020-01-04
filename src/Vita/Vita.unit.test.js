@@ -55,36 +55,6 @@ describe('Vita', () => {
     expect(mockFuncActionCreator).toHaveBeenCalledTimes(1);
   });
 
-  it('Should throw on getting dispatachable for non-object types', () => {
-    const strActionType = 'action_type';
-    const vita = new Vita();
-
-    const mixedInvalidReturnedAction = 'not_an_object';
-    const mockFuncActionCreator = jest.fn(() => mixedInvalidReturnedAction);
-    vita.registerActionCreator(strActionType, mockFuncActionCreator);
-
-    expect(() => vita.getDispatchable(strActionType))
-      .toThrow(
-        `Created action object is of invalid type. Expected 'object', got '${typeof mixedInvalidReturnedAction}'`,
-      );
-
-    expect(mockFuncActionCreator).toHaveBeenCalledTimes(1);
-  });
-
-  it('Should throw on getting dispatchable without a valid type key', () => {
-    const strActionType = 'action_type';
-    const vita = new Vita();
-
-    const objMockReturnedAction = { mock_field: true };
-    const mockFuncActionCreator = jest.fn(() => objMockReturnedAction);
-    vita.registerActionCreator(strActionType, mockFuncActionCreator);
-
-    expect(() => vita.getDispatchable(strActionType))
-      .toThrow(`Created action object has no '${KEY_TYPE}' key. This is invalid.`);
-
-    expect(mockFuncActionCreator).toHaveBeenCalledTimes(1);
-  });
-
   it('Should pass varargs to registered action creator', () => {
     const strActionType = 'action_type';
     const vita = new Vita();

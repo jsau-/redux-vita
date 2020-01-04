@@ -1,8 +1,7 @@
 import has from 'lodash/has';
 import isNil from 'lodash/isNil';
-import isPlainObject from 'lodash/isPlainObject';
-import { KEY_TYPE } from '../makeActionCreator/constants';
 import makeActionCreator from '../makeActionCreator';
+import { KEY_TYPE } from '../makeActionCreator/constants';
 
 class Vita {
   /**
@@ -68,16 +67,6 @@ class Vita {
     }
 
     const objAction = ufuncActionCreator(...varargsActionCreator);
-
-    // Validate our action creator function actually generated a plain object
-    if (!isPlainObject(objAction)) {
-      throw new Error(`Created action object is of invalid type. Expected 'object', got '${typeof objAction}'`);
-    }
-
-    // Validate our action creator function has a type key (required by Redux)
-    if (!has(objAction, KEY_TYPE)) {
-      throw new Error(`Created action object has no '${KEY_TYPE}' key. This is invalid.`);
-    }
 
     return objAction;
   };
