@@ -18,11 +18,11 @@ VitaAPI
   .registerActionCreator(
     FETCH_TODOS,
     () => (dispatch) => {
-      dispatch(VitaAPI.getDispatchable(FETCH_TODOS_BEGIN));
+      dispatch(VitaAPI.action(FETCH_TODOS_BEGIN));
 
       fetch.fetchUrl(
         "https://jsonplaceholder.typicode.com/todos/",
-        (error, meta, body) => dispatch(VitaAPI.getDispatchable(FETCH_TODOS_FINISH, JSON.parse(body))),
+        (error, meta, body) => dispatch(VitaAPI.action(FETCH_TODOS_FINISH, JSON.parse(body))),
       );
     },
   );

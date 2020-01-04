@@ -40,7 +40,7 @@ class API extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTodos: () => dispatch(VitaAPI.getDispatchable(Actions.FETCH_TODOS)),
+  fetchTodos: () => dispatch(VitaAPI.action(Actions.FETCH_TODOS)),
 });
 
 const mapStateToProps = state => ({
