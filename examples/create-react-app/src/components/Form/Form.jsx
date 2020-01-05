@@ -36,12 +36,12 @@ class Form extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  clearTime: () => dispatch(VitaForm.getDispatchable(Actions.CLEAR_TIME)),
-  decrementCounter: () => dispatch(VitaForm.getDispatchable(Actions.DECREMENT_COUNTER)),
-  incrementCounter: () => dispatch(VitaForm.getDispatchable(Actions.INCREMENT_COUNTER)),
-  restoreDefaults: () => dispatch(VitaForm.getDispatchable(Actions.RESTORE_DEFAULTS)),
-  setTimeToNow: () => dispatch(VitaForm.getDispatchable(Actions.SET_TIME_TO_NOW)),
-  toggleEnabled: () => dispatch(VitaForm.getDispatchable(Actions.TOGGLE_ENABLED)),
+  clearTime: () => dispatch(VitaForm.action(Actions.CLEAR_TIME)),
+  decrementCounter: () => dispatch(VitaForm.action(Actions.DECREMENT_COUNTER)),
+  incrementCounter: () => dispatch(VitaForm.action(Actions.INCREMENT_COUNTER)),
+  restoreDefaults: () => dispatch(VitaForm.action(Actions.RESTORE_DEFAULTS)),
+  setTimeToNow: () => dispatch(VitaForm.action(Actions.SET_TIME_TO_NOW)),
+  toggleEnabled: () => dispatch(VitaForm.action(Actions.TOGGLE_ENABLED)),
 });
 
 const mapStateToProps = (state) => ({

@@ -1,6 +1,7 @@
+import has from 'lodash/has';
 import isNil from 'lodash/isNil';
-import { KEY_TYPE } from '../makeActionCreator/constants';
 import makeActionCreator from '../makeActionCreator';
+import { KEY_TYPE } from '../makeActionCreator/constants';
 
 class Vita {
   /**
@@ -28,6 +29,25 @@ class Vita {
   }
 
   /**
+   * Gets dispatchable Redux action object for a given action type.
+   *
+   * @param {string} strActionType - Action type to generate dispatchable
+   * object for.
+   * @param {...*} varargsActionCreator - Arguments to pass to the registered
+   * function.
+   * @returns {object} Action object.
+   */
+  action = (strActionType, ...varargsActionCreator) => {
+    const ufuncActionCreator = this._mapActionCreators.get(strActionType);
+
+    if (isNil(ufuncActionCreator)) {
+      throw new Error(`No action creator was registered for type '${strActionType}'`);
+    }
+
+    return ufuncActionCreator(...varargsActionCreator);
+  };
+
+  /**
    * Clear all registered action creators.
    *
    * @returns {Vita} This.
@@ -48,41 +68,22 @@ class Vita {
   }
 
   /**
-   * Gets dispatchable Redux action object for a given action type.
-   *
-   * @param {string} strActionType - Action type to generate dispatchable
-   * object for.
-   * @param {...*} varargsActionCreator - Arguments to pass to the registered
-   * function.
-   * @returns {object} Action object.
-   */
-  getDispatchable = (strActionType, ...varargsActionCreator) => {
-    const ufuncActionCreator = this._mapActionCreators.get(strActionType);
-
-    if (isNil(ufuncActionCreator)) {
-      throw new Error(`No action creator was registered for type '${strActionType}'`);
-    }
-
-    return ufuncActionCreator(...varargsActionCreator);
-  };
-
-  /**
    * Reducer function.
    *
    * @param {object} [uobjCurrentReducerState] - Current reducer state.
    * @param {object} objAction - Occurring Redux action.
    * @returns {object} New reducer state.
+   * @throws {Error} On attempting to reduce actions without a type key.
    */
   reduce = (uobjCurrentReducerState, objAction) => {
     const objCurrentReducerState = isNil(uobjCurrentReducerState) ?
       this._objDefaultReducerState :
       uobjCurrentReducerState;
 
-    /*
-     * We shouldn't have to error check here since all valid Redux actions are
-     * required to have a 'type' property. See:
-     * https://redux.js.org/basics/actions/
-     */
+    if (!has(objAction, KEY_TYPE)) {
+      throw new Error(`Action object has no '${KEY_TYPE}' key. This is invalid.`);
+    }
+
     const { [KEY_TYPE]: strTypeForAction } = objAction;
 
     const ufuncReducerForAction = this._mapReducerFunctions.get(strTypeForAction);
@@ -96,13 +97,19 @@ class Vita {
   };
 
   /**
-   * Create and register an action creator function.
+   * Create and register an action creator function. Note that the action
+   * creator function param is optional. Omitting it will generate a default
+   * action creator.
    *
    * @param {string} strActionType - Action type.
-   * @param {Function} funcActionCreator - Action creator function.
+   * @param {Function} [ufuncActionCreator] - Action creator function.
    * @returns {Vita} This.
    */
-  registerActionCreator = (strActionType, funcActionCreator) => {
+  registerAction = (strActionType, ufuncActionCreator) => {
+    const funcActionCreator = isNil(ufuncActionCreator) ?
+      makeActionCreator(strActionType) :
+      ufuncActionCreator;
+
     this._mapActionCreators.set(strActionType, funcActionCreator);
     return this;
   }
@@ -134,11 +141,7 @@ class Vita {
    * @returns {Vita} This.
    */
   registerSlice = (strActionType, funcReducer, ufuncActionCreator) => {
-    const funcActionCreator = isNil(ufuncActionCreator) ?
-      makeActionCreator(strActionType) :
-      ufuncActionCreator;
-
-    this.registerActionCreator(strActionType, funcActionCreator);
+    this.registerAction(strActionType, ufuncActionCreator);
     this.registerReducer(strActionType, funcReducer);
     return this;
   }
@@ -150,7 +153,7 @@ class Vita {
    * function for.
    * @returns {Vita} This.
    */
-  unregisterActionCreator = (strActionType) => {
+  unregisterAction = (strActionType) => {
     this._mapActionCreators.delete(strActionType);
     return this;
   }
@@ -174,7 +177,7 @@ class Vita {
    * @returns {Vita} This.
    */
   unregisterSlice = (strActionType) => {
-    this.unregisterActionCreator(strActionType);
+    this.unregisterAction(strActionType);
     this.unregisterReducer(strActionType);
     return this;
   }

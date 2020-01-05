@@ -15,14 +15,14 @@ VitaAPI
     (state, action) => reducerSetManyFields(state, { [FIELD_IS_LOADING]: false, [FIELD_LOADED_TODOS]: action[FIELD_LOADED_TODOS] }),
     makeActionCreator(FETCH_TODOS_FINISH, arrTodos => ({ [FIELD_LOADED_TODOS]: arrTodos })),
   )
-  .registerActionCreator(
+  .registerAction(
     FETCH_TODOS,
     () => (dispatch) => {
-      dispatch(VitaAPI.getDispatchable(FETCH_TODOS_BEGIN));
+      dispatch(VitaAPI.action(FETCH_TODOS_BEGIN));
 
       fetch.fetchUrl(
         "https://jsonplaceholder.typicode.com/todos/",
-        (error, meta, body) => dispatch(VitaAPI.getDispatchable(FETCH_TODOS_FINISH, JSON.parse(body))),
+        (error, meta, body) => dispatch(VitaAPI.action(FETCH_TODOS_FINISH, JSON.parse(body))),
       );
     },
   );
