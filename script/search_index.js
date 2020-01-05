@@ -360,6 +360,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/vita/vita.js~vita#action",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-action",
+    "src/Vita/Vita.js~Vita#action",
+    "member"
+  ],
+  [
     "src/vita/vita.js~vita#clearallactioncreators",
     "class/src/Vita/Vita.js~Vita.html#instance-member-clearAllActionCreators",
     "src/Vita/Vita.js~Vita#clearAllActionCreators",
@@ -378,21 +384,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/vita/vita.js~vita#getdispatchable",
-    "class/src/Vita/Vita.js~Vita.html#instance-member-getDispatchable",
-    "src/Vita/Vita.js~Vita#getDispatchable",
-    "member"
-  ],
-  [
     "src/vita/vita.js~vita#reduce",
     "class/src/Vita/Vita.js~Vita.html#instance-member-reduce",
     "src/Vita/Vita.js~Vita#reduce",
     "member"
   ],
   [
-    "src/vita/vita.js~vita#registeractioncreator",
-    "class/src/Vita/Vita.js~Vita.html#instance-member-registerActionCreator",
-    "src/Vita/Vita.js~Vita#registerActionCreator",
+    "src/vita/vita.js~vita#registeraction",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-registerAction",
+    "src/Vita/Vita.js~Vita#registerAction",
     "member"
   ],
   [
@@ -408,9 +408,9 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/vita/vita.js~vita#unregisteractioncreator",
-    "class/src/Vita/Vita.js~Vita.html#instance-member-unregisterActionCreator",
-    "src/Vita/Vita.js~Vita#unregisterActionCreator",
+    "src/vita/vita.js~vita#unregisteraction",
+    "class/src/Vita/Vita.js~Vita.html#instance-member-unregisterAction",
+    "src/Vita/Vita.js~Vita#unregisterAction",
     "member"
   ],
   [

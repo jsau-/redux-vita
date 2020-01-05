@@ -7,7 +7,7 @@
       "expectCount": 15,
       "actualCount": 14,
       "undocumentLines": [
-        5
+        6
       ]
     },
     "src/makeActionCreator/constants.js": {

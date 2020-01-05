@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/Vita/Vita.js",
-    "content": "import isNil from 'lodash/isNil';\nimport { KEY_TYPE } from '../makeActionCreator/constants';\nimport makeActionCreator from '../makeActionCreator';\n\nclass Vita {\n  /**\n   * @param {object} objDefaultReducerState - Default reducer state to be\n   * returned if attempting to reduce with a null or undefined state.\n   */\n  constructor(objDefaultReducerState = {}) {\n    /**\n     * @private\n     * @type {?object}\n     */\n    this._objDefaultReducerState = objDefaultReducerState;\n\n    /**\n     * @private\n     * @type {Map}\n     */\n    this._mapActionCreators = new Map();\n\n    /**\n     * @private\n     * @type {Map}\n     */\n    this._mapReducerFunctions = new Map();\n  }\n\n  /**\n   * Clear all registered action creators.\n   *\n   * @returns {Vita} This.\n   */\n  clearAllActionCreators = () => {\n    this._mapActionCreators.clear();\n    return this;\n  };\n\n  /**\n   * Clear all registered reducers for handling actions.\n   *\n   * @returns {Vita} This.\n   */\n  clearAllReducers = () => {\n    this._mapReducerFunctions.clear();\n    return this;\n  }\n\n  /**\n   * Gets dispatchable Redux action object for a given action type.\n   *\n   * @param {string} strActionType - Action type to generate dispatchable\n   * object for.\n   * @param {...*} varargsActionCreator - Arguments to pass to the registered\n   * function.\n   * @returns {object} Action object.\n   */\n  getDispatchable = (strActionType, ...varargsActionCreator) => {\n    const ufuncActionCreator = this._mapActionCreators.get(strActionType);\n\n    if (isNil(ufuncActionCreator)) {\n      throw new Error(`No action creator was registered for type '${strActionType}'`);\n    }\n\n    return ufuncActionCreator(...varargsActionCreator);\n  };\n\n  /**\n   * Reducer function.\n   *\n   * @param {object} [uobjCurrentReducerState] - Current reducer state.\n   * @param {object} objAction - Occurring Redux action.\n   * @returns {object} New reducer state.\n   */\n  reduce = (uobjCurrentReducerState, objAction) => {\n    const objCurrentReducerState = isNil(uobjCurrentReducerState) ?\n      this._objDefaultReducerState :\n      uobjCurrentReducerState;\n\n    /*\n     * We shouldn't have to error check here since all valid Redux actions are\n     * required to have a 'type' property. See:\n     * https://redux.js.org/basics/actions/\n     */\n    const { [KEY_TYPE]: strTypeForAction } = objAction;\n\n    const ufuncReducerForAction = this._mapReducerFunctions.get(strTypeForAction);\n\n    // If we have no registered handler, just fallback to current state\n    if (isNil(ufuncReducerForAction)) {\n      return objCurrentReducerState;\n    }\n\n    return ufuncReducerForAction(objCurrentReducerState, objAction);\n  };\n\n  /**\n   * Create and register an action creator function.\n   *\n   * @param {string} strActionType - Action type.\n   * @param {Function} funcActionCreator - Action creator function.\n   * @returns {Vita} This.\n   */\n  registerActionCreator = (strActionType, funcActionCreator) => {\n    this._mapActionCreators.set(strActionType, funcActionCreator);\n    return this;\n  }\n\n  /**\n   * Register a reducer function to handle on receiving an action with a\n   * given type.\n   *\n   * @param {string} strActionType - Action type to invoke reducer function\n   * on.\n   * @param {Function} funcReducer - Reducer function to invoke on reducing\n   * action with type.\n   * @returns {Vita} This.\n   */\n  registerReducer = (strActionType, funcReducer) => {\n    this._mapReducerFunctions.set(strActionType, funcReducer);\n    return this;\n  }\n\n  /**\n   * Register an action creator and reducer function at the same time. Note\n   * that the action creator param is optional. Omitting it will generate\n   * a default action creator.\n   *\n   * @param {string} strActionType - Action type.\n   * @param {Function} funcReducer - Reducer function to invoke on reducing\n   * action with type.\n   * @param {Function} [ufuncActionCreator] - Action creator function.\n   * @returns {Vita} This.\n   */\n  registerSlice = (strActionType, funcReducer, ufuncActionCreator) => {\n    const funcActionCreator = isNil(ufuncActionCreator) ?\n      makeActionCreator(strActionType) :\n      ufuncActionCreator;\n\n    this.registerActionCreator(strActionType, funcActionCreator);\n    this.registerReducer(strActionType, funcReducer);\n    return this;\n  }\n\n  /**\n   * Unregister an action creator for a given action type.\n   *\n   * @param {string} strActionType - Action type to unregister action creator\n   * function for.\n   * @returns {Vita} This.\n   */\n  unregisterActionCreator = (strActionType) => {\n    this._mapActionCreators.delete(strActionType);\n    return this;\n  }\n\n  /**\n   * Unregister a reducer function for a given action type.\n   *\n   * @param {string} strActionType - Action type to unregister handling reducer\n   * function for.\n   * @returns {Vita} This.\n   */\n  unregisterReducer = (strActionType) => {\n    this._mapReducerFunctions.delete(strActionType);\n    return this;\n  }\n\n  /**\n   * Unregister an action creator and reducer at the same time.\n   *\n   * @param {string} strActionType - Action type to unregister.\n   * @returns {Vita} This.\n   */\n  unregisterSlice = (strActionType) => {\n    this.unregisterActionCreator(strActionType);\n    this.unregisterReducer(strActionType);\n    return this;\n  }\n}\n\nexport default Vita;\n",
+    "content": "import has from 'lodash/has';\nimport isNil from 'lodash/isNil';\nimport makeActionCreator from '../makeActionCreator';\nimport { KEY_TYPE } from '../makeActionCreator/constants';\n\nclass Vita {\n  /**\n   * @param {object} objDefaultReducerState - Default reducer state to be\n   * returned if attempting to reduce with a null or undefined state.\n   */\n  constructor(objDefaultReducerState = {}) {\n    /**\n     * @private\n     * @type {?object}\n     */\n    this._objDefaultReducerState = objDefaultReducerState;\n\n    /**\n     * @private\n     * @type {Map}\n     */\n    this._mapActionCreators = new Map();\n\n    /**\n     * @private\n     * @type {Map}\n     */\n    this._mapReducerFunctions = new Map();\n  }\n\n  /**\n   * Gets dispatchable Redux action object for a given action type.\n   *\n   * @param {string} strActionType - Action type to generate dispatchable\n   * object for.\n   * @param {...*} varargsActionCreator - Arguments to pass to the registered\n   * function.\n   * @returns {object} Action object.\n   */\n  action = (strActionType, ...varargsActionCreator) => {\n    const ufuncActionCreator = this._mapActionCreators.get(strActionType);\n\n    if (isNil(ufuncActionCreator)) {\n      throw new Error(`No action creator was registered for type '${strActionType}'`);\n    }\n\n    return ufuncActionCreator(...varargsActionCreator);\n  };\n\n  /**\n   * Clear all registered action creators.\n   *\n   * @returns {Vita} This.\n   */\n  clearAllActionCreators = () => {\n    this._mapActionCreators.clear();\n    return this;\n  };\n\n  /**\n   * Clear all registered reducers for handling actions.\n   *\n   * @returns {Vita} This.\n   */\n  clearAllReducers = () => {\n    this._mapReducerFunctions.clear();\n    return this;\n  }\n\n  /**\n   * Reducer function.\n   *\n   * @param {object} [uobjCurrentReducerState] - Current reducer state.\n   * @param {object} objAction - Occurring Redux action.\n   * @returns {object} New reducer state.\n   * @throws {Error} On attempting to reduce actions without a type key.\n   */\n  reduce = (uobjCurrentReducerState, objAction) => {\n    const objCurrentReducerState = isNil(uobjCurrentReducerState) ?\n      this._objDefaultReducerState :\n      uobjCurrentReducerState;\n\n    if (!has(objAction, KEY_TYPE)) {\n      throw new Error(`Action object has no '${KEY_TYPE}' key. This is invalid.`);\n    }\n\n    const { [KEY_TYPE]: strTypeForAction } = objAction;\n\n    const ufuncReducerForAction = this._mapReducerFunctions.get(strTypeForAction);\n\n    // If we have no registered handler, just fallback to current state\n    if (isNil(ufuncReducerForAction)) {\n      return objCurrentReducerState;\n    }\n\n    return ufuncReducerForAction(objCurrentReducerState, objAction);\n  };\n\n  /**\n   * Create and register an action creator function. Note that the action\n   * creator function param is optional. Omitting it will generate a default\n   * action creator.\n   *\n   * @param {string} strActionType - Action type.\n   * @param {Function} [ufuncActionCreator] - Action creator function.\n   * @returns {Vita} This.\n   */\n  registerAction = (strActionType, ufuncActionCreator) => {\n    const funcActionCreator = isNil(ufuncActionCreator) ?\n      makeActionCreator(strActionType) :\n      ufuncActionCreator;\n\n    this._mapActionCreators.set(strActionType, funcActionCreator);\n    return this;\n  }\n\n  /**\n   * Register a reducer function to handle on receiving an action with a\n   * given type.\n   *\n   * @param {string} strActionType - Action type to invoke reducer function\n   * on.\n   * @param {Function} funcReducer - Reducer function to invoke on reducing\n   * action with type.\n   * @returns {Vita} This.\n   */\n  registerReducer = (strActionType, funcReducer) => {\n    this._mapReducerFunctions.set(strActionType, funcReducer);\n    return this;\n  }\n\n  /**\n   * Register an action creator and reducer function at the same time. Note\n   * that the action creator param is optional. Omitting it will generate\n   * a default action creator.\n   *\n   * @param {string} strActionType - Action type.\n   * @param {Function} funcReducer - Reducer function to invoke on reducing\n   * action with type.\n   * @param {Function} [ufuncActionCreator] - Action creator function.\n   * @returns {Vita} This.\n   */\n  registerSlice = (strActionType, funcReducer, ufuncActionCreator) => {\n    this.registerAction(strActionType, ufuncActionCreator);\n    this.registerReducer(strActionType, funcReducer);\n    return this;\n  }\n\n  /**\n   * Unregister an action creator for a given action type.\n   *\n   * @param {string} strActionType - Action type to unregister action creator\n   * function for.\n   * @returns {Vita} This.\n   */\n  unregisterAction = (strActionType) => {\n    this._mapActionCreators.delete(strActionType);\n    return this;\n  }\n\n  /**\n   * Unregister a reducer function for a given action type.\n   *\n   * @param {string} strActionType - Action type to unregister handling reducer\n   * function for.\n   * @returns {Vita} This.\n   */\n  unregisterReducer = (strActionType) => {\n    this._mapReducerFunctions.delete(strActionType);\n    return this;\n  }\n\n  /**\n   * Unregister an action creator and reducer at the same time.\n   *\n   * @param {string} strActionType - Action type to unregister.\n   * @returns {Vita} This.\n   */\n  unregisterSlice = (strActionType) => {\n    this.unregisterAction(strActionType);\n    this.unregisterReducer(strActionType);\n    return this;\n  }\n}\n\nexport default Vita;\n",
     "static": true,
     "longname": "/home/travis/build/jsau-/redux-vita/src/Vita/Vita.js",
     "access": "public",
@@ -586,7 +586,7 @@
     "importPath": "redux-vita/src/Vita/Vita.js",
     "importStyle": "Vita",
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 6,
     "undocument": true,
     "interface": false
   },
@@ -601,7 +601,7 @@
     "longname": "src/Vita/Vita.js~Vita#constructor",
     "access": "public",
     "description": "",
-    "lineNumber": 10,
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
@@ -624,7 +624,7 @@
     "longname": "src/Vita/Vita.js~Vita#_objDefaultReducerState",
     "access": "private",
     "description": "",
-    "lineNumber": 15,
+    "lineNumber": 16,
     "type": {
       "nullable": true,
       "types": [
@@ -643,7 +643,7 @@
     "longname": "src/Vita/Vita.js~Vita#_mapActionCreators",
     "access": "private",
     "description": "",
-    "lineNumber": 21,
+    "lineNumber": 22,
     "type": {
       "nullable": null,
       "types": [
@@ -662,7 +662,7 @@
     "longname": "src/Vita/Vita.js~Vita#_mapReducerFunctions",
     "access": "private",
     "description": "",
-    "lineNumber": 27,
+    "lineNumber": 28,
     "type": {
       "nullable": null,
       "types": [
@@ -675,73 +675,13 @@
   {
     "__docId__": 54,
     "kind": "member",
-    "name": "clearAllActionCreators",
+    "name": "action",
     "memberof": "src/Vita/Vita.js~Vita",
     "static": false,
-    "longname": "src/Vita/Vita.js~Vita#clearAllActionCreators",
-    "access": "public",
-    "description": "Clear all registered action creators.",
-    "lineNumber": 35,
-    "unknown": [
-      {
-        "tagName": "@returns",
-        "tagValue": "{Vita} This."
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Vita"
-      ],
-      "spread": false,
-      "description": "This."
-    },
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 55,
-    "kind": "member",
-    "name": "clearAllReducers",
-    "memberof": "src/Vita/Vita.js~Vita",
-    "static": false,
-    "longname": "src/Vita/Vita.js~Vita#clearAllReducers",
-    "access": "public",
-    "description": "Clear all registered reducers for handling actions.",
-    "lineNumber": 45,
-    "unknown": [
-      {
-        "tagName": "@returns",
-        "tagValue": "{Vita} This."
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Vita"
-      ],
-      "spread": false,
-      "description": "This."
-    },
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 56,
-    "kind": "member",
-    "name": "getDispatchable",
-    "memberof": "src/Vita/Vita.js~Vita",
-    "static": false,
-    "longname": "src/Vita/Vita.js~Vita#getDispatchable",
+    "longname": "src/Vita/Vita.js~Vita#action",
     "access": "public",
     "description": "Gets dispatchable Redux action object for a given action type.",
-    "lineNumber": 59,
+    "lineNumber": 40,
     "unknown": [
       {
         "tagName": "@returns",
@@ -785,6 +725,66 @@
     }
   },
   {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "clearAllActionCreators",
+    "memberof": "src/Vita/Vita.js~Vita",
+    "static": false,
+    "longname": "src/Vita/Vita.js~Vita#clearAllActionCreators",
+    "access": "public",
+    "description": "Clear all registered action creators.",
+    "lineNumber": 55,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Vita} This."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vita"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "member",
+    "name": "clearAllReducers",
+    "memberof": "src/Vita/Vita.js~Vita",
+    "static": false,
+    "longname": "src/Vita/Vita.js~Vita#clearAllReducers",
+    "access": "public",
+    "description": "Clear all registered reducers for handling actions.",
+    "lineNumber": 65,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Vita} This."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Vita"
+      ],
+      "spread": false,
+      "description": "This."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
     "__docId__": 57,
     "kind": "member",
     "name": "reduce",
@@ -793,7 +793,7 @@
     "longname": "src/Vita/Vita.js~Vita#reduce",
     "access": "public",
     "description": "Reducer function.",
-    "lineNumber": 76,
+    "lineNumber": 78,
     "unknown": [
       {
         "tagName": "@returns",
@@ -830,6 +830,14 @@
       "spread": false,
       "description": "New reducer state."
     },
+    "throws": [
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "On attempting to reduce actions without a type key."
+      }
+    ],
     "type": {
       "types": [
         "*"
@@ -839,13 +847,13 @@
   {
     "__docId__": 58,
     "kind": "member",
-    "name": "registerActionCreator",
+    "name": "registerAction",
     "memberof": "src/Vita/Vita.js~Vita",
     "static": false,
-    "longname": "src/Vita/Vita.js~Vita#registerActionCreator",
+    "longname": "src/Vita/Vita.js~Vita#registerAction",
     "access": "public",
-    "description": "Create and register an action creator function.",
-    "lineNumber": 105,
+    "description": "Create and register an action creator function. Note that the action\ncreator function param is optional. Omitting it will generate a default\naction creator.",
+    "lineNumber": 108,
     "unknown": [
       {
         "tagName": "@returns",
@@ -869,8 +877,8 @@
           "Function"
         ],
         "spread": false,
-        "optional": false,
-        "name": "funcActionCreator",
+        "optional": true,
+        "name": "ufuncActionCreator",
         "description": "Action creator function."
       }
     ],
@@ -897,7 +905,7 @@
     "longname": "src/Vita/Vita.js~Vita#registerReducer",
     "access": "public",
     "description": "Register a reducer function to handle on receiving an action with a\ngiven type.",
-    "lineNumber": 120,
+    "lineNumber": 127,
     "unknown": [
       {
         "tagName": "@returns",
@@ -949,7 +957,7 @@
     "longname": "src/Vita/Vita.js~Vita#registerSlice",
     "access": "public",
     "description": "Register an action creator and reducer function at the same time. Note\nthat the action creator param is optional. Omitting it will generate\na default action creator.",
-    "lineNumber": 136,
+    "lineNumber": 143,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1005,13 +1013,13 @@
   {
     "__docId__": 61,
     "kind": "member",
-    "name": "unregisterActionCreator",
+    "name": "unregisterAction",
     "memberof": "src/Vita/Vita.js~Vita",
     "static": false,
-    "longname": "src/Vita/Vita.js~Vita#unregisterActionCreator",
+    "longname": "src/Vita/Vita.js~Vita#unregisterAction",
     "access": "public",
     "description": "Unregister an action creator for a given action type.",
-    "lineNumber": 153,
+    "lineNumber": 156,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1053,7 +1061,7 @@
     "longname": "src/Vita/Vita.js~Vita#unregisterReducer",
     "access": "public",
     "description": "Unregister a reducer function for a given action type.",
-    "lineNumber": 165,
+    "lineNumber": 168,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1095,7 +1103,7 @@
     "longname": "src/Vita/Vita.js~Vita#unregisterSlice",
     "access": "public",
     "description": "Unregister an action creator and reducer at the same time.",
-    "lineNumber": 176,
+    "lineNumber": 179,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1196,7 +1204,7 @@
     "__docId__": 69,
     "kind": "file",
     "name": "src/makeActionCreator/makeActionCreator.js",
-    "content": "import isEmpty from 'lodash/isEmpty';\nimport isNil from 'lodash/isNil';\nimport isPlainObject from 'lodash/isPlainObject';\nimport { KEY_TYPE } from './constants';\n\n/**\n * @param {string} strType - Action type.\n * @param {Function} [ufuncPropertyCreator] - Optional function to\n * generate additional properties to the action.\n * @returns {Function} Function that creates action objects.\n * @throws {Error} If action type is empty, or additional generated properties\n * were not a plain object.\n */\nexport default (strType, ufuncPropertyCreator) => (...varargsPropertyCreator) => {\n  if (isEmpty(strType)) {\n    throw new Error('Type must not be empty.');\n  }\n\n  const objAdditionalProperties = isNil(ufuncPropertyCreator) ?\n    {} :\n    ufuncPropertyCreator(...varargsPropertyCreator);\n\n  /*\n   * Sanity-check our property creator function actually generated a plain\n   * object (otherwise we'll run into issues w/ Redux later...)\n   */\n  if (!isPlainObject(objAdditionalProperties)) {\n    throw new Error(\n      `Property creator function generated an invalid type. Expected plain \\\nobject, got '${typeof objAdditionalProperties}'`,\n    );\n  }\n\n  return {\n    ...objAdditionalProperties,\n    [KEY_TYPE]: strType,\n  };\n};\n",
+    "content": "import isEmpty from 'lodash/isEmpty';\nimport isNil from 'lodash/isNil';\nimport isPlainObject from 'lodash/isPlainObject';\nimport { KEY_TYPE } from './constants';\n\n/**\n * @param {string} strType - Action type.\n * @param {Function} [ufuncPropertyCreator] - Optional function to\n * generate additional properties to the action.\n * @returns {Function} Function that creates action objects.\n * @throws {Error} If action type is empty, or additional generated properties\n * were not a plain object.\n */\nexport default (strType, ufuncPropertyCreator) => {\n  /**\n   * NB: Param validation has been separated from the returned function body\n   * since we should only have to do it _once_ rather than on each function\n   * call.\n   */\n  if (isEmpty(strType)) {\n    throw new Error('Type must not be empty.');\n  }\n\n  return (...varargsPropertyCreator) => {\n    const objAdditionalProperties = isNil(ufuncPropertyCreator) ?\n      {} :\n      ufuncPropertyCreator(...varargsPropertyCreator);\n\n    /**\n     * Sanity-check our property creator function actually generated a plain\n     * object (otherwise we'll run into issues w/ Redux later...)\n     */\n    if (!isPlainObject(objAdditionalProperties)) {\n      throw new Error(\n        `Property creator function generated an invalid type. Expected plain \\\nobject, got '${typeof objAdditionalProperties}'`,\n      );\n    }\n\n    return {\n      ...objAdditionalProperties,\n      [KEY_TYPE]: strType,\n    };\n  };\n};\n",
     "static": true,
     "longname": "/home/travis/build/jsau-/redux-vita/src/makeActionCreator/makeActionCreator.js",
     "access": "public",
@@ -1761,7 +1769,7 @@
   },
   {
     "kind": "index",
-    "content": "# redux-vita\n\n[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n## Installing\n\n`npm install redux-vita`\n\n## Using the Library\n\nFind basic snippets below.\n\nFor full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\nFor examples check out the `examples` directory.\n\n#### Instantiating `Vita`\n```\nimport { Vita } from 'redux-vita';\n\n// Default instantiation (with no default reducer state)\nconst vita = new Vita();\n\n// Instantiating with default reducer state\nconst default_reducer_state = { field_one: 'default' };\nconst vitaWithDefaultState = new Vita(default_reducer_state);\n```\n\n#### Registering an Action Creator Function\nYou can register action creators on a `Vita`, allowing you to create a\ndispatchable Redux action object by just passing the action's type at a later\ntime.\n\nAdditionally, when defining an action creator you can additionally pass a\nsecond parameter, which is a function for generating additional properties on\nthe generated action object.\n\n```\nimport { Vita, makeActionCreator } from 'redux-vita';\n\nconst vita = new Vita();\n\n// Action creator which has no additional fields\nconst actionCreator = makeActionCreator('action_type');\nvita.registerActionCreator('action_type', actionCreator);\n\n// Action creator which accepts some params\nconst actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));\nvita.registerActionCreator('action_params', actionCreatorWithParams);\n```\n\n#### Getting a Dispatchable Object for an Action Creator\nGenerate a Redux action object for a registered action type. Note that any\nsubsequent parameters after the type are provided as parameters to the property\ngenerator function (if provided when registering the creator).\n\n```\n// Returns { type: 'action_type' }\nconst objectAction = vita.getDispatchable('action_type');\n\n// Returns { argone: 1, argtwo: 2 }\nconst objectAction = vita.getDispatchable('action_wparams', 1, 2);\n```\n\n#### Registering a Reducer Function\nYou can register reducer functions to handle given action types. If no matching\nhandler is found on invoking `Vita::reduce` then the current state is\nreturned. If no current state is set, the default reducer state is returned.\n\n```\nvita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));\n```\n\nNote that the library exposes some standard reducer functions that may be useful\nin your applications. For a full list of available reducer functions see the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n```\nimport { reducerDecrementField } from 'redux-vita';\nvita.registerReducer('decrement_counter', (state) => reducerDecrementField(state, 'counter'));\n\nimport { reducerIncrementField } from 'redux-vita';\nvita.registerReducer('increment_counter', (state) => reducerIncrementField(state, 'counter'));\n\nimport { reducerRemoveField } from 'redux-vita';\nvita.registerReducer('clear_counter', (state) => reducerClearField(state, 'counter'));\n\nimport { reducerSetField } from 'redux-vita';\nvita.registerReducer('maximise_counter', (state) => reducerSetField(state, 'counter', MAX_COUNTER_VALUE));\n\nimport { reducerSetManyFields } from 'redux-vita';\nvita.registerReducer('reset_form', (state) => reducerSetManyFields(state, { field_one: 'default_one', field_two: 'default_two' }));\n\nimport { reducerToggleBooleanField } from 'redux-vita';\nvita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));\n```\n\n#### Registering a Slice\nIt's possible to register an action creator and reducer function at the same\ntime using `Vita::registerSlice`. Note that the action creator param is\noptional, and will default to `makeActionCreator(ACTION_TYPE)`.\n\n```\n// Without specifying an action creator\nvita.registerSlice(\n  'action_type',\n  (state) => reducerClearField(state, 'field_to_clear'),\n);\n\n// Specifying an action creator\nvita.registerSlice(\n  'action_type',\n  (state) => reducerClearField(state, 'field_to_clear'),\n  makeActionCreator('action_type'),\n);\n```\n\n#### Using the Reducer Within Redux\nInstances of `Vita` expose a function `reduce`. This can be registered as\na reducer in Redux as you would a normal reducer function.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
+    "content": "# redux-vita\n\n[![npm version](https://img.shields.io/npm/v/redux-vita.svg)](https://www.npmjs.com/package/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n[![npm downloads](https://img.shields.io/npm/dm/redux-vita.svg)](https://www.npmjs.com/package/redux-vita)\n\n(Another) library aiming to reduce boilerplate in applications using Redux.\n\nNote that this library does **_not_** aim to replace other fantastic\nalternatives like [Redux Toolkit](https://redux-toolkit.js.org/). In the general\ncase Redux Toolkit will probably be a better fit for most apps.\n\nThe core concepts that the library aims for are:\n* **Compatibility**. Ideally the library should be compatible with your existing\nRedux flow out of the box. Do or don't use thunks, do or don't use middleware;\nit's up to you.\n* **Concise API**. Making an action creator, and a reducer for handling it\nshould be _short and simple_.\n* **Modularity**. Use as much or as little of the library as you like. Want to\nwrite your own action creator functions? Want to handle reducers yourself? You\ncan still do either.\n\nFor full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n# Contents\n1. [Intro](#redux-vita)\n2. [Installing](#installing)\n3. [Examples](#examples)\n    - [Create React App](#create-react-app)\n    - [Class `Vita`](#class-vita)\n    - [Registering a Slice](#registering-a-slice)\n    - [Registering Action Creators](#registering-action-creators)\n    - [Registering Reducers](#registering-reducers)\n    - [Getting a Dispatchable Object](#getting-a-dispatchable-object)\n    - [Registering the Reducer Function](#registering-the-reducer-function)\n4. [Contributing](#contributing)\n5. [Feedback and Support ](#feedback-and-support)\n\n## Installing\n\n`npm install redux-vita`\n\n## Examples\n\n#### Create React App\n\nAn example project using the library can be found in\n`./examples/create-react-app`.\n\n#### Class `Vita`\nThe class `Vita` is basically a big wrapper around the core Redux concepts of\naction creators and reducers.\n\nOn instantiating `Vita`, you can optionally provide some default state for the\nreducer. Otherwise, we'll default to the empty object `{}`.\n\n```\n// No default state\nconst vita = new Vita();\n\n// With default state\nconst vitaWithDefaultState = new Vita({ field_one: 'default' });\n```\n\n#### Registering a Slice\n\nMost of the time you want to be able to dispatch an action, and handle it inside\na corresponding reducer. By calling `Vita.registerSlice` you can register both\nthe action creator and reducer functions at once.\n\nNote that the action creator function is optional, and we'll handle making one\nfor you if not provided. This cuts down on boilerplate in cases where you don't\nneed a specific action creator with custom parameters - you just want to handle\nan event.\n\n```\n// Without explicit action creator\nvita.registerSlice(\n  'action_type',\n  (state) => ({ ...state, action_was_handled: true }),\n);\n\n// With explicit action creator\nvita.registerSlice(\n  'action_type_wparams',\n  (state, action) => ({\n    ...state,\n    [action.field_to_increment]: state[action.field_to_increment] + 1,\n  }),\n  makeActionCreator(\n    'action_type_wparams',\n    (field_to_increment => ({ field_to_increment })),\n  ),\n);\n```\n\n#### Registering Action Creators\n\nAction creators can be registered on their own, too.\n\nAs above, the function for generating the action is optional, so you only\nprovide one if you need to add custom properties to the created action objects.\n\nThis syntax also allows you to register thunks like you would've in a standard\napp.\n\n```\n// Without explicit action creator\nvita.registerAction('action_type');\n\n// With explicit action creator\nvita.registerAction('action_type_wparams', (param) => ({ param }));\n\n// With thunk\nvita.registerAction(\n  'thunk',\n  () => (dispatch) => { /* Implementation omitted... */ },\n);\n```\n\n#### Registering Reducers\n\nReducers can be registered on their own too. This would make sense in a\ncontext where you're subscribed to an event emitted from some other source in\nthe app.\n\n```\nvita.registerReducer(\n  'increment_counter',\n  (state) => ({ ...state, counter: state.counter + 1 }),\n);\n```\n\nWe've written some standard reducer functions that you might find useful in\nyour apps. ([See the docs for a complete\nlist]((https://jsau-.github.io/redux-vita))). Using these functions is\ncompletely optional - if they'll make your code less verbose, or less\nerror-prone then do!\n\nOr, optionally, roll your own standard functions to fit\nyour use-case! This concept lends itself to factory functions which could\nregister all the action creators and reducers required to handle interacting\nwith an API, for example.\n\n```\nvita.registerReducer(\n  'decrement_counter',\n  (state) => reducerDecrementField(state, 'counter'),\n);\n\nvita.registerReducer(\n  'increment_counter',\n  (state) => reducerIncrementField(state, 'counter'),\n);\n\nvita.registerReducer(\n  'clear_counter',\n  (state) => reducerClearField(state, 'counter'),\n);\n\nvita.registerReducer(\n  'maximise_counter',\n  (state) => reducerSetField(state, 'counter', 999),\n);\n\nvita.registerReducer(\n  'reset_form',\n  (state) => reducerSetManyFields(\n    state,\n    { field_one: 'default_one', field_two: 'default_two' },\n  ),\n);\n\nvita.registerReducer(\n  'toggle_counter_enabled',\n  (state) => reducerToggleBooleanField(state, 'counter_enabled'),\n);\n```\n\n#### Getting a Dispatchable Object\n\nIf your registered creator accepts no params just call `Vita.action`; any\nadditional params are passed through to the creator function.\n\n```\nvita.registerAction('action_type');\nvita.registerAction('action_type_wparams', (param) => ({ param }));\n\n// Returns { type: 'action_type' };\nconst action = vita.action('action_type');\n\n// Returns { type: 'action_type', param: 'foo' };\nconst action_wparams = vita.action('action_type_wparams', 'foo');\n\ndispatch(action);\ndispatch(action_wparams);\n```\n\n#### Registering the Reducer Function\n\nInstances of `Vita` expose a function `reduce`. This method has the same\nsignature as a standard Redux reducer function, so you can just register it\nthe way you would in a traditional Redux app.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
     "longname": "/home/travis/build/jsau-/redux-vita/README.md",
     "name": "./README.md",
     "static": true,
@@ -1769,7 +1777,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"redux-vita\",\n  \"version\": \"1.3.0\",\n  \"description\": \"\",\n  \"main\": \"./build/index.js\",\n  \"scripts\": {\n    \"predoc\": \"del-cli \\\"./docs/**/*\\\"\",\n    \"doc\": \"npm run predoc && esdoc\",\n    \"prebuild\": \"npm run doc && del-cli \\\"./build/**/*\\\"\",\n    \"build:es2015\": \"npm run prebuild && cross-env NODE_ENV=production babel ./src --ignore \\\"**/*.test.js\\\" --out-dir ./build\",\n    \"lint\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color\",\n    \"lint:fix\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color --fix\",\n    \"precommit-message\": \"echo Executing pre-commit checks... && exit 0\",\n    \"test\": \"jest\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/jsau-/redux-vita.git\"\n  },\n  \"author\": \"Jon Saunders\",\n  \"license\": \"SEE LICENSE IN LICENSE.md\",\n  \"bugs\": {\n    \"url\": \"https://github.com/jsau-/redux-vita/issues\"\n  },\n  \"homepage\": \"https://github.com/jsau-/redux-vita#readme\",\n  \"devDependencies\": {\n    \"@babel/cli\": \"7.4.4\",\n    \"@babel/core\": \"7.4.5\",\n    \"@babel/plugin-proposal-class-properties\": \"7.4.4\",\n    \"@babel/plugin-proposal-decorators\": \"7.4.4\",\n    \"@babel/plugin-proposal-export-namespace-from\": \"7.2.0\",\n    \"@babel/plugin-proposal-function-sent\": \"7.2.0\",\n    \"@babel/plugin-proposal-json-strings\": \"7.2.0\",\n    \"@babel/plugin-proposal-nullish-coalescing-operator\": \"7.4.4\",\n    \"@babel/plugin-proposal-numeric-separator\": \"7.2.0\",\n    \"@babel/plugin-proposal-optional-chaining\": \"7.2.0\",\n    \"@babel/plugin-proposal-throw-expressions\": \"7.2.0\",\n    \"@babel/plugin-syntax-dynamic-import\": \"7.2.0\",\n    \"@babel/plugin-syntax-import-meta\": \"7.2.0\",\n    \"@babel/preset-env\": \"7.4.5\",\n    \"babel-eslint\": \"10.0.3\",\n    \"babel-jest\": \"24.9.0\",\n    \"cross-env\": \"5.2.0\",\n    \"del-cli\": \"2.0.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"eslint\": \"6.6.0\",\n    \"eslint-config-airbnb-base\": \"14.0.0\",\n    \"eslint-config-prettier\": \"5.0.0\",\n    \"eslint-plugin-import\": \"2.19.1\",\n    \"eslint-plugin-jsdoc\": \"8.4.4\",\n    \"jest\": \"24.9.0\",\n    \"lodash\": \"4.17.15\",\n    \"pre-commit\": \"1.2.2\",\n    \"redux\": \"4.0.0\"\n  },\n  \"peerDependencies\": {\n    \"lodash\": \"^4.17.15\",\n    \"redux\": \"^4.0.0\"\n  },\n  \"pre-commit\": [\n    \"precommit-message\",\n    \"lint\",\n    \"build:es2015\",\n    \"test\"\n  ]\n}\n",
+    "content": "{\n  \"name\": \"redux-vita\",\n  \"version\": \"2.0.0\",\n  \"description\": \"\",\n  \"main\": \"./build/index.js\",\n  \"scripts\": {\n    \"predoc\": \"del-cli \\\"./docs/**/*\\\"\",\n    \"doc\": \"npm run predoc && esdoc\",\n    \"prebuild\": \"npm run doc && del-cli \\\"./build/**/*\\\"\",\n    \"build:es2015\": \"npm run prebuild && cross-env NODE_ENV=production babel ./src --ignore \\\"**/*.test.js\\\" --out-dir ./build\",\n    \"lint\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color\",\n    \"lint:fix\": \"./node_modules/.bin/eslint jest.config.js \\\"./src/**/*.js\\\" --color --fix\",\n    \"precommit-message\": \"echo Executing pre-commit checks... && exit 0\",\n    \"test\": \"jest\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/jsau-/redux-vita.git\"\n  },\n  \"author\": \"Jon Saunders\",\n  \"license\": \"SEE LICENSE IN LICENSE.md\",\n  \"bugs\": {\n    \"url\": \"https://github.com/jsau-/redux-vita/issues\"\n  },\n  \"homepage\": \"https://github.com/jsau-/redux-vita#readme\",\n  \"devDependencies\": {\n    \"@babel/cli\": \"7.4.4\",\n    \"@babel/core\": \"7.4.5\",\n    \"@babel/plugin-proposal-class-properties\": \"7.4.4\",\n    \"@babel/plugin-proposal-decorators\": \"7.4.4\",\n    \"@babel/plugin-proposal-export-namespace-from\": \"7.2.0\",\n    \"@babel/plugin-proposal-function-sent\": \"7.2.0\",\n    \"@babel/plugin-proposal-json-strings\": \"7.2.0\",\n    \"@babel/plugin-proposal-nullish-coalescing-operator\": \"7.4.4\",\n    \"@babel/plugin-proposal-numeric-separator\": \"7.2.0\",\n    \"@babel/plugin-proposal-optional-chaining\": \"7.2.0\",\n    \"@babel/plugin-proposal-throw-expressions\": \"7.2.0\",\n    \"@babel/plugin-syntax-dynamic-import\": \"7.2.0\",\n    \"@babel/plugin-syntax-import-meta\": \"7.2.0\",\n    \"@babel/preset-env\": \"7.4.5\",\n    \"babel-eslint\": \"10.0.3\",\n    \"babel-jest\": \"24.9.0\",\n    \"cross-env\": \"5.2.0\",\n    \"del-cli\": \"2.0.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"eslint\": \"6.6.0\",\n    \"eslint-config-airbnb-base\": \"14.0.0\",\n    \"eslint-config-prettier\": \"5.0.0\",\n    \"eslint-plugin-import\": \"2.19.1\",\n    \"eslint-plugin-jsdoc\": \"8.4.4\",\n    \"jest\": \"24.9.0\",\n    \"lodash\": \"4.17.15\",\n    \"pre-commit\": \"1.2.2\",\n    \"redux\": \"4.0.0\"\n  },\n  \"peerDependencies\": {\n    \"lodash\": \"^4.17.15\",\n    \"redux\": \"^4.0.0\"\n  },\n  \"pre-commit\": [\n    \"precommit-message\",\n    \"lint\",\n    \"build:es2015\",\n    \"test\"\n  ]\n}\n",
     "longname": "/home/travis/build/jsau-/redux-vita/package.json",
     "name": "package.json",
     "static": true,
@@ -1778,7 +1786,7 @@
   {
     "kind": "manualIndex",
     "globalIndex": true,
-    "content": "# redux-vita\n\n[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n\n## Installing\n\n`npm install redux-vita`\n\n## Using the Library\n\nFind basic snippets below.\n\nFor full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\nFor examples check out the `examples` directory.\n\n#### Instantiating `Vita`\n```\nimport { Vita } from 'redux-vita';\n\n// Default instantiation (with no default reducer state)\nconst vita = new Vita();\n\n// Instantiating with default reducer state\nconst default_reducer_state = { field_one: 'default' };\nconst vitaWithDefaultState = new Vita(default_reducer_state);\n```\n\n#### Registering an Action Creator Function\nYou can register action creators on a `Vita`, allowing you to create a\ndispatchable Redux action object by just passing the action's type at a later\ntime.\n\nAdditionally, when defining an action creator you can additionally pass a\nsecond parameter, which is a function for generating additional properties on\nthe generated action object.\n\n```\nimport { Vita, makeActionCreator } from 'redux-vita';\n\nconst vita = new Vita();\n\n// Action creator which has no additional fields\nconst actionCreator = makeActionCreator('action_type');\nvita.registerActionCreator('action_type', actionCreator);\n\n// Action creator which accepts some params\nconst actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));\nvita.registerActionCreator('action_params', actionCreatorWithParams);\n```\n\n#### Getting a Dispatchable Object for an Action Creator\nGenerate a Redux action object for a registered action type. Note that any\nsubsequent parameters after the type are provided as parameters to the property\ngenerator function (if provided when registering the creator).\n\n```\n// Returns { type: 'action_type' }\nconst objectAction = vita.getDispatchable('action_type');\n\n// Returns { argone: 1, argtwo: 2 }\nconst objectAction = vita.getDispatchable('action_wparams', 1, 2);\n```\n\n#### Registering a Reducer Function\nYou can register reducer functions to handle given action types. If no matching\nhandler is found on invoking `Vita::reduce` then the current state is\nreturned. If no current state is set, the default reducer state is returned.\n\n```\nvita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));\n```\n\nNote that the library exposes some standard reducer functions that may be useful\nin your applications. For a full list of available reducer functions see the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n```\nimport { reducerDecrementField } from 'redux-vita';\nvita.registerReducer('decrement_counter', (state) => reducerDecrementField(state, 'counter'));\n\nimport { reducerIncrementField } from 'redux-vita';\nvita.registerReducer('increment_counter', (state) => reducerIncrementField(state, 'counter'));\n\nimport { reducerRemoveField } from 'redux-vita';\nvita.registerReducer('clear_counter', (state) => reducerClearField(state, 'counter'));\n\nimport { reducerSetField } from 'redux-vita';\nvita.registerReducer('maximise_counter', (state) => reducerSetField(state, 'counter', MAX_COUNTER_VALUE));\n\nimport { reducerSetManyFields } from 'redux-vita';\nvita.registerReducer('reset_form', (state) => reducerSetManyFields(state, { field_one: 'default_one', field_two: 'default_two' }));\n\nimport { reducerToggleBooleanField } from 'redux-vita';\nvita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));\n```\n\n#### Registering a Slice\nIt's possible to register an action creator and reducer function at the same\ntime using `Vita::registerSlice`. Note that the action creator param is\noptional, and will default to `makeActionCreator(ACTION_TYPE)`.\n\n```\n// Without specifying an action creator\nvita.registerSlice(\n  'action_type',\n  (state) => reducerClearField(state, 'field_to_clear'),\n);\n\n// Specifying an action creator\nvita.registerSlice(\n  'action_type',\n  (state) => reducerClearField(state, 'field_to_clear'),\n  makeActionCreator('action_type'),\n);\n```\n\n#### Using the Reducer Within Redux\nInstances of `Vita` expose a function `reduce`. This can be registered as\na reducer in Redux as you would a normal reducer function.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
+    "content": "# redux-vita\n\n[![npm version](https://img.shields.io/npm/v/redux-vita.svg)](https://www.npmjs.com/package/redux-vita)\n[![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)\n[![npm downloads](https://img.shields.io/npm/dm/redux-vita.svg)](https://www.npmjs.com/package/redux-vita)\n\n(Another) library aiming to reduce boilerplate in applications using Redux.\n\nNote that this library does **_not_** aim to replace other fantastic\nalternatives like [Redux Toolkit](https://redux-toolkit.js.org/). In the general\ncase Redux Toolkit will probably be a better fit for most apps.\n\nThe core concepts that the library aims for are:\n* **Compatibility**. Ideally the library should be compatible with your existing\nRedux flow out of the box. Do or don't use thunks, do or don't use middleware;\nit's up to you.\n* **Concise API**. Making an action creator, and a reducer for handling it\nshould be _short and simple_.\n* **Modularity**. Use as much or as little of the library as you like. Want to\nwrite your own action creator functions? Want to handle reducers yourself? You\ncan still do either.\n\nFor full API documentation check out the\n[documentation page](https://jsau-.github.io/redux-vita).\n\n# Contents\n1. [Intro](#redux-vita)\n2. [Installing](#installing)\n3. [Examples](#examples)\n    - [Create React App](#create-react-app)\n    - [Class `Vita`](#class-vita)\n    - [Registering a Slice](#registering-a-slice)\n    - [Registering Action Creators](#registering-action-creators)\n    - [Registering Reducers](#registering-reducers)\n    - [Getting a Dispatchable Object](#getting-a-dispatchable-object)\n    - [Registering the Reducer Function](#registering-the-reducer-function)\n4. [Contributing](#contributing)\n5. [Feedback and Support ](#feedback-and-support)\n\n## Installing\n\n`npm install redux-vita`\n\n## Examples\n\n#### Create React App\n\nAn example project using the library can be found in\n`./examples/create-react-app`.\n\n#### Class `Vita`\nThe class `Vita` is basically a big wrapper around the core Redux concepts of\naction creators and reducers.\n\nOn instantiating `Vita`, you can optionally provide some default state for the\nreducer. Otherwise, we'll default to the empty object `{}`.\n\n```\n// No default state\nconst vita = new Vita();\n\n// With default state\nconst vitaWithDefaultState = new Vita({ field_one: 'default' });\n```\n\n#### Registering a Slice\n\nMost of the time you want to be able to dispatch an action, and handle it inside\na corresponding reducer. By calling `Vita.registerSlice` you can register both\nthe action creator and reducer functions at once.\n\nNote that the action creator function is optional, and we'll handle making one\nfor you if not provided. This cuts down on boilerplate in cases where you don't\nneed a specific action creator with custom parameters - you just want to handle\nan event.\n\n```\n// Without explicit action creator\nvita.registerSlice(\n  'action_type',\n  (state) => ({ ...state, action_was_handled: true }),\n);\n\n// With explicit action creator\nvita.registerSlice(\n  'action_type_wparams',\n  (state, action) => ({\n    ...state,\n    [action.field_to_increment]: state[action.field_to_increment] + 1,\n  }),\n  makeActionCreator(\n    'action_type_wparams',\n    (field_to_increment => ({ field_to_increment })),\n  ),\n);\n```\n\n#### Registering Action Creators\n\nAction creators can be registered on their own, too.\n\nAs above, the function for generating the action is optional, so you only\nprovide one if you need to add custom properties to the created action objects.\n\nThis syntax also allows you to register thunks like you would've in a standard\napp.\n\n```\n// Without explicit action creator\nvita.registerAction('action_type');\n\n// With explicit action creator\nvita.registerAction('action_type_wparams', (param) => ({ param }));\n\n// With thunk\nvita.registerAction(\n  'thunk',\n  () => (dispatch) => { /* Implementation omitted... */ },\n);\n```\n\n#### Registering Reducers\n\nReducers can be registered on their own too. This would make sense in a\ncontext where you're subscribed to an event emitted from some other source in\nthe app.\n\n```\nvita.registerReducer(\n  'increment_counter',\n  (state) => ({ ...state, counter: state.counter + 1 }),\n);\n```\n\nWe've written some standard reducer functions that you might find useful in\nyour apps. ([See the docs for a complete\nlist]((https://jsau-.github.io/redux-vita))). Using these functions is\ncompletely optional - if they'll make your code less verbose, or less\nerror-prone then do!\n\nOr, optionally, roll your own standard functions to fit\nyour use-case! This concept lends itself to factory functions which could\nregister all the action creators and reducers required to handle interacting\nwith an API, for example.\n\n```\nvita.registerReducer(\n  'decrement_counter',\n  (state) => reducerDecrementField(state, 'counter'),\n);\n\nvita.registerReducer(\n  'increment_counter',\n  (state) => reducerIncrementField(state, 'counter'),\n);\n\nvita.registerReducer(\n  'clear_counter',\n  (state) => reducerClearField(state, 'counter'),\n);\n\nvita.registerReducer(\n  'maximise_counter',\n  (state) => reducerSetField(state, 'counter', 999),\n);\n\nvita.registerReducer(\n  'reset_form',\n  (state) => reducerSetManyFields(\n    state,\n    { field_one: 'default_one', field_two: 'default_two' },\n  ),\n);\n\nvita.registerReducer(\n  'toggle_counter_enabled',\n  (state) => reducerToggleBooleanField(state, 'counter_enabled'),\n);\n```\n\n#### Getting a Dispatchable Object\n\nIf your registered creator accepts no params just call `Vita.action`; any\nadditional params are passed through to the creator function.\n\n```\nvita.registerAction('action_type');\nvita.registerAction('action_type_wparams', (param) => ({ param }));\n\n// Returns { type: 'action_type' };\nconst action = vita.action('action_type');\n\n// Returns { type: 'action_type', param: 'foo' };\nconst action_wparams = vita.action('action_type_wparams', 'foo');\n\ndispatch(action);\ndispatch(action_wparams);\n```\n\n#### Registering the Reducer Function\n\nInstances of `Vita` expose a function `reduce`. This method has the same\nsignature as a standard Redux reducer function, so you can just register it\nthe way you would in a traditional Redux app.\n\n```\ncombineReducers({ my_reducer_name: vita.reduce });\n```\n\n## Contributing\n\nWhile contributions are appreciated, they may be rejected if not in line with\nthe intended project direction. It's recommended to check before undertaking a\nmajor piece of work and/or refactoring.\n\nContributions should be based off the `develop` branch, and any pull requests\nmade into `develop`.\n\nNote that this project uses [TravisCI](https://travis-ci.org/) for continuous\nintegration. Any pull requests failing automated tests will be rejected.\n\n#### Getting Started\n```\n// Install dependencies\nnpm ci\n\n// Run tests\nnpm run lint\nnpm run test\n\n// Build the library\nnpm run build:es2015\n```\n\n## Feedback and Support\n\nFor suggestions, issues, and/or support raise a GitHub issue!\n",
     "longname": "/home/travis/build/jsau-/redux-vita/README.md",
     "name": "./README.md",
     "static": true,
