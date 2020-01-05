@@ -1,43 +1,44 @@
 import { Vita } from './Vita';
 import { makeActionCreator } from './makeActionCreator';
 
-jest.mock('../makeActionCreator', () => jest.fn());
+jest.mock('./makeActionCreator');
+const mockedActionCreator = mocked(makeActionCreator, true);
 
 describe('Vita', () => {
   beforeEach(() => {
-    makeActionCreator.mockReset();
+    mockedActionCreator.mockReset();
   });
 
   it('Should instantiate Vita with default params', () => {
     const vita = new Vita();
-    expect(vita._objDefaultReducerState).toEqual({});
-    expect(vita._mapActionCreators).toEqual(new Map());
-    expect(vita._mapReducerFunctions).toEqual(new Map());
+    expect(vita.defaultReducerState).toEqual({});
+    expect(vita.actionCreators).toEqual(new Map());
+    expect(vita.reducerFunctions).toEqual(new Map());
   });
 
   it('Should cache default reducer state on instantiating', () => {
     const objDefaultState = { default_field: true };
     const vita = new Vita(objDefaultState);
 
-    expect(vita._objDefaultReducerState).toBe(objDefaultState);
+    expect(vita.defaultReducerState).toBe(objDefaultState);
   });
 
   it('Should clear all action creators', () => {
     const vita = new Vita();
     vita.registerAction('action_type', () => {});
-    expect(vita._mapActionCreators.size).toEqual(1);
+    expect(vita.actionCreators.size).toEqual(1);
 
     vita.clearAllActionCreators();
-    expect(vita._mapActionCreators.size).toEqual(0);
+    expect(vita.actionCreators.size).toEqual(0);
   });
 
   it('Should clear all reducers', () => {
     const vita = new Vita();
     vita.registerReducer('action_type', () => {});
-    expect(vita._mapReducerFunctions.size).toEqual(1);
+    expect(vita.reducerFunctions.size).toEqual(1);
 
     vita.clearAllReducers();
-    expect(vita._mapReducerFunctions.size).toEqual(0);
+    expect(vita.reducerFunctions.size).toEqual(0);
   });
 
   it('Should get a dispatchable object for registered action creator', () => {
@@ -145,24 +146,24 @@ describe('Vita', () => {
 
     const vita = new Vita();
 
-    expect(vita._mapActionCreators.size).toBe(0);
+    expect(vita.actionCreators.size).toBe(0);
 
     vita.registerAction(strActionType, funcActionCreator);
 
-    expect(vita._mapActionCreators.size).toBe(1);
-    expect(vita._mapActionCreators).toEqual(new Map([[strActionType, funcActionCreator]]));
+    expect(vita.actionCreators.size).toBe(1);
+    expect(vita.actionCreators).toEqual(new Map([[strActionType, funcActionCreator]]));
   });
 
   it('Should register an action creator with default creator function', () => {
     const vita = new Vita();
 
-    expect(vita._mapActionCreators.size).toBe(0);
+    expect(vita.actionCreators.size).toBe(0);
 
     vita.registerAction('action_type');
 
-    expect(vita._mapActionCreators.size).toBe(1);
-    expect(makeActionCreator).toHaveBeenCalledTimes(1);
-    expect(makeActionCreator.mock.calls[0][0]).toBe('action_type');
+    expect(vita.actionCreators.size).toBe(1);
+    expect(mockedActionCreator).toHaveBeenCalledTimes(1);
+    expect(mockedActionCreator.mock.calls[0][0]).toBe('action_type');
   });
 
   it('Should return self on registering an action creator', () => {
@@ -177,12 +178,12 @@ describe('Vita', () => {
 
     const vita = new Vita();
 
-    expect(vita._mapReducerFunctions.size).toBe(0);
+    expect(vita.reducerFunctions.size).toBe(0);
 
     vita.registerReducer(strActionType, funcReducer);
 
-    expect(vita._mapReducerFunctions.size).toBe(1);
-    expect(vita._mapReducerFunctions).toEqual(new Map([[strActionType, funcReducer]]));
+    expect(vita.reducerFunctions.size).toBe(1);
+    expect(vita.reducerFunctions).toEqual(new Map([[strActionType, funcReducer]]));
   });
 
   it('Should register a slice', () => {
@@ -190,30 +191,30 @@ describe('Vita', () => {
     const funcActionCreator = () => {};
     const funcReducer = () => {};
 
-    expect(vita._mapActionCreators.size).toBe(0);
-    expect(vita._mapReducerFunctions.size).toBe(0);
+    expect(vita.actionCreators.size).toBe(0);
+    expect(vita.reducerFunctions.size).toBe(0);
 
     vita.registerSlice('action_type', funcReducer, funcActionCreator);
 
-    expect(vita._mapActionCreators.size).toBe(1);
-    expect(vita._mapReducerFunctions.size).toBe(1);
-    expect(makeActionCreator).toHaveBeenCalledTimes(0);
+    expect(vita.actionCreators.size).toBe(1);
+    expect(vita.reducerFunctions.size).toBe(1);
+    expect(mockedActionCreator).toHaveBeenCalledTimes(0);
   });
 
   it('Should create a default action creator on registering slice if none provided', () => {
     const vita = new Vita();
     const funcReducer = () => {};
 
-    expect(vita._mapActionCreators.size).toBe(0);
-    expect(vita._mapReducerFunctions.size).toBe(0);
+    expect(vita.actionCreators.size).toBe(0);
+    expect(vita.reducerFunctions.size).toBe(0);
 
     vita.registerSlice('action_type', funcReducer);
 
-    expect(vita._mapActionCreators.size).toBe(1);
-    expect(vita._mapReducerFunctions.size).toBe(1);
+    expect(vita.actionCreators.size).toBe(1);
+    expect(vita.reducerFunctions.size).toBe(1);
 
-    expect(makeActionCreator).toHaveBeenCalledTimes(1);
-    expect(makeActionCreator.mock.calls[0][0]).toBe('action_type');
+    expect(mockedActionCreator).toHaveBeenCalledTimes(1);
+    expect(mockedActionCreator.mock.calls[0][0]).toBe('action_type');
   });
 
   it('Should return self on registering a slice', () => {
@@ -234,13 +235,13 @@ describe('Vita', () => {
     vita.registerAction('action_one', () => {});
     vita.registerAction('action_two', () => {});
 
-    expect(vita._mapActionCreators.size).toBe(2);
+    expect(vita.actionCreators.size).toBe(2);
 
     vita.unregisterAction('action_two');
-    expect(vita._mapActionCreators.size).toBe(1);
+    expect(vita.actionCreators.size).toBe(1);
 
     vita.unregisterAction('action_one');
-    expect(vita._mapActionCreators.size).toBe(0);
+    expect(vita.actionCreators.size).toBe(0);
   });
 
   it('Should return self on unregistering an action creator', () => {
@@ -255,13 +256,13 @@ describe('Vita', () => {
     vita.registerReducer('action_one', () => {});
     vita.registerReducer('action_two', () => {});
 
-    expect(vita._mapReducerFunctions.size).toBe(2);
+    expect(vita.reducerFunctions.size).toBe(2);
 
     vita.unregisterReducer('action_one');
-    expect(vita._mapReducerFunctions.size).toBe(1);
+    expect(vita.reducerFunctions.size).toBe(1);
 
     vita.unregisterReducer('action_two');
-    expect(vita._mapReducerFunctions.size).toBe(0);
+    expect(vita.reducerFunctions.size).toBe(0);
   });
 
   it('Should return self on unregistering a reducer', () => {
@@ -277,13 +278,13 @@ describe('Vita', () => {
 
     vita.registerSlice('action_type', funcActionCreator, funcReducer);
 
-    expect(vita._mapActionCreators.size).toBe(1);
-    expect(vita._mapReducerFunctions.size).toBe(1);
+    expect(vita.actionCreators.size).toBe(1);
+    expect(vita.reducerFunctions.size).toBe(1);
 
     vita.unregisterSlice('action_type');
 
-    expect(vita._mapActionCreators.size).toBe(0);
-    expect(vita._mapReducerFunctions.size).toBe(0);
+    expect(vita.actionCreators.size).toBe(0);
+    expect(vita.reducerFunctions.size).toBe(0);
   });
 
   it('Should return self on unregistering a slice', () => {

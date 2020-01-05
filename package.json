@@ -10,8 +10,8 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir build --extensions \".ts\"",
     "build": "npm run prebuild && npm run build:types && npm run build:js",
-    "lint": "./node_modules/.bin/eslint jest.config.js \"./src/**/*.ts\" --color",
-    "lint:fix": "./node_modules/.bin/eslint jest.config.js \"./src/**/*.ts\" --color --fix",
+    "lint": "./node_modules/.bin/eslint \"./src/**/*.ts\" --color",
+    "lint:fix": "./node_modules/.bin/eslint \"./src/**/*.ts\" --color --fix",
     "precommit-message": "echo Executing pre-commit checks... && exit 0",
     "test": "jest"
   },
