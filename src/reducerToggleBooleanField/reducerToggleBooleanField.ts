@@ -1,4 +1,5 @@
 import has from 'lodash/has';
+import ReducerState from '../ReducerState';
 
 /**
  * Reducer function for toggling a boolean field.
@@ -9,7 +10,7 @@ import has from 'lodash/has';
  * @throws {Error} If field does not exists.
  * @throws {TypeError} If field is not a boolean.
  */
-export default (reducerState: any, fieldName: string) => {
+export default (reducerState: ReducerState, fieldName: string) => {
   if (!has(reducerState, fieldName)) {
     throw new Error(`Field '${fieldName}' does not exist on current state, and hence cannot be toggled.`);
   }

@@ -1,5 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
-import isPlainObject from 'lodash/isPlainObject';
+import ActionObject from '../ActionObject';
+
+type PropertyCreator = (...args: any[]) => ActionObject;
 
 /**
  * @param {string} type - Action type.
@@ -9,7 +11,7 @@ import isPlainObject from 'lodash/isPlainObject';
  * @throws {Error} If action type is empty, or additional generated properties
  * were not a plain object.
  */
-export default (type: string, propertyCreator: Function | undefined): Function => {
+export default (type: string, propertyCreator: PropertyCreator | undefined): Function => {
   /**
    * NB: Param validation has been separated from the returned function body
    * since we should only have to do it _once_ rather than on each function
@@ -19,22 +21,11 @@ export default (type: string, propertyCreator: Function | undefined): Function =
     throw new Error('Type must not be empty.');
   }
 
-  return (...varargsPropertyCreator: any[]) => {
+  return (...args: any[]) => {
     let additionalProperties: object = {};
 
     if (propertyCreator) {
-      additionalProperties = propertyCreator(...varargsPropertyCreator);
-    }
-
-    /**
-     * Sanity-check our property creator function actually generated a plain
-     * object (otherwise we'll run into issues w/ Redux later...)
-     */
-    if (!isPlainObject(additionalProperties)) {
-      throw new Error(
-        `Property creator function generated an invalid type. Expected plain \
-object, got '${typeof additionalProperties}'`,
-      );
+      additionalProperties = propertyCreator(...args);
     }
 
     return {

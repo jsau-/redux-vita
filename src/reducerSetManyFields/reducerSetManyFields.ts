@@ -1,3 +1,5 @@
+import ReducerState from "../ReducerState";
+
 /**
  * Reducer function for setting many fields.
  *
@@ -5,7 +7,7 @@
  * @param {object} fieldsToSet - Fields to set.
  * @returns {object} Reducer state after setting fields.
  */
-export default (reducerState: object, fieldsToSet: object) => ({
+export default (reducerState: ReducerState, fieldsToSet: object) => ({
   ...reducerState,
   ...fieldsToSet,
 });

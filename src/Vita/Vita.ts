@@ -1,5 +1,6 @@
 import ActionObject from '../ActionObject';
 import makeActionCreator from '../makeActionCreator';
+import ReducerState from '../ReducerState';
 
 class Vita {
   /**
@@ -78,10 +79,10 @@ class Vita {
    * @returns {object} New reducer state.
    * @throws {Error} On attempting to reduce actions without a type key.
    */
-  reduce = (currentReducerState: object | undefined, action: ActionObject): object => {
+  reduce = (currentReducerState: ReducerState | undefined, action: ActionObject): object => {
     let reducerState: object = currentReducerState ? currentReducerState : this.defaultReducerState;
 
-    const { type }: { type: string } = action;
+    const { type } = action;
 
     const reducerForAction: Function | undefined = this.reducerFunctions.get(type);
 
@@ -89,6 +90,7 @@ class Vita {
     if (!reducerForAction) {
       return reducerState;
     }
+    
 
     return reducerForAction(reducerState, action);
   };

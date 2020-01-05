@@ -1,5 +1,7 @@
 interface ActionObject {
-  type: string;
+  [key : string]: any | {
+    type: string;
+  }
 };
 
 export default ActionObject;
