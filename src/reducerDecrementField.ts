@@ -10,9 +10,14 @@ import { ReducerState } from './ReducerState';
  * @throws {Error} If field does not exists.
  * @throws {TypeError} If field is not a number.
  */
-export function reducerDecrementField(reducerState: ReducerState, fieldName: string): ReducerState {
+export function reducerDecrementField(
+  reducerState: ReducerState,
+  fieldName: string,
+): ReducerState {
   if (!has(reducerState, fieldName)) {
-    throw new Error(`Field '${fieldName}' does not exist on current state, and hence cannot be decremented.`);
+    throw new Error(
+      `Field '${fieldName}' does not exist on current state, and hence cannot be decremented.`,
+    );
   }
 
   const mixedFieldValue: any = reducerState[fieldName];
@@ -27,4 +32,4 @@ export function reducerDecrementField(reducerState: ReducerState, fieldName: str
     ...reducerState,
     [fieldName]: mixedFieldValue - 1,
   };
-};
+}

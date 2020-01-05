@@ -11,7 +11,10 @@ type PropertyCreator = (...args: any[]) => ActionObject;
  * @throws {Error} If action type is empty, or additional generated properties
  * were not a plain object.
  */
-export function makeActionCreator(type: string, propertyCreator: PropertyCreator | undefined): Function {
+export function makeActionCreator(
+  type: string,
+  propertyCreator: PropertyCreator | undefined,
+): Function {
   /**
    * NB: Param validation has been separated from the returned function body
    * since we should only have to do it _once_ rather than on each function
@@ -33,4 +36,4 @@ export function makeActionCreator(type: string, propertyCreator: PropertyCreator
       type,
     };
   };
-};
+}

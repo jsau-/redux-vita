@@ -7,9 +7,12 @@ import { ReducerState } from './ReducerState';
  * @param fieldsToSet - Fields to set.
  * @returns Reducer state after setting fields.
  */
-export function reducerSetManyFields(reducerState: ReducerState, fieldsToSet: object): ReducerState {
+export function reducerSetManyFields(
+  reducerState: ReducerState,
+  fieldsToSet: object,
+): ReducerState {
   return {
     ...reducerState,
     ...fieldsToSet,
   };
-};
+}
