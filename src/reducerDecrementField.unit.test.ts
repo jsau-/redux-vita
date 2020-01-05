@@ -2,41 +2,43 @@ import { reducerDecrementField } from './reducerDecrementField';
 
 describe('reducerDecrementField', () => {
   it('Should throw on field not existing', () => {
-    const strFieldName = 'field_not_exist';
+    const fieldName = 'field_not_exist';
 
     expect(() => reducerDecrementField({}, 'field_not_exist')).toThrow(
-      `Field '${strFieldName}' does not exist on current state, and hence cannot be decremented.`,
+      `Field '${fieldName}' does not exist on current state, and hence cannot \
+be decremented.`,
     );
   });
 
   it('Should throw on field not being a number', () => {
-    const strFieldName = 'field_not_number';
-    const mixedFieldValue = 'not_a_number';
+    const fieldName = 'field_not_number';
+    const fieldValue = 'not_a_number';
 
-    const objReducerState = { [strFieldName]: mixedFieldValue };
+    const objReducerState = { [fieldName]: fieldValue };
 
-    expect(() => reducerDecrementField(objReducerState, strFieldName)).toThrow(
-      `Invalid type for decrementing field '${strFieldName}'. Expected 'number', got 'string'`,
+    expect(() => reducerDecrementField(objReducerState, fieldName)).toThrow(
+      `Invalid type for decrementing field '${fieldName}'. Expected 'number', \
+got 'string'`,
     );
   });
 
   it('Should decrement a field', () => {
-    const strFieldName = 'field_to_decrement';
-    const intInitialValue = 100;
+    const fieldName = 'field_to_decrement';
+    const initialValue = 100;
 
-    const objInitialState = {
-      other_field_one: 1,
-      other_field_two: 2,
-      [strFieldName]: intInitialValue,
+    const initialState = {
+      [fieldName]: initialValue,
+      otherFieldOne: 1,
+      otherFieldTwo: 2,
     };
-    const objExpectedState = {
-      other_field_one: 1,
-      other_field_two: 2,
-      [strFieldName]: intInitialValue - 1,
+    const expectedState = {
+      [fieldName]: initialValue - 1,
+      otherFieldOne: 1,
+      otherFieldTwo: 2,
     };
 
-    expect(reducerDecrementField(objInitialState, strFieldName)).toEqual(
-      objExpectedState,
+    expect(reducerDecrementField(initialState, fieldName)).toEqual(
+      expectedState,
     );
   });
 });

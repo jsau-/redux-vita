@@ -2,38 +2,39 @@ import { reducerSetField } from './reducerSetField';
 
 describe('reducerSetField', () => {
   it('Should set a field', () => {
-    const strFieldName = 'field_to_set';
-    const mixedFieldValue = 'field_set_value';
+    const fieldName = 'field_to_set';
+    const fieldValue = 'field_set_value';
 
-    const objInitialState = { other_field_one: 1, other_field_two: 2 };
-    const objExpectedState = {
-      other_field_one: 1,
-      other_field_two: 2,
-      [strFieldName]: mixedFieldValue,
+    const initialState = { fieldOne: 1, fieldTwo: 2 };
+
+    const expectedState = {
+      [fieldName]: fieldValue,
+      fieldOne: 1,
+      fieldTwo: 2,
     };
 
-    expect(
-      reducerSetField(objInitialState, strFieldName, mixedFieldValue),
-    ).toEqual(objExpectedState);
+    expect(reducerSetField(initialState, fieldName, fieldValue)).toEqual(
+      expectedState,
+    );
   });
 
   it('Should overwrite an existing field', () => {
-    const strFieldName = 'field_to_set';
-    const mixedFieldValue = 'field_set_value';
+    const fieldName = 'field_to_set';
+    const fieldValue = 'field_set_value';
 
-    const objInitialState = {
-      other_field_one: 1,
-      other_field_two: 2,
-      [strFieldName]: 'old_field_value',
+    const initialState = {
+      [fieldName]: 'old_field_value',
+      fieldOne: 1,
+      fieldTwo: 2,
     };
-    const objExpectedState = {
-      other_field_one: 1,
-      other_field_two: 2,
-      [strFieldName]: mixedFieldValue,
+    const expectedState = {
+      [fieldName]: fieldValue,
+      fieldOne: 1,
+      fieldTwo: 2,
     };
 
-    expect(
-      reducerSetField(objInitialState, strFieldName, mixedFieldValue),
-    ).toEqual(objExpectedState);
+    expect(reducerSetField(initialState, fieldName, fieldValue)).toEqual(
+      expectedState,
+    );
   });
 });

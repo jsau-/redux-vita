@@ -2,23 +2,22 @@ import { reducerRemoveField } from './reducerRemoveField';
 
 describe('reducerRemoveField', () => {
   it('Should remove a set field', () => {
-    const strFieldName = 'field_to_remove';
-    const objInitialState = {
-      other_field_one: 1,
-      other_field_two: 2,
-      [strFieldName]: 'to_remove',
+    const fieldName = 'field_to_remove';
+
+    const initialState = {
+      [fieldName]: 'to_remove',
+      otherFieldOne: 1,
+      otherFieldTwo: 2,
     };
-    const objExpectedState = { other_field_one: 1, other_field_two: 2 };
-    expect(reducerRemoveField(objInitialState, strFieldName)).toEqual(
-      objExpectedState,
-    );
+
+    const expectedState = { otherFieldOne: 1, otherFieldTwo: 2 };
+
+    expect(reducerRemoveField(initialState, fieldName)).toEqual(expectedState);
   });
 
-  it('Shouldn\'t affect state without the field', () => {
-    const strFieldName = 'field_to_remove';
-    const objInitialState = { other_field_one: 1, other_field_two: 2 };
-    expect(reducerRemoveField(objInitialState, strFieldName)).toEqual(
-      objInitialState,
-    );
+  it("Shouldn't affect state without the field", () => {
+    const fieldName = 'field_to_remove';
+    const initialState = { otherFieldOne: 1, otherFieldTwo: 2 };
+    expect(reducerRemoveField(initialState, fieldName)).toEqual(initialState);
   });
 });

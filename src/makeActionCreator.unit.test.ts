@@ -13,7 +13,7 @@ describe('makeActionCreator', () => {
     expect(actionCreator()).toEqual({ type: type });
   });
 
-  it('Should invoke the additional property creator function if provided', () => {
+  it('Should invoke the additional property creator if provided', () => {
     const type = 'type';
 
     const mockFuncProperty = jest.fn((paramOne, paramTwo) => ({
@@ -27,22 +27,23 @@ describe('makeActionCreator', () => {
     const paramTwo = 2;
     const createdAction = actionCreator(paramOne, paramTwo);
 
-    expect(createdAction).toEqual({ type: type, paramOne: 1, paramTwo: 2 });
+    expect(createdAction).toEqual({ paramOne: 1, paramTwo: 2, type });
 
     expect(mockFuncProperty).toHaveBeenCalledTimes(1);
     expect(mockFuncProperty.mock.calls[0][0]).toBe(paramOne);
     expect(mockFuncProperty.mock.calls[0][1]).toBe(paramTwo);
   });
 
-  it('Should throw on generating additional properties if not a plain object', () => {
+  it('Should throw if generated not a plain object', () => {
     const type = 'type';
 
-    const mockFuncProperty = jest.fn(() => ({ invalid_type: 'invalid_type' }));
+    const mockFuncProperty = jest.fn(() => ({ invalidType: 'invalid_type' }));
 
     const actionCreator = makeActionCreator(type, mockFuncProperty);
 
     expect(() => actionCreator()).toThrow(
-      'Property creator function generated an invalid type. Expected plain object, got \'string\'',
+      `Property creator function generated an invalid type. Expected plain \
+object, got \'string\'`,
     );
   });
 });
