@@ -18,14 +18,21 @@ module.exports = {
   errorOnDeprecated: true,
   notify: true,
   preset: 'ts-jest',
+  reporters: [
+    'default',
+    ['./node_modules/jest-html-reporter', {
+      outputPath: 'docs/test_report.html',
+      pageTitle: 'Test Report'
+    }]
+  ],
   roots: ['<rootDir>/src'],
   testEnvironment: 'node',
   testMatch: [
-    "**/__tests__/**/*.+(ts|tsx|js)",
-    "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    '**/__tests__/**/*.+(ts|tsx|js)',
+    '**/?(*.)+(spec|test).+(ts|tsx|js)'
   ],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   verbose: true,
 };

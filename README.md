@@ -20,8 +20,10 @@ should be _short and simple_.
 write your own action creator functions? Want to handle reducers yourself? You
 can still do either.
 
-For full API documentation check out the
-[documentation page](https://jsau-.github.io/redux-vita).
+Useful links:
+* [Documentation](https://jsau-.github.io/redux-vita)
+* [Code Coverage Report](https://jsau-.github.io/redux-vita/coverage/lcov-report)
+* [Unit Test Report](https://jsau-.github.io/redux-vita/test_report.html)
 
 # Contents
 1. [Intro](#redux-vita)
@@ -225,11 +227,12 @@ integration. Any pull requests failing automated tests will be rejected.
 npm ci
 
 // Run tests
+npm run check:types
 npm run lint
 npm run test
 
 // Build the library
-npm run build:es2015
+npm run build
 ```
 
 ## Feedback and Support
