@@ -1,5 +1,4 @@
-import makeActionCreator from '.';
-import { KEY_TYPE } from './constants';
+import { makeActionCreator } from './makeActionCreator';
 
 describe('makeActionCreator', () => {
   it('Should throw if type is empty', () => {
@@ -10,7 +9,7 @@ describe('makeActionCreator', () => {
     const strType = 'type';
     const actionCreator = makeActionCreator(strType);
 
-    expect(actionCreator()).toEqual({ [KEY_TYPE]: strType });
+    expect(actionCreator()).toEqual({ type: strType });
   });
 
   it('Should invoke the additional property creator function if provided', () => {
@@ -24,7 +23,7 @@ describe('makeActionCreator', () => {
     const mixedActionCreatorParamTwo = 2;
     const objCreatedAction = actionCreator(mixedActionCreatorParamOne, mixedActionCreatorParamTwo);
 
-    expect(objCreatedAction).toEqual({ [KEY_TYPE]: strType, paramOne: 1, paramTwo: 2 });
+    expect(objCreatedAction).toEqual({ type: strType, paramOne: 1, paramTwo: 2 });
 
     expect(mockFuncProperty).toHaveBeenCalledTimes(1);
     expect(mockFuncProperty.mock.calls[0][0]).toBe(mixedActionCreatorParamOne);

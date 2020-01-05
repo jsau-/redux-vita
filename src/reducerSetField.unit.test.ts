@@ -1,4 +1,4 @@
-import reducerSetField from '.';
+import { reducerSetField } from './reducerSetField';
 
 describe('reducerSetField', () => {
   it('Should set a field', () => {

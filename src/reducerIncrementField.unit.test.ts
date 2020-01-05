@@ -1,4 +1,4 @@
-import reducerIncrementField from '.';
+import { reducerIncrementField } from './reducerIncrementField';
 
 describe('reducerIncrementField', () => {
   it('Should throw on field not existing', () => {

@@ -1,7 +1,7 @@
 module.exports = {
   bail: 1,
   collectCoverage: true,
-  collectCoverageFrom: ['./src/**/*.js'],
+  collectCoverageFrom: ['./src/**/*.+(ts|tsx|js)'],
   coverageThreshold: {
     global: {
       branches: 100,
@@ -12,6 +12,13 @@ module.exports = {
   },
   errorOnDeprecated: true,
   notify: true,
-  roots: ['./src'],
+  roots: ['<rootDir>/src'],
+  testMatch: [
+    "**/__tests__/**/*.+(ts|tsx|js)",
+    "**/?(*.)+(spec|test).+(ts|tsx|js)"
+  ],
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
   verbose: true,
 };

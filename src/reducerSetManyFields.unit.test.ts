@@ -1,4 +1,4 @@
-import reducerSetManyFields from '.';
+import { reducerSetManyFields } from './reducerSetManyFields';
 
 describe('reducerSetManyFields', () => {
   it('Should set non-existing fields', () => {

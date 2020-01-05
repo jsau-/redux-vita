@@ -1,4 +1,4 @@
-import reducerRemoveField from '.';
+import { reducerRemoveField } from './reducerRemoveField';
 
 describe('reducerRemoveField', () => {
   it('Should remove a set field', () => {

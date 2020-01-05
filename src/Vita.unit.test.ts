@@ -1,6 +1,5 @@
-import Vita from '.';
-import makeActionCreator from '../makeActionCreator';
-import { KEY_TYPE } from '../makeActionCreator/constants';
+import { Vita } from './Vita';
+import { makeActionCreator } from './makeActionCreator';
 
 jest.mock('../makeActionCreator', () => jest.fn());
 
@@ -45,7 +44,7 @@ describe('Vita', () => {
     const strActionType = 'action_type';
     const vita = new Vita();
 
-    const objMockReturnedAction = { [KEY_TYPE]: strActionType };
+    const objMockReturnedAction = { type: strActionType };
     const mockFuncActionCreator = jest.fn(() => objMockReturnedAction);
     vita.registerAction(strActionType, mockFuncActionCreator);
 
@@ -60,7 +59,7 @@ describe('Vita', () => {
     const vita = new Vita();
 
     const mockFuncActionCreator = jest.fn((argone, argtwo) => ({
-      [KEY_TYPE]: strActionType,
+      type: strActionType,
       argone: argone * 10,
       argtwo: argtwo * 20,
     }));
@@ -70,7 +69,7 @@ describe('Vita', () => {
     const objReceivedAction = vita.action(strActionType, 1, 2);
 
     expect(objReceivedAction).toEqual({
-      [KEY_TYPE]: strActionType,
+      type: strActionType,
       argone: 10,
       argtwo: 40,
     });
@@ -89,7 +88,7 @@ describe('Vita', () => {
 
   it('Should return empty object on reducing with no registered handler, no default state', () => {
     const vita = new Vita();
-    const uobjReducedState = vita.reduce(undefined, { [KEY_TYPE]: 'action_not_found' });
+    const uobjReducedState = vita.reduce(undefined, { type: 'action_not_found' });
     expect(uobjReducedState).toEqual({});
   });
 
@@ -97,7 +96,7 @@ describe('Vita', () => {
     const objDefaultState = { default_field: true };
     const vita = new Vita(objDefaultState);
 
-    const objReducedState = vita.reduce(undefined, { [KEY_TYPE]: 'action_not_found' });
+    const objReducedState = vita.reduce(undefined, { type: 'action_not_found' });
     expect(objReducedState).toBe(objDefaultState);
   });
 
@@ -106,7 +105,7 @@ describe('Vita', () => {
     const objCurrentState = { current_field: true };
 
     const vita = new Vita(objDefaultState);
-    const objReducedState = vita.reduce(objCurrentState, { [KEY_TYPE]: 'action_not_found' });
+    const objReducedState = vita.reduce(objCurrentState, { type: 'action_not_found' });
 
     expect(objReducedState).toBe(objCurrentState);
   });
@@ -134,7 +133,7 @@ describe('Vita', () => {
     vita.registerReducer(strActionType, mockFuncReducer);
 
     const objExpectedState = { count: 50, other_field: true };
-    const objReducedState = vita.reduce(objCurrentState, { [KEY_TYPE]: strActionType, count: 50 });
+    const objReducedState = vita.reduce(objCurrentState, { type: strActionType, count: 50 });
 
     expect(objReducedState).toEqual(objExpectedState);
     expect(mockFuncReducer).toHaveBeenCalledTimes(1);

@@ -1,4 +1,4 @@
-import reducerDecrementField from '.';
+import { reducerDecrementField } from './reducerDecrementField';
 
 describe('reducerDecrementField', () => {
   it('Should throw on field not existing', () => {

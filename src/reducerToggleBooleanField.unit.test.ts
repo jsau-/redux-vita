@@ -1,4 +1,4 @@
-import reducerToggleBooleanField from '.';
+import { reducerToggleBooleanField } from './reducerToggleBooleanField';
 
 describe('reducerToggleBooleanField', () => {
   it('Should throw on field not existing', () => {

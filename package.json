@@ -13,7 +13,7 @@
     "lint": "./node_modules/.bin/eslint jest.config.js \"./src/**/*.ts\" --color",
     "lint:fix": "./node_modules/.bin/eslint jest.config.js \"./src/**/*.ts\" --color --fix",
     "precommit-message": "echo Executing pre-commit checks... && exit 0",
-    "test": "jest"
+    "test": "del-cli \"./coverage/**/*\" && jest"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.7.7",
     "@babel/preset-env": "7.4.5",
     "@babel/preset-typescript": "7.7.7",
+    "@types/jest": "24.0.25",
     "@types/lodash": "4.14.149",
     "@typescript-eslint/eslint-plugin": "2.14.0",
     "@typescript-eslint/parser": "2.14.0",
