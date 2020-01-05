@@ -7,6 +7,8 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
+    // Remove on wanting to actually build rather than check types
+    "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./dist",

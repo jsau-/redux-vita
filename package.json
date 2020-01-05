@@ -4,9 +4,8 @@
   "description": "",
   "main": "./build/index.js",
   "scripts": {
-    "check-types": "tsc",
-    "predoc": "del-cli \"./docs/**/*\"",
-    "doc": "npm run predoc && esdoc",
+    "check:types": "tsc",
+    "doc": "del-cli \"./docs/**/*\" && typedoc --out docs src",
     "prebuild": "npm run doc && del-cli \"./build/**/*\"",
     "build:es2015": "npm run prebuild && cross-env NODE_ENV=production babel ./src --ignore \"**/*.test.js\" --out-dir ./build",
     "lint": "./node_modules/.bin/eslint jest.config.js \"./src/**/*.js\" --color",
@@ -44,9 +43,6 @@
     "babel-jest": "24.9.0",
     "cross-env": "5.2.0",
     "del-cli": "2.0.0",
-    "esdoc": "1.1.0",
-    "esdoc-ecmascript-proposal-plugin": "1.0.0",
-    "esdoc-standard-plugin": "1.0.0",
     "eslint": "6.6.0",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-config-prettier": "5.0.0",
@@ -56,6 +52,7 @@
     "lodash": "4.17.15",
     "pre-commit": "1.2.2",
     "redux": "4.0.0",
+    "typedoc": "0.15.6",
     "typescript": "3.7.4"
   },
   "peerDependencies": {

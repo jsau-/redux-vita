@@ -1,17 +1,17 @@
 import isEmpty from 'lodash/isEmpty';
-import ActionObject from '../ActionObject';
+import { ActionObject } from './ActionObject';
 
 type PropertyCreator = (...args: any[]) => ActionObject;
 
 /**
- * @param {string} type - Action type.
- * @param {Function} [propertyCreator] - Optional function to
- * generate additional properties to the action.
- * @returns {Function} Function that creates action objects.
+ * @param type - Action type.
+ * @param propertyCreator - Optional function to generate additional properties
+ * on the resultant action.
+ * @returns Function that creates action objects.
  * @throws {Error} If action type is empty, or additional generated properties
  * were not a plain object.
  */
-export default (type: string, propertyCreator: PropertyCreator | undefined): Function => {
+export function makeActionCreator(type: string, propertyCreator: PropertyCreator | undefined): Function {
   /**
    * NB: Param validation has been separated from the returned function body
    * since we should only have to do it _once_ rather than on each function

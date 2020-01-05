@@ -1,16 +1,16 @@
 import has from 'lodash/has';
-import ReducerState from '../ReducerState';
+import { ReducerState } from './ReducerState';
 
 /**
  * Reducer function for incrementing a numeric field.
  *
- * @param {ReducerState} reducerState - Current reducer state.
- * @param {string} fieldName - Field to increment.
- * @returns {object} Reducer state after incrementing field.
+ * @param reducerState - Current reducer state.
+ * @param fieldName - Field to increment.
+ * @returns Reducer state after incrementing field.
  * @throws {Error} If field does not exists.
  * @throws {TypeError} If field is not a number.
  */
-export default (reducerState: ReducerState, fieldName: string) => {
+export function reducerIncrementField(reducerState: ReducerState, fieldName: string): ReducerState {
   if (!has(reducerState, fieldName)) {
     throw new Error(`Field '${fieldName}' does not exist on current state, and hence cannot be incremented.`);
   }

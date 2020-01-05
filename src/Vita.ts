@@ -1,28 +1,14 @@
-import ActionObject from '../ActionObject';
-import makeActionCreator from '../makeActionCreator';
-import ReducerState from '../ReducerState';
+import { ActionObject } from './ActionObject';
+import { makeActionCreator } from './makeActionCreator';
+import { ReducerState } from './ReducerState';
 
 class Vita {
-  /**
-   * @private
-   * @type {Map}
-   */
-  actionCreators: Map<string, Function>;
+  private actionCreators: Map<string, Function>;
+  private defaultReducerState: object;
+  private reducerFunctions: Map<string, Function>;
 
   /**
-   * @private
-   * @type {?object}
-   */
-  defaultReducerState: object;
-
-  /**
-   * @private
-   * @type {Map}
-   */
-  reducerFunctions: Map<string, Function>;
-
-  /**
-   * @param {object} defaultReducerState - Default reducer state to be
+   * @param defaultReducerState - Default reducer state to be
    * returned if attempting to reduce with a null or undefined state.
    */
   constructor(defaultReducerState: object = {}) {
@@ -35,11 +21,11 @@ class Vita {
   /**
    * Gets dispatchable Redux action object for a given action type.
    *
-   * @param {string} actionType - Action type to generate dispatchable
+   * @param actionType - Action type to generate dispatchable
    * object for.
-   * @param {...*} varargsActionCreator - Arguments to pass to the registered
+   * @param varargsActionCreator - Arguments to pass to the registered
    * function.
-   * @returns {ActionObject} Action object.
+   * @returns Action object.
    */
   action = (actionType: string, ...varargsActionCreator: any[]): ActionObject => {
     const actionCreator = this.actionCreators.get(actionType);
@@ -54,7 +40,7 @@ class Vita {
   /**
    * Clear all registered action creators.
    *
-   * @returns {Vita} This.
+   * @returns This.
    */
   clearAllActionCreators = (): Vita => {
     this.actionCreators.clear();
@@ -64,7 +50,7 @@ class Vita {
   /**
    * Clear all registered reducers for handling actions.
    *
-   * @returns {Vita} This.
+   * @returns This.
    */
   clearAllReducers = (): Vita => {
     this.reducerFunctions.clear();
@@ -74,12 +60,12 @@ class Vita {
   /**
    * Reducer function.
    *
-   * @param {object} [currentReducerState] - Current reducer state.
-   * @param {ActionObject} action - Occurring Redux action.
-   * @returns {object} New reducer state.
+   * @param currentReducerState - Current reducer state.
+   * @param action - Occurring Redux action.
+   * @returns New reducer state.
    * @throws {Error} On attempting to reduce actions without a type key.
    */
-  reduce = (currentReducerState: ReducerState | undefined, action: ActionObject): object => {
+  reduce = (currentReducerState: ReducerState | undefined, action: ActionObject): ReducerState => {
     let reducerState: object = currentReducerState ? currentReducerState : this.defaultReducerState;
 
     const { type } = action;
@@ -90,7 +76,7 @@ class Vita {
     if (!reducerForAction) {
       return reducerState;
     }
-    
+
 
     return reducerForAction(reducerState, action);
   };
@@ -100,9 +86,9 @@ class Vita {
    * creator function param is optional. Omitting it will generate a default
    * action creator.
    *
-   * @param {string} actionType - Action type.
-   * @param {Function} [actionCreator] - Action creator function.
-   * @returns {Vita} This.
+   * @param actionType - Action type.
+   * @param actionCreator - Action creator function.
+   * @returns This.
    */
   registerAction = (actionType: string, actionCreator: Function | undefined): Vita => {
     let actionCreatorInstance: Function = actionCreator ?
@@ -117,11 +103,11 @@ class Vita {
    * Register a reducer function to handle on receiving an action with a
    * given type.
    *
-   * @param {string} actionType - Action type to invoke reducer function
+   * @param actionType - Action type to invoke reducer function
    * on.
-   * @param {Function} reducer - Reducer function to invoke on reducing
+   * @param reducer - Reducer function to invoke on reducing
    * action with type.
-   * @returns {Vita} This.
+   * @returns This.
    */
   registerReducer = (actionType: string, reducer: Function): Vita => {
     this.reducerFunctions.set(actionType, reducer);
@@ -133,11 +119,11 @@ class Vita {
    * that the action creator param is optional. Omitting it will generate
    * a default action creator.
    *
-   * @param {string} actionType - Action type.
-   * @param {Function} reducer - Reducer function to invoke on reducing
+   * @param actionType - Action type.
+   * @param reducer - Reducer function to invoke on reducing
    * action with type.
-   * @param {Function} [actionCreator] - Action creator function.
-   * @returns {Vita} This.
+   * @param actionCreator - Action creator function.
+   * @returns This.
    */
   registerSlice = (actionType: string, reducer: Function, actionCreator: Function | undefined): Vita => {
     this.registerAction(actionType, actionCreator);
@@ -148,9 +134,9 @@ class Vita {
   /**
    * Unregister an action creator for a given action type.
    *
-   * @param {string} actionType - Action type to unregister action creator
+   * @param actionType - Action type to unregister action creator
    * function for.
-   * @returns {Vita} This.
+   * @returns This.
    */
   unregisterAction = (actionType: string): Vita => {
     this.actionCreators.delete(actionType);
@@ -160,9 +146,9 @@ class Vita {
   /**
    * Unregister a reducer function for a given action type.
    *
-   * @param {string} actionType - Action type to unregister handling reducer
+   * @param actionType - Action type to unregister handling reducer
    * function for.
-   * @returns {Vita} This.
+   * @returns This.
    */
   unregisterReducer = (actionType: string): Vita => {
     this.reducerFunctions.delete(actionType);
@@ -172,8 +158,8 @@ class Vita {
   /**
    * Unregister an action creator and reducer at the same time.
    *
-   * @param {string} actionType - Action type to unregister.
-   * @returns {Vita} This.
+   * @param actionType - Action type to unregister.
+   * @returns This.
    */
   unregisterSlice = (actionType: string): Vita => {
     this.unregisterAction(actionType);

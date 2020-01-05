@@ -1,16 +1,16 @@
 import has from 'lodash/has';
-import ReducerState from '../ReducerState';
+import { ReducerState } from './ReducerState';
 
 /**
  * Reducer function for decrementing a numeric field.
  *
- * @param {ReducerState} reducerState - Current reducer state.
- * @param {string} fieldName - Field to decrement.
- * @returns {object} Reducer state after decrementing field.
+ * @param reducerState - Current reducer state.
+ * @param fieldName - Field to decrement.
+ * @returns Reducer state after decrementing field.
  * @throws {Error} If field does not exists.
  * @throws {TypeError} If field is not a number.
  */
-export default (reducerState: ReducerState, fieldName: string) => {
+export function reducerDecrementField(reducerState: ReducerState, fieldName: string): ReducerState {
   if (!has(reducerState, fieldName)) {
     throw new Error(`Field '${fieldName}' does not exist on current state, and hence cannot be decremented.`);
   }
