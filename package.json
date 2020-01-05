@@ -7,7 +7,7 @@
     "check:types": "tsc --noEmit",
     "doc": "del-cli \"./docs/**/*\" && typedoc --out docs src",
     "prebuild": "npm run doc && del-cli \"./build/**/*\"",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly",
     "build:js": "babel src --out-dir build --extensions \".ts\"",
     "build": "npm run prebuild && npm run build:types && npm run build:js",
     "lint": "./node_modules/.bin/eslint \"./src/**/*.ts\" --color",
