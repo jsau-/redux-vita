@@ -34,13 +34,13 @@ export class Vita {
    *
    * @param actionType - Action type to generate dispatchable
    * object for.
-   * @param varargsActionCreator - Arguments to pass to the registered
+   * @param argsActionCreator - Arguments to pass to the registered
    * function.
    * @returns Action object.
    */
   public action<Type extends string, Fields extends object>(
     actionType: Type,
-    ...varargsActionCreator: any[]
+    ...argsActionCreator: any[]
   ): ActionObject<Type, Fields> {
     const actionCreator = this.actionCreators.get(actionType);
 
@@ -50,7 +50,7 @@ export class Vita {
       );
     }
 
-    return actionCreator(...varargsActionCreator);
+    return actionCreator(...argsActionCreator);
   }
 
   /**
@@ -113,7 +113,7 @@ export class Vita {
    */
   public registerAction(actionType: string, actionCreator?: Function): Vita {
     const actionCreatorInstance =
-      actionCreator ?? makeActionCreator(actionType, undefined);
+      actionCreator ?? makeActionCreator(actionType);
 
     this.actionCreators.set(actionType, actionCreatorInstance);
     return this;

@@ -14,9 +14,9 @@ be decremented.`,
     const fieldName = 'field_not_number';
     const fieldValue = 'not_a_number';
 
-    const objReducerState = { [fieldName]: fieldValue };
+    const reducerState = { [fieldName]: fieldValue };
 
-    expect(() => reducerDecrementField(objReducerState, fieldName)).toThrow(
+    expect(() => reducerDecrementField(reducerState, fieldName)).toThrow(
       `Invalid type for decrementing field '${fieldName}'. Expected 'number', \
 got 'string'`,
     );

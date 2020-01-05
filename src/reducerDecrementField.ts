@@ -21,17 +21,17 @@ be decremented.`,
     );
   }
 
-  const mixedFieldValue = reducerState[fieldName];
+  const fieldValue = reducerState[fieldName];
 
-  if ('number' !== typeof mixedFieldValue) {
+  if ('number' !== typeof fieldValue) {
     throw new TypeError(
       `Invalid type for decrementing field '${fieldName}'. Expected 'number', \
-got '${typeof mixedFieldValue}'`,
+got '${typeof fieldValue}'`,
     );
   }
 
   return {
     ...reducerState,
-    [fieldName]: mixedFieldValue - 1,
+    [fieldName]: fieldValue - 1,
   };
 }

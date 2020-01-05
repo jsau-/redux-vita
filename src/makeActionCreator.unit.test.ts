@@ -16,12 +16,12 @@ describe('makeActionCreator', () => {
   it('Should invoke the additional property creator if provided', () => {
     const type = 'type';
 
-    const mockFuncProperty = jest.fn((paramOne, paramTwo) => ({
+    const mockPropertyCreator = jest.fn((paramOne, paramTwo) => ({
       paramOne,
       paramTwo,
     }));
 
-    const actionCreator = makeActionCreator(type, mockFuncProperty);
+    const actionCreator = makeActionCreator(type, mockPropertyCreator);
 
     const paramOne = 1;
     const paramTwo = 2;
@@ -29,8 +29,8 @@ describe('makeActionCreator', () => {
 
     expect(createdAction).toEqual({ paramOne: 1, paramTwo: 2, type });
 
-    expect(mockFuncProperty).toHaveBeenCalledTimes(1);
-    expect(mockFuncProperty.mock.calls[0][0]).toBe(paramOne);
-    expect(mockFuncProperty.mock.calls[0][1]).toBe(paramTwo);
+    expect(mockPropertyCreator).toHaveBeenCalledTimes(1);
+    expect(mockPropertyCreator.mock.calls[0][0]).toBe(paramOne);
+    expect(mockPropertyCreator.mock.calls[0][1]).toBe(paramTwo);
   });
 });

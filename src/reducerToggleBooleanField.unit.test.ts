@@ -26,19 +26,20 @@ got 'string'`,
     const fieldName = 'field_to_toggle';
     const initialValue = true;
 
-    const objInitialState = {
+    const initialState = {
       [fieldName]: initialValue,
       otherFieldOne: 1,
       otherFieldTwo: 2,
     };
-    const objExpectedState = {
+
+    const expectedState = {
       [fieldName]: !initialValue,
       otherFieldOne: 1,
       otherFieldTwo: 2,
     };
 
-    expect(reducerToggleBooleanField(objInitialState, fieldName)).toEqual(
-      objExpectedState,
+    expect(reducerToggleBooleanField(initialState, fieldName)).toEqual(
+      expectedState,
     );
   });
 });

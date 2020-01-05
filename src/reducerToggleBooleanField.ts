@@ -21,17 +21,17 @@ be toggled.`,
     );
   }
 
-  const mixedFieldValue = reducerState[fieldName];
+  const fieldValue = reducerState[fieldName];
 
-  if ('boolean' !== typeof mixedFieldValue) {
+  if ('boolean' !== typeof fieldValue) {
     throw new TypeError(
       `Invalid type for toggling field '${fieldName}'. Expected 'boolean', got \
-'${typeof mixedFieldValue}'`,
+'${typeof fieldValue}'`,
     );
   }
 
   return {
     ...reducerState,
-    [fieldName]: !mixedFieldValue,
+    [fieldName]: !fieldValue,
   };
 }
