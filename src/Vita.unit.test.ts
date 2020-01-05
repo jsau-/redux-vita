@@ -83,13 +83,16 @@ describe('Vita', () => {
   it('Should throw on attempting to get dispatchable object for unregistered action creator', () => {
     const vita = new Vita();
 
-    expect(() => vita.action('action_not_found'))
-      .toThrow('No action creator was registered for type \'action_not_found\'');
+    expect(() => vita.action('action_not_found')).toThrow(
+      'No action creator was registered for type \'action_not_found\'',
+    );
   });
 
   it('Should return empty object on reducing with no registered handler, no default state', () => {
     const vita = new Vita();
-    const uobjReducedState = vita.reduce(undefined, { type: 'action_not_found' });
+    const uobjReducedState = vita.reduce(undefined, {
+      type: 'action_not_found',
+    });
     expect(uobjReducedState).toEqual({});
   });
 
@@ -97,7 +100,9 @@ describe('Vita', () => {
     const objDefaultState = { default_field: true };
     const vita = new Vita(objDefaultState);
 
-    const objReducedState = vita.reduce(undefined, { type: 'action_not_found' });
+    const objReducedState = vita.reduce(undefined, {
+      type: 'action_not_found',
+    });
     expect(objReducedState).toBe(objDefaultState);
   });
 
@@ -106,7 +111,9 @@ describe('Vita', () => {
     const objCurrentState = { current_field: true };
 
     const vita = new Vita(objDefaultState);
-    const objReducedState = vita.reduce(objCurrentState, { type: 'action_not_found' });
+    const objReducedState = vita.reduce(objCurrentState, {
+      type: 'action_not_found',
+    });
 
     expect(objReducedState).toBe(objCurrentState);
   });
@@ -115,26 +122,33 @@ describe('Vita', () => {
     const strActionType = 'set_count';
     const objCurrentState = { count: 10, other_field: true };
 
-    const mockFuncReducer = jest.fn((state) => state);
+    const mockFuncReducer = jest.fn(state => state);
 
     const vita = new Vita();
     vita.registerReducer(strActionType, mockFuncReducer);
 
-    expect(() => vita.reduce(objCurrentState, { count: 50 }))
-      .toThrow(`Action object has no '${KEY_TYPE}' key. This is invalid.`);
+    expect(() => vita.reduce(objCurrentState, { count: 50 })).toThrow(
+      `Action object has no '${KEY_TYPE}' key. This is invalid.`,
+    );
   });
 
   it('Should return result of reducer function for registered handler', () => {
     const strActionType = 'set_count';
     const objCurrentState = { count: 10, other_field: true };
 
-    const mockFuncReducer = jest.fn((state, action) => ({ ...state, count: action.count }));
+    const mockFuncReducer = jest.fn((state, action) => ({
+      ...state,
+      count: action.count,
+    }));
 
     const vita = new Vita();
     vita.registerReducer(strActionType, mockFuncReducer);
 
     const objExpectedState = { count: 50, other_field: true };
-    const objReducedState = vita.reduce(objCurrentState, { type: strActionType, count: 50 });
+    const objReducedState = vita.reduce(objCurrentState, {
+      type: strActionType,
+      count: 50,
+    });
 
     expect(objReducedState).toEqual(objExpectedState);
     expect(mockFuncReducer).toHaveBeenCalledTimes(1);
@@ -151,7 +165,9 @@ describe('Vita', () => {
     vita.registerAction(strActionType, funcActionCreator);
 
     expect(vita.actionCreators.size).toBe(1);
-    expect(vita.actionCreators).toEqual(new Map([[strActionType, funcActionCreator]]));
+    expect(vita.actionCreators).toEqual(
+      new Map([[strActionType, funcActionCreator]]),
+    );
   });
 
   it('Should register an action creator with default creator function', () => {
@@ -183,7 +199,9 @@ describe('Vita', () => {
     vita.registerReducer(strActionType, funcReducer);
 
     expect(vita.reducerFunctions.size).toBe(1);
-    expect(vita.reducerFunctions).toEqual(new Map([[strActionType, funcReducer]]));
+    expect(vita.reducerFunctions).toEqual(
+      new Map([[strActionType, funcReducer]]),
+    );
   });
 
   it('Should register a slice', () => {
@@ -219,7 +237,11 @@ describe('Vita', () => {
 
   it('Should return self on registering a slice', () => {
     const vita = new Vita();
-    const vitaReturned = vita.registerSlice('action_type', () => {}, () => {});
+    const vitaReturned = vita.registerSlice(
+      'action_type',
+      () => {},
+      () => {},
+    );
     expect(vitaReturned).toBe(vita);
   });
 

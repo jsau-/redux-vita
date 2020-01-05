@@ -12,7 +12,9 @@ describe('reducerSetManyFields', () => {
       oldfield_two: 2,
     };
 
-    expect(reducerSetManyFields(objInitialState, objFieldsToSet)).toEqual(objExpectedState);
+    expect(reducerSetManyFields(objInitialState, objFieldsToSet)).toEqual(
+      objExpectedState,
+    );
   });
 
   it('Should overwrite existing fields', () => {
@@ -32,7 +34,9 @@ describe('reducerSetManyFields', () => {
       fieldtoreplace_two: 44,
     };
 
-    expect(reducerSetManyFields(objInitialState, objFieldsToSet)).toEqual(objExpectedState);
+    expect(reducerSetManyFields(objInitialState, objFieldsToSet)).toEqual(
+      objExpectedState,
+    );
   });
 
   it('Should return current state on no fields to set', () => {

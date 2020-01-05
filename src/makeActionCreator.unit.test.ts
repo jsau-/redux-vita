@@ -2,7 +2,9 @@ import { makeActionCreator } from './makeActionCreator';
 
 describe('makeActionCreator', () => {
   it('Should throw if type is empty', () => {
-    expect(() => makeActionCreator('', () => ({}))).toThrow('Type must not be empty.');
+    expect(() => makeActionCreator('', () => ({}))).toThrow(
+      'Type must not be empty.',
+    );
   });
 
   it('Should create an action with type', () => {
@@ -14,7 +16,10 @@ describe('makeActionCreator', () => {
   it('Should invoke the additional property creator function if provided', () => {
     const type = 'type';
 
-    const mockFuncProperty = jest.fn((paramOne, paramTwo) => ({ paramOne, paramTwo }));
+    const mockFuncProperty = jest.fn((paramOne, paramTwo) => ({
+      paramOne,
+      paramTwo,
+    }));
 
     const actionCreator = makeActionCreator(type, mockFuncProperty);
 
@@ -36,7 +41,8 @@ describe('makeActionCreator', () => {
 
     const actionCreator = makeActionCreator(type, mockFuncProperty);
 
-    expect(() => actionCreator())
-      .toThrow('Property creator function generated an invalid type. Expected plain object, got \'string\'');
+    expect(() => actionCreator()).toThrow(
+      'Property creator function generated an invalid type. Expected plain object, got \'string\'',
+    );
   });
 });
