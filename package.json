@@ -4,6 +4,7 @@
   "description": "",
   "main": "./build/index.js",
   "scripts": {
+    "check-types": "tsc",
     "predoc": "del-cli \"./docs/**/*\"",
     "doc": "npm run predoc && esdoc",
     "prebuild": "npm run doc && del-cli \"./build/**/*\"",
@@ -38,6 +39,7 @@
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
     "@babel/plugin-syntax-import-meta": "7.2.0",
     "@babel/preset-env": "7.4.5",
+    "@types/lodash": "4.14.149",
     "babel-eslint": "10.0.3",
     "babel-jest": "24.9.0",
     "cross-env": "5.2.0",
@@ -53,7 +55,8 @@
     "jest": "24.9.0",
     "lodash": "4.17.15",
     "pre-commit": "1.2.2",
-    "redux": "4.0.0"
+    "redux": "4.0.0",
+    "typescript": "3.7.4"
   },
   "peerDependencies": {
     "lodash": "^4.17.15",
