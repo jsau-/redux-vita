@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import { ReducerState } from './ReducerState';
 
 /**
@@ -11,12 +12,7 @@ export function reducerRemoveField<ReducerFields extends object>(
   reducerState: ReducerState<ReducerFields>,
   fieldName: string,
 ): Pick<ReducerFields, Exclude<keyof ReducerFields, string>> {
-  const {
-    [fieldName]: ignoredField,
-    ...reducerStateWithoutRemovedField
-  } = reducerState;
-
-  return reducerStateWithoutRemovedField;
+  return omit(reducerState, fieldName);
 }
 
 export default reducerRemoveField;

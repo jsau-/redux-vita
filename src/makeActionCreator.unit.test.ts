@@ -9,7 +9,7 @@ describe('makeActionCreator', () => {
 
   it('Should create an action with type', () => {
     const type = 'type';
-    const actionCreator = makeActionCreator(type, () => ({}));
+    const actionCreator = makeActionCreator(type);
     expect(actionCreator()).toEqual({ type: type });
   });
 

@@ -6,8 +6,7 @@ import { ActionFactory } from './ActionFactory';
  * @param propertyCreator - Optional function to generate additional properties
  * on the resultant action.
  * @returns Function that creates action objects.
- * @throws {Error} If action type is empty, or additional generated properties
- * were not a plain object.
+ * @throws {Error} If action type is empty.
  */
 export function makeActionCreator<
   Args extends unknown[],

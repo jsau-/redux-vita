@@ -79,7 +79,6 @@ export class Vita {
    * @param currentReducerState - Current reducer state.
    * @param action - Occurring Redux action.
    * @returns New reducer state.
-   * @throws {Error} On attempting to reduce actions without a type key.
    */
   public reduce<
     Type extends string,
