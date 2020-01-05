@@ -21,6 +21,7 @@ be decremented.`,
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mixedFieldValue: any = reducerState[fieldName];
 
   if ('number' !== typeof mixedFieldValue) {

@@ -16,6 +16,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   root: true,
   rules: {
+    '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],
     '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '[iI]gnored' }],
     camelcase: 'error',
     'capitalized-comments': 'error',
