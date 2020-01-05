@@ -1,125 +1,207 @@
 # redux-vita
 
-[![npm version](https://badge.fury.io/js/redux-vita.svg)](https://badge.fury.io/js/redux-vita)
+[![npm version](https://img.shields.io/npm/v/redux-vita.svg)](https://www.npmjs.com/package/redux-vita)
 [![Build Status](https://travis-ci.com/jsau-/redux-vita.svg?branch=master)](https://travis-ci.com/jsau-/redux-vita)
+[![npm downloads](https://img.shields.io/npm/dm/redux-vita.svg)](https://www.npmjs.com/package/redux-vita)
+
+(Another) library aiming to reduce boilerplate in applications using Redux.
+
+Note that this library does **_not_** aim to replace other fantastic
+alternatives like [Redux Toolkit](https://redux-toolkit.js.org/). In the general
+case Redux Toolkit will probably be a better fit for most apps.
+
+The core concepts that the library aims for are:
+* **Compatibility**. Ideally the library should be compatible with your existing
+Redux flow out of the box. Do or don't use thunks, do or don't use middleware;
+it's up to you.
+* **Concise API**. Making an action creator, and a reducer for handling it
+should be _short and simple_.
+* **Modularity**. Use as much or as little of the library as you like. Want to
+write your own action creator functions? Want to handle reducers yourself? You
+can still do either.
+
+For full API documentation check out the
+[documentation page](https://jsau-.github.io/redux-vita).
+
+# Contents
+1. [Intro](#redux-vita)
+2. [Installing](#installing)
+3. [Examples](#examples)
+    - [Create React App](#create-react-app)
+    - [Class `Vita`](#class-vita)
+    - [Registering a Slice](#registering-a-slice)
+    - [Registering Action Creators](#registering-action-creators)
+    - [Registering Reducers](#registering-reducers)
+    - [Getting a Dispatchable Object](#getting-a-dispatchable-object)
+    - [Registering the Reducer Function](#registering-the-reducer-function)
+4. [Contributing](#contributing)
+5. [Feedback and Support ](#feedback-and-support)
 
 ## Installing
 
 `npm install redux-vita`
 
-## Using the Library
+## Examples
 
-Find basic snippets below.
+#### Create React App
 
-For full API documentation check out the
-[documentation page](https://jsau-.github.io/redux-vita).
+An example project using the library can be found in
+`./examples/create-react-app`.
 
-For examples check out the `examples` directory.
+#### Class `Vita`
+The class `Vita` is basically a big wrapper around the core Redux concepts of
+action creators and reducers.
 
-#### Instantiating `Vita`
+On instantiating `Vita`, you can optionally provide some default state for the
+reducer. Otherwise, we'll default to the empty object `{}`.
+
 ```
-import { Vita } from 'redux-vita';
-
-// Default instantiation (with no default reducer state)
+// No default state
 const vita = new Vita();
 
-// Instantiating with default reducer state
-const default_reducer_state = { field_one: 'default' };
-const vitaWithDefaultState = new Vita(default_reducer_state);
-```
-
-#### Registering an Action Creator Function
-You can register action creators on a `Vita`, allowing you to create a
-dispatchable Redux action object by just passing the action's type at a later
-time.
-
-Additionally, when defining an action creator you can additionally pass a
-second parameter, which is a function for generating additional properties on
-the generated action object.
-
-```
-import { Vita, makeActionCreator } from 'redux-vita';
-
-const vita = new Vita();
-
-// Action creator which has no additional fields
-const actionCreator = makeActionCreator('action_type');
-vita.registerAction('action_type', actionCreator);
-
-// Action creator which accepts some params
-const actionCreatorWithParams = makeActionCreator('action_wparams', (argone, argtwo) => ({ argone, argtwo }));
-vita.registerAction('action_params', actionCreatorWithParams);
-```
-
-#### Getting a Dispatchable Object for an Action Creator
-Generate a Redux action object for a registered action type. Note that any
-subsequent parameters after the type are provided as parameters to the property
-generator function (if provided when registering the creator).
-
-```
-// Returns { type: 'action_type' }
-const objectAction = vita.action('action_type');
-
-// Returns { argone: 1, argtwo: 2 }
-const objectAction = vita.action('action_wparams', 1, 2);
-```
-
-#### Registering a Reducer Function
-You can register reducer functions to handle given action types. If no matching
-handler is found on invoking `Vita::reduce` then the current state is
-returned. If no current state is set, the default reducer state is returned.
-
-```
-vita.registerReducer('increment_counter', (state) => ({ ...state, counter: state.counter + 1 }));
-```
-
-Note that the library exposes some standard reducer functions that may be useful
-in your applications. For a full list of available reducer functions see the
-[documentation page](https://jsau-.github.io/redux-vita).
-
-```
-import { reducerDecrementField } from 'redux-vita';
-vita.registerReducer('decrement_counter', (state) => reducerDecrementField(state, 'counter'));
-
-import { reducerIncrementField } from 'redux-vita';
-vita.registerReducer('increment_counter', (state) => reducerIncrementField(state, 'counter'));
-
-import { reducerRemoveField } from 'redux-vita';
-vita.registerReducer('clear_counter', (state) => reducerClearField(state, 'counter'));
-
-import { reducerSetField } from 'redux-vita';
-vita.registerReducer('maximise_counter', (state) => reducerSetField(state, 'counter', MAX_COUNTER_VALUE));
-
-import { reducerSetManyFields } from 'redux-vita';
-vita.registerReducer('reset_form', (state) => reducerSetManyFields(state, { field_one: 'default_one', field_two: 'default_two' }));
-
-import { reducerToggleBooleanField } from 'redux-vita';
-vita.registerReducer('toggle_counter_enabled', (state) => reducerToggleBooleanField(state, 'counter_enabled'));
+// With default state
+const vitaWithDefaultState = new Vita({ field_one: 'default' });
 ```
 
 #### Registering a Slice
-It's possible to register an action creator and reducer function at the same
-time using `Vita::registerSlice`. Note that the action creator param is
-optional, and will default to `makeActionCreator(ACTION_TYPE)`.
+
+Most of the time you want to be able to dispatch an action, and handle it inside
+a corresponding reducer. By calling `Vita.registerSlice` you can register both
+the action creator and reducer functions at once.
+
+Note that the action creator function is optional, and we'll handle making one
+for you if not provided. This cuts down on boilerplate in cases where you don't
+need a specific action creator with custom parameters - you just want to handle
+an event.
 
 ```
-// Without specifying an action creator
+// Without explicit action creator
 vita.registerSlice(
   'action_type',
-  (state) => reducerClearField(state, 'field_to_clear'),
+  (state) => ({ ...state, action_was_handled: true }),
 );
 
-// Specifying an action creator
+// With explicit action creator
 vita.registerSlice(
-  'action_type',
-  (state) => reducerClearField(state, 'field_to_clear'),
-  makeActionCreator('action_type'),
+  'action_type_wparams',
+  (state, action) => ({
+    ...state,
+    [action.field_to_increment]: state[action.field_to_increment] + 1,
+  }),
+  makeActionCreator(
+    'action_type_wparams',
+    (field_to_increment => ({ field_to_increment })),
+  ),
 );
 ```
 
-#### Using the Reducer Within Redux
-Instances of `Vita` expose a function `reduce`. This can be registered as
-a reducer in Redux as you would a normal reducer function.
+#### Registering Action Creators
+
+Action creators can be registered on their own, too.
+
+As above, the function for generating the action is optional, so you only
+provide one if you need to add custom properties to the created action objects.
+
+This syntax also allows you to register thunks like you would've in a standard
+app.
+
+```
+// Without explicit action creator
+vita.registerAction('action_type');
+
+// With explicit action creator
+vita.registerAction('action_type_wparams', (param) => ({ param }));
+
+// With thunk
+vita.registerAction(
+  'thunk',
+  () => (dispatch) => { /* Implementation omitted... */ },
+);
+```
+
+#### Registering Reducers
+
+Reducers can be registered on their own too. This would make sense in a
+context where you're subscribed to an event emitted from some other source in
+the app.
+
+```
+vita.registerReducer(
+  'increment_counter',
+  (state) => ({ ...state, counter: state.counter + 1 }),
+);
+```
+
+We've written some standard reducer functions that you might find useful in
+your apps. ([See the docs for a complete
+list]((https://jsau-.github.io/redux-vita))). Using these functions is
+completely optional - if they'll make your code less verbose, or less
+error-prone then do!
+
+Or, optionally, roll your own standard functions to fit
+your use-case! This concept lends itself to factory functions which could
+register all the action creators and reducers required to handle interacting
+with an API, for example.
+
+```
+vita.registerReducer(
+  'decrement_counter',
+  (state) => reducerDecrementField(state, 'counter'),
+);
+
+vita.registerReducer(
+  'increment_counter',
+  (state) => reducerIncrementField(state, 'counter'),
+);
+
+vita.registerReducer(
+  'clear_counter',
+  (state) => reducerClearField(state, 'counter'),
+);
+
+vita.registerReducer(
+  'maximise_counter',
+  (state) => reducerSetField(state, 'counter', 999),
+);
+
+vita.registerReducer(
+  'reset_form',
+  (state) => reducerSetManyFields(
+    state,
+    { field_one: 'default_one', field_two: 'default_two' },
+  ),
+);
+
+vita.registerReducer(
+  'toggle_counter_enabled',
+  (state) => reducerToggleBooleanField(state, 'counter_enabled'),
+);
+```
+
+#### Getting a Dispatchable Object
+
+If your registered creator accepts no params just call `Vita.action`; any
+additional params are passed through to the creator function.
+
+```
+vita.registerAction('action_type');
+vita.registerAction('action_type_wparams', (param) => ({ param }));
+
+// Returns { type: 'action_type' };
+const action = vita.action('action_type');
+
+// Returns { type: 'action_type', param: 'foo' };
+const action_wparams = vita.action('action_type_wparams', 'foo');
+
+dispatch(action);
+dispatch(action_wparams);
+```
+
+#### Registering the Reducer Function
+
+Instances of `Vita` expose a function `reduce`. This method has the same
+signature as a standard Redux reducer function, so you can just register it
+the way you would in a traditional Redux app.
 
 ```
 combineReducers({ my_reducer_name: vita.reduce });
