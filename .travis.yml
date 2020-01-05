@@ -4,7 +4,8 @@ sudo: false
 node_js:
   - 10
 before_script:
-  - npm run build:es2015
+  - npm run build
+  - cp ./coverage ./docs/coverage
 install:
   - npm ci
 stages:
@@ -14,6 +15,7 @@ stages:
 jobs:
   include:
     - stage: test
+      script: npm run check:types
       script: npm run lint
       script: npm run test
     - stage: deploy_to_github_pages
