@@ -2,7 +2,7 @@ import { ActionObject } from './ActionObject';
 import { makeActionCreator } from './makeActionCreator';
 import { ReducerState } from './ReducerState';
 
-class Vita {
+export class Vita {
   private actionCreators: Map<string, Function>;
   private defaultReducerState: object;
   private reducerFunctions: Map<string, Function>;
@@ -16,6 +16,17 @@ class Vita {
 
     this.actionCreators = new Map();
     this.reducerFunctions = new Map();
+
+    this.action = this.action.bind(this);
+    this.clearAllActionCreators = this.clearAllActionCreators.bind(this);
+    this.clearAllReducers = this.clearAllReducers.bind(this);
+    this.reduce = this.reduce.bind(this);
+    this.registerAction = this.registerAction.bind(this);
+    this.registerReducer = this.registerReducer.bind(this);
+    this.registerSlice = this.registerSlice.bind(this);
+    this.unregisterAction = this.unregisterAction.bind(this);
+    this.unregisterReducer = this.unregisterReducer.bind(this);
+    this.unregisterSlice = this.unregisterSlice.bind(this);
   }
 
   /**
@@ -27,10 +38,10 @@ class Vita {
    * function.
    * @returns Action object.
    */
-  action = (
+  public action<Type, Fields extends object>(
     actionType: string,
     ...varargsActionCreator: any[]
-  ): ActionObject => {
+  ): ActionObject<Type, Fields> {
     const actionCreator = this.actionCreators.get(actionType);
 
     if (!actionCreator) {
@@ -40,27 +51,27 @@ class Vita {
     }
 
     return actionCreator(...varargsActionCreator);
-  };
+  }
 
   /**
    * Clear all registered action creators.
    *
    * @returns This.
    */
-  clearAllActionCreators = (): Vita => {
+  public clearAllActionCreators(): Vita {
     this.actionCreators.clear();
     return this;
-  };
+  }
 
   /**
    * Clear all registered reducers for handling actions.
    *
    * @returns This.
    */
-  clearAllReducers = (): Vita => {
+  public clearAllReducers(): Vita {
     this.reducerFunctions.clear();
     return this;
-  };
+  }
 
   /**
    * Reducer function.
@@ -70,12 +81,15 @@ class Vita {
    * @returns New reducer state.
    * @throws {Error} On attempting to reduce actions without a type key.
    */
-  reduce = (
-    currentReducerState: ReducerState | undefined,
-    action: ActionObject,
-  ): ReducerState => {
-    const reducerState: object =
-      currentReducerState ?? this.defaultReducerState;
+  public reduce<
+    Type extends string,
+    ReducerFields extends object,
+    ActionFields extends object
+  >(
+    currentReducerState: ReducerState<ReducerFields> | undefined,
+    action: ActionObject<Type, ActionFields>,
+  ): object {
+    const reducerState = currentReducerState ?? this.defaultReducerState;
 
     const { type } = action;
 
@@ -89,7 +103,7 @@ class Vita {
     }
 
     return reducerForAction(reducerState, action);
-  };
+  }
 
   /**
    * Create and register an action creator function. Note that the action
@@ -100,16 +114,16 @@ class Vita {
    * @param actionCreator - Action creator function.
    * @returns This.
    */
-  registerAction = (
+  public registerAction(
     actionType: string,
     actionCreator: Function | undefined,
-  ): Vita => {
+  ): Vita {
     const actionCreatorInstance: Function =
       actionCreator ?? makeActionCreator(actionType, undefined);
 
     this.actionCreators.set(actionType, actionCreatorInstance);
     return this;
-  };
+  }
 
   /**
    * Register a reducer function to handle on receiving an action with a
@@ -121,10 +135,10 @@ class Vita {
    * action with type.
    * @returns This.
    */
-  registerReducer = (actionType: string, reducer: Function): Vita => {
+  public registerReducer(actionType: string, reducer: Function): Vita {
     this.reducerFunctions.set(actionType, reducer);
     return this;
-  };
+  }
 
   /**
    * Register an action creator and reducer function at the same time. Note
@@ -137,15 +151,15 @@ class Vita {
    * @param actionCreator - Action creator function.
    * @returns This.
    */
-  registerSlice = (
+  public registerSlice(
     actionType: string,
     reducer: Function,
     actionCreator: Function | undefined,
-  ): Vita => {
+  ): Vita {
     this.registerAction(actionType, actionCreator);
     this.registerReducer(actionType, reducer);
     return this;
-  };
+  }
 
   /**
    * Unregister an action creator for a given action type.
@@ -154,10 +168,10 @@ class Vita {
    * function for.
    * @returns This.
    */
-  unregisterAction = (actionType: string): Vita => {
+  public unregisterAction(actionType: string): Vita {
     this.actionCreators.delete(actionType);
     return this;
-  };
+  }
 
   /**
    * Unregister a reducer function for a given action type.
@@ -166,10 +180,10 @@ class Vita {
    * function for.
    * @returns This.
    */
-  unregisterReducer = (actionType: string): Vita => {
+  public unregisterReducer(actionType: string): Vita {
     this.reducerFunctions.delete(actionType);
     return this;
-  };
+  }
 
   /**
    * Unregister an action creator and reducer at the same time.
@@ -177,11 +191,9 @@ class Vita {
    * @param actionType - Action type to unregister.
    * @returns This.
    */
-  unregisterSlice = (actionType: string): Vita => {
+  public unregisterSlice(actionType: string): Vita {
     this.unregisterAction(actionType);
     this.unregisterReducer(actionType);
     return this;
-  };
+  }
 }
-
-export default Vita;

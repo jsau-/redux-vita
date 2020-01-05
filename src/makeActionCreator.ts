@@ -1,7 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
-import { ActionObject } from './ActionObject';
-
-type PropertyCreator = (...args: any[]) => ActionObject;
+import { ActionFactory } from './ActionFactory';
 
 /**
  * @param type - Action type.
@@ -11,9 +9,12 @@ type PropertyCreator = (...args: any[]) => ActionObject;
  * @throws {Error} If action type is empty, or additional generated properties
  * were not a plain object.
  */
-export function makeActionCreator(
+export function makeActionCreator<
+  Args extends unknown[],
+  ActionFields extends object
+>(
   type: string,
-  propertyCreator: PropertyCreator | undefined,
+  propertyCreator: ActionFactory<Args, ActionFields> | undefined,
 ): Function {
   /**
    * NB: Param validation has been separated from the returned function body
@@ -24,8 +25,8 @@ export function makeActionCreator(
     throw new Error('Type must not be empty.');
   }
 
-  return (...args: any[]) => {
-    let additionalProperties: object = {};
+  return (...args: Args): object => {
+    let additionalProperties = {};
 
     if (propertyCreator) {
       additionalProperties = propertyCreator(...args);

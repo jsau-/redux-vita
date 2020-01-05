@@ -7,10 +7,10 @@ import { ReducerState } from './ReducerState';
  * @param fieldName - Field name to remove.
  * @returns Reducer state after removing field.
  */
-export function reducerRemoveField(
-  reducerState: ReducerState,
+export function reducerRemoveField<ReducerFields extends object>(
+  reducerState: ReducerState<ReducerFields>,
   fieldName: string,
-): ReducerState {
+): Pick<ReducerFields, Exclude<keyof ReducerFields, string>> {
   const {
     [fieldName]: ignoredField,
     ...reducerStateWithoutRemovedField

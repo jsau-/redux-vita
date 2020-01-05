@@ -10,10 +10,10 @@ import { ReducerState } from './ReducerState';
  * @throws {Error} If field does not exists.
  * @throws {TypeError} If field is not a number.
  */
-export function reducerDecrementField(
-  reducerState: ReducerState,
+export function reducerDecrementField<ReducerFields extends object>(
+  reducerState: ReducerState<ReducerFields>,
   fieldName: string,
-): ReducerState {
+): ReducerState<ReducerFields> {
   if (!has(reducerState, fieldName)) {
     throw new Error(
       `Field '${fieldName}' does not exist on current state, and hence cannot \
@@ -21,8 +21,7 @@ be decremented.`,
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mixedFieldValue: any = reducerState[fieldName];
+  const mixedFieldValue = reducerState[fieldName];
 
   if ('number' !== typeof mixedFieldValue) {
     throw new TypeError(

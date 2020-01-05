@@ -8,11 +8,11 @@ import { ReducerState } from './ReducerState';
  * @param fieldValue - Field value to set.
  * @returns Reducer state after setting field.
  */
-export function reducerSetField(
-  reducerState: ReducerState,
+export function reducerSetField<ReducerFields extends object>(
+  reducerState: ReducerState<ReducerFields>,
   fieldName: string,
   fieldValue: string,
-): ReducerState {
+): ReducerState<ReducerFields> {
   return {
     ...reducerState,
     [fieldName]: fieldValue,
