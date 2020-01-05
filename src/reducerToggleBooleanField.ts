@@ -16,7 +16,8 @@ export function reducerToggleBooleanField(
 ): ReducerState {
   if (!has(reducerState, fieldName)) {
     throw new Error(
-      `Field '${fieldName}' does not exist on current state, and hence cannot be toggled.`,
+      `Field '${fieldName}' does not exist on current state, and hence cannot \
+be toggled.`,
     );
   }
 
@@ -24,7 +25,8 @@ export function reducerToggleBooleanField(
 
   if ('boolean' !== typeof mixedFieldValue) {
     throw new TypeError(
-      `Invalid type for toggling field '${fieldName}'. Expected 'boolean', got '${typeof mixedFieldValue}'`,
+      `Invalid type for toggling field '${fieldName}'. Expected 'boolean', got \
+'${typeof mixedFieldValue}'`,
     );
   }
 

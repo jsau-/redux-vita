@@ -74,9 +74,8 @@ class Vita {
     currentReducerState: ReducerState | undefined,
     action: ActionObject,
   ): ReducerState => {
-    const reducerState: object = currentReducerState ?
-      currentReducerState :
-      this.defaultReducerState;
+    const reducerState: object =
+      currentReducerState ?? this.defaultReducerState;
 
     const { type } = action;
 
@@ -105,9 +104,8 @@ class Vita {
     actionType: string,
     actionCreator: Function | undefined,
   ): Vita => {
-    const actionCreatorInstance: Function = actionCreator ?
-      actionCreator :
-      makeActionCreator(actionType, undefined);
+    const actionCreatorInstance: Function =
+      actionCreator ?? makeActionCreator(actionType, undefined);
 
     this.actionCreators.set(actionType, actionCreatorInstance);
     return this;

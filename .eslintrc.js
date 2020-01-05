@@ -16,6 +16,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   root: true,
   rules: {
+    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '[iI]gnored' }],
     camelcase: 'error',
     'capitalized-comments': 'error',
     'comma-dangle': ['error', 'always-multiline'],
@@ -23,7 +24,7 @@ module.exports = {
     complexity: 'error',
     'consistent-return': 'error',
     'default-case': 'error',
-    'func-style': ['error', 'expression', { allowArrowFunctions: true }],
+    'func-style': ['error', 'declaration'],
     'eol-last': ['error', 'always'],
     'id-blacklist': ['error', 'data', 'err', 'e', 'cb', 'callback'],
     'id-length': ['error', { min: 2 }],

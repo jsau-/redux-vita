@@ -12,7 +12,7 @@ export function reducerRemoveField(
   fieldName: string,
 ): ReducerState {
   const {
-    [fieldName]: mixedFieldToRemove,
+    [fieldName]: ignoredField,
     ...reducerStateWithoutRemovedField
   } = reducerState;
 

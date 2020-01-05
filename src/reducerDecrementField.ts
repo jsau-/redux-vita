@@ -16,7 +16,8 @@ export function reducerDecrementField(
 ): ReducerState {
   if (!has(reducerState, fieldName)) {
     throw new Error(
-      `Field '${fieldName}' does not exist on current state, and hence cannot be decremented.`,
+      `Field '${fieldName}' does not exist on current state, and hence cannot \
+be decremented.`,
     );
   }
 
@@ -24,7 +25,8 @@ export function reducerDecrementField(
 
   if ('number' !== typeof mixedFieldValue) {
     throw new TypeError(
-      `Invalid type for decrementing field '${fieldName}'. Expected 'number', got '${typeof mixedFieldValue}'`,
+      `Invalid type for decrementing field '${fieldName}'. Expected 'number', \
+got '${typeof mixedFieldValue}'`,
     );
   }
 
