@@ -1,20 +1,20 @@
 module.exports = {
   env: {
-    browser: true,
-    es6: true,
     jest: true,
+    node: true,
   },
-  extends: ['airbnb-base'],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parser: 'babel-eslint',
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint'
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
+    'project': './tsconfig.json',
+    'sourceType': 'module'
   },
-  plugins: ['import', 'jsdoc'],
+  plugins: ['@typescript-eslint'],
+  root: true,
   rules: {
     camelcase: 'error',
     'capitalized-comments': 'error',
@@ -27,37 +27,8 @@ module.exports = {
     'eol-last': ['error', 'always'],
     'id-blacklist': ['error', 'data', 'err', 'e', 'cb', 'callback'],
     'id-length': ['error', { min: 2 }],
-    'id-match': [
-      'error',
-      '^(n|u)?(b|arr|int|date|enum|float|obj|str|map|func|on|get|mixed|selector|reducer|action|model)?([A-Z][a-z]+)*|[A-Z_]+$',
-      { onlyDeclarations: true },
-    ],
     'implicit-arrow-linebreak': ['off'],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'import/prefer-default-export': 'off',
     indent: ['error', 2],
-    'jsdoc/check-alignment': 'error',
-    'jsdoc/check-examples': 'error',
-    'jsdoc/check-indentation': 'error',
-    'jsdoc/check-param-names': 'error',
-    'jsdoc/check-syntax': 'error',
-    'jsdoc/check-tag-names': 'error',
-    'jsdoc/check-types': 'error',
-    'jsdoc/implements-on-classes': 'error',
-    'jsdoc/match-description': 'error',
-    'jsdoc/newline-after-description': 'error',
-    'jsdoc/no-undefined-types': 'error',
-    'jsdoc/require-hyphen-before-param-description': 'error',
-    'jsdoc/require-jsdoc': 'error',
-    'jsdoc/require-param': 'error',
-    'jsdoc/require-param-description': 'error',
-    'jsdoc/require-param-name': 'error',
-    'jsdoc/require-param-type': 'error',
-    'jsdoc/require-returns': 'error',
-    'jsdoc/require-returns-check': 'error',
-    'jsdoc/require-returns-description': 'error',
-    'jsdoc/require-returns-type': 'error',
-    'jsdoc/valid-types': 'error',
     'line-comment-position': ['error', { position: 'above' }],
     'linebreak-style': ['error', 'unix'],
     'max-classes-per-file': ['error', 1],
@@ -87,4 +58,15 @@ module.exports = {
     'sort-keys': ['error', 'asc', { natural: true }],
     yoda: ['error', 'always'],
   },
+  settings: {
+    'import/extensions': ['.js','.jsx','.ts','.tsx'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts','.tsx']
+    },
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js','.jsx','.ts','.tsx']
+      }
+    }
+  }
 };
