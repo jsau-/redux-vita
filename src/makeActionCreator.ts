@@ -12,10 +12,7 @@ import { ActionFactory } from './ActionFactory';
 export function makeActionCreator<
   Args extends unknown[],
   ActionFields extends object
->(
-  type: string,
-  propertyCreator: ActionFactory<Args, ActionFields> | undefined,
-): Function {
+>(type: string, propertyCreator?: ActionFactory<Args, ActionFields>): Function {
   /**
    * NB: Param validation has been separated from the returned function body
    * since we should only have to do it _once_ rather than on each function

@@ -38,8 +38,8 @@ export class Vita {
    * function.
    * @returns Action object.
    */
-  public action<Type, Fields extends object>(
-    actionType: string,
+  public action<Type extends string, Fields extends object>(
+    actionType: Type,
     ...varargsActionCreator: any[]
   ): ActionObject<Type, Fields> {
     const actionCreator = this.actionCreators.get(actionType);
@@ -93,9 +93,7 @@ export class Vita {
 
     const { type } = action;
 
-    const reducerForAction: Function | undefined = this.reducerFunctions.get(
-      type,
-    );
+    const reducerForAction = this.reducerFunctions.get(type);
 
     // If we have no registered handler, just fallback to current state
     if (!reducerForAction) {
@@ -114,11 +112,8 @@ export class Vita {
    * @param actionCreator - Action creator function.
    * @returns This.
    */
-  public registerAction(
-    actionType: string,
-    actionCreator: Function | undefined,
-  ): Vita {
-    const actionCreatorInstance: Function =
+  public registerAction(actionType: string, actionCreator?: Function): Vita {
+    const actionCreatorInstance =
       actionCreator ?? makeActionCreator(actionType, undefined);
 
     this.actionCreators.set(actionType, actionCreatorInstance);
@@ -154,7 +149,7 @@ export class Vita {
   public registerSlice(
     actionType: string,
     reducer: Function,
-    actionCreator: Function | undefined,
+    actionCreator?: Function,
   ): Vita {
     this.registerAction(actionType, actionCreator);
     this.registerReducer(actionType, reducer);

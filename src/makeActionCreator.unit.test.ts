@@ -33,17 +33,4 @@ describe('makeActionCreator', () => {
     expect(mockFuncProperty.mock.calls[0][0]).toBe(paramOne);
     expect(mockFuncProperty.mock.calls[0][1]).toBe(paramTwo);
   });
-
-  it('Should throw if generated not a plain object', () => {
-    const type = 'type';
-
-    const mockFuncProperty = jest.fn(() => ({ invalidType: 'invalid_type' }));
-
-    const actionCreator = makeActionCreator(type, mockFuncProperty);
-
-    expect(() => actionCreator()).toThrow(
-      `Property creator function generated an invalid type. Expected plain \
-object, got \'string\'`,
-    );
-  });
 });
