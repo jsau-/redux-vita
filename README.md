@@ -30,6 +30,7 @@ Useful links:
 2. [Installing](#installing)
 3. [Examples](#examples)
     - [Create React App](#create-react-app)
+    - [Create React App (Typescript)](#create-react-app-typescript)
     - [Class `Vita`](#class-vita)
     - [Registering a Slice](#registering-a-slice)
     - [Registering Action Creators](#registering-action-creators)
@@ -49,6 +50,11 @@ Useful links:
 
 An example project using the library can be found in
 `./examples/create-react-app`.
+
+#### Create React App (Typescript)
+
+An example project using the library can be found in
+`./examples/create-react-app-typescript`.
 
 #### Class `Vita`
 The class `Vita` is basically a big wrapper around the core Redux concepts of
