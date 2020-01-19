@@ -1,231 +1,443 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="default no-js">
 <head>
-  <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | redux-vita</title>
-  <link type="text/css" rel="stylesheet" href="css/style.css">
-  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
-  <script src="script/prettify/prettify.js"></script>
-  <script src="script/manual.js"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>redux-vita - v3.0.1</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body class="layout-container" data-ice="rootContainer">
-
+<body>
 <header>
-  <a href="./">Home</a>
-  
-  <a href="identifiers.html">Reference</a>
-  <a href="source.html">Source</a>
-  
-  <div class="search-box">
-  <span>
-    <img src="./image/search.png">
-    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
-  </span>
-    <ul class="search-result"></ul>
-  </div>
-<a style="position:relative; top:3px;" href="https://github.com/jsau-/redux-vita"><img width="20px" src="./image/github.png"></a></header>
-
-<nav class="navigation" data-ice="nav"><div>
-  <ul>
-    
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#vita">Vita</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Vita/Vita.js~Vita.html">Vita</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#makeactioncreator">makeActionCreator</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-makeActionCreator">makeActionCreator</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-KEY_TYPE">KEY_TYPE</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducerdecrementfield">reducerDecrementField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerDecrementField">reducerDecrementField</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducerincrementfield">reducerIncrementField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerIncrementField">reducerIncrementField</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducerremovefield">reducerRemoveField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerRemoveField">reducerRemoveField</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducersetfield">reducerSetField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerSetField">reducerSetField</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducersetmanyfields">reducerSetManyFields</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerSetManyFields">reducerSetManyFields</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#reducertogglebooleanfield">reducerToggleBooleanField</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reducerToggleBooleanField">reducerToggleBooleanField</a></span></span></li>
-</ul>
-</div>
-</nav>
-
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="redux-vita">redux-vita</h1><p><a href="https://www.npmjs.com/package/redux-vita"><img src="https://img.shields.io/npm/v/redux-vita.svg" alt="npm version"></a>
-<a href="https://travis-ci.com/jsau-/redux-vita"><img src="https://travis-ci.com/jsau-/redux-vita.svg?branch=master" alt="Build Status"></a>
-<a href="https://www.npmjs.com/package/redux-vita"><img src="https://img.shields.io/npm/dm/redux-vita.svg" alt="npm downloads"></a></p>
-<p>(Another) library aiming to reduce boilerplate in applications using Redux.</p>
-<p>Note that this library does <strong><em>not</em></strong> aim to replace other fantastic
-alternatives like <a href="https://redux-toolkit.js.org/">Redux Toolkit</a>. In the general
-case Redux Toolkit will probably be a better fit for most apps.</p>
-<p>The core concepts that the library aims for are:</p>
-<ul>
-<li><strong>Compatibility</strong>. Ideally the library should be compatible with your existing
-Redux flow out of the box. Do or don&apos;t use thunks, do or don&apos;t use middleware;
-it&apos;s up to you.</li>
-<li><strong>Concise API</strong>. Making an action creator, and a reducer for handling it
-should be <em>short and simple</em>.</li>
-<li><strong>Modularity</strong>. Use as much or as little of the library as you like. Want to
-write your own action creator functions? Want to handle reducers yourself? You
-can still do either.</li>
-</ul>
-<p>For full API documentation check out the
-<a href="https://jsau-.github.io/redux-vita">documentation page</a>.</p>
-<h1 id="contents">Contents</h1><ol>
-<li><a href="#redux-vita">Intro</a></li>
-<li><a href="#installing">Installing</a></li>
-<li><a href="#examples">Examples</a><ul>
-<li><a href="#create-react-app">Create React App</a></li>
-<li><a href="#class-vita">Class <code>Vita</code></a></li>
-<li><a href="#registering-a-slice">Registering a Slice</a></li>
-<li><a href="#registering-action-creators">Registering Action Creators</a></li>
-<li><a href="#registering-reducers">Registering Reducers</a></li>
-<li><a href="#getting-a-dispatchable-object">Getting a Dispatchable Object</a></li>
-<li><a href="#registering-the-reducer-function">Registering the Reducer Function</a></li>
-</ul>
-</li>
-<li><a href="#contributing">Contributing</a></li>
-<li><a href="#feedback-and-support">Feedback and Support </a></li>
-</ol>
-<h2 id="installing">Installing</h2><p><code>npm install redux-vita</code></p>
-<h2 id="examples">Examples</h2><h4 id="create-react-app">Create React App</h4><p>An example project using the library can be found in
-<code>./examples/create-react-app</code>.</p>
-<h4 id="class--code-vita--code-">Class <code>Vita</code></h4><p>The class <code>Vita</code> is basically a big wrapper around the core Redux concepts of
-action creators and reducers.</p>
-<p>On instantiating <code>Vita</code>, you can optionally provide some default state for the
-reducer. Otherwise, we&apos;ll default to the empty object <code>{}</code>.</p>
-<pre><code><code class="source-code prettyprint">// No default state
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">redux-vita - v3.0.1</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> redux-vita - v3.0.1</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#redux-vita" id="redux-vita" style="color: inherit; text-decoration: none;">
+					<h1>redux-vita</h1>
+				</a>
+				<p><a href="https://www.npmjs.com/package/redux-vita"><img src="https://img.shields.io/npm/v/redux-vita.svg" alt="npm version"></a>
+					<a href="https://travis-ci.com/jsau-/redux-vita"><img src="https://travis-ci.com/jsau-/redux-vita.svg?branch=master" alt="Build Status"></a>
+				<a href="https://www.npmjs.com/package/redux-vita"><img src="https://img.shields.io/npm/dm/redux-vita.svg" alt="npm downloads"></a></p>
+				<p>(Another) library aiming to reduce boilerplate in applications using Redux.</p>
+				<p>Note that this library does <strong><em>not</em></strong> aim to replace other fantastic
+					alternatives like <a href="https://redux-toolkit.js.org/">Redux Toolkit</a>. In the general
+				case Redux Toolkit will probably be a better fit for most apps.</p>
+				<p>The core concepts that the library aims for are:</p>
+				<ul>
+					<li><strong>Compatibility</strong>. Ideally the library should be compatible with your existing
+						Redux flow out of the box. Do or don&#39;t use thunks, do or don&#39;t use middleware;
+					it&#39;s up to you.</li>
+					<li><strong>Concise API</strong>. Making an action creator, and a reducer for handling it
+					should be <em>short and simple</em>.</li>
+					<li><strong>Modularity</strong>. Use as much or as little of the library as you like. Want to
+						write your own action creator functions? Want to handle reducers yourself? You
+					can still do either.</li>
+				</ul>
+				<p>Useful links:</p>
+				<ul>
+					<li><a href="https://jsau-.github.io/redux-vita">Documentation</a></li>
+					<li><a href="https://jsau-.github.io/redux-vita/coverage/lcov-report">Code Coverage Report</a></li>
+					<li><a href="https://jsau-.github.io/redux-vita/test_report.html">Unit Test Report</a></li>
+				</ul>
+				<a href="#contents" id="contents" style="color: inherit; text-decoration: none;">
+					<h1>Contents</h1>
+				</a>
+				<ol>
+					<li><a href="#redux-vita">Intro</a></li>
+					<li><a href="#installing">Installing</a></li>
+					<li><a href="#examples">Examples</a><ul>
+							<li><a href="#create-react-app">Create React App</a></li>
+							<li><a href="#create-react-app-typescript">Create React App (Typescript)</a></li>
+							<li><a href="#class-vita">Class <code>Vita</code></a></li>
+							<li><a href="#registering-a-slice">Registering a Slice</a></li>
+							<li><a href="#registering-action-creators">Registering Action Creators</a></li>
+							<li><a href="#registering-reducers">Registering Reducers</a></li>
+							<li><a href="#getting-a-dispatchable-object">Getting a Dispatchable Object</a></li>
+							<li><a href="#registering-the-reducer-function">Registering the Reducer Function</a></li>
+						</ul>
+					</li>
+					<li><a href="#contributing">Contributing</a></li>
+					<li><a href="#feedback-and-support">Feedback and Support </a></li>
+				</ol>
+				<a href="#installing" id="installing" style="color: inherit; text-decoration: none;">
+					<h2>Installing</h2>
+				</a>
+				<p><code>npm install redux-vita</code></p>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
+				<a href="#create-react-app" id="create-react-app" style="color: inherit; text-decoration: none;">
+					<h4>Create React App</h4>
+				</a>
+				<p>An example project using the library can be found in
+				<code>./examples/create-react-app</code>.</p>
+				<a href="#create-react-app-typescript" id="create-react-app-typescript" style="color: inherit; text-decoration: none;">
+					<h4>Create React App (Typescript)</h4>
+				</a>
+				<p>An example project using the library can be found in
+				<code>./examples/create-react-app-typescript</code>.</p>
+				<a href="#class-codevitacode" id="class-codevitacode" style="color: inherit; text-decoration: none;">
+					<h4>Class <code>Vita</code></h4>
+				</a>
+				<p>The class <code>Vita</code> is basically a big wrapper around the core Redux concepts of
+				action creators and reducers.</p>
+				<p>On instantiating <code>Vita</code>, you can optionally provide some default state for the
+				reducer. Otherwise, we&#39;ll default to the empty object <code>{}</code>.</p>
+				<pre><code>// No <span class="hljs-keyword">default</span> <span class="hljs-keyword">state</span>
 const vita = new Vita();
 
-// With default state
-const vitaWithDefaultState = new Vita({ field_one: &apos;default&apos; });</code>
-</code></pre><h4 id="registering-a-slice">Registering a Slice</h4><p>Most of the time you want to be able to dispatch an action, and handle it inside
-a corresponding reducer. By calling <code>Vita.registerSlice</code> you can register both
-the action creator and reducer functions at once.</p>
-<p>Note that the action creator function is optional, and we&apos;ll handle making one
-for you if not provided. This cuts down on boilerplate in cases where you don&apos;t
-need a specific action creator with custom parameters - you just want to handle
-an event.</p>
-<pre><code><code class="source-code prettyprint">// Without explicit action creator
+// With <span class="hljs-keyword">default</span> <span class="hljs-keyword">state</span>
+const vitaWithDefaultState = new Vita({ field_one: '<span class="hljs-keyword">default</span>' });</code></pre>
+				<a href="#registering-a-slice" id="registering-a-slice" style="color: inherit; text-decoration: none;">
+					<h4>Registering a Slice</h4>
+				</a>
+				<p>Most of the time you want to be able to dispatch an action, and handle it inside
+					a corresponding reducer. By calling <code>Vita.registerSlice</code> you can register both
+				the action creator and reducer functions at once.</p>
+				<p>Note that the action creator function is optional, and we&#39;ll handle making one
+					for you if not provided. This cuts down on boilerplate in cases where you don&#39;t
+					need a specific action creator with custom parameters - you just want to handle
+				an event.</p>
+				<pre><code>// Without explicit action creator
 vita.registerSlice(
-  &apos;action_type&apos;,
-  (state) =&gt; ({ ...state, action_was_handled: true }),
+  'action_type',
+  (<span class="hljs-keyword">state</span>) =&gt; ({ ...<span class="hljs-keyword">state</span>, action_was_handled: true }),
 );
 
 // With explicit action creator
 vita.registerSlice(
-  &apos;action_type_wparams&apos;,
-  (state, action) =&gt; ({
-    ...state,
-    [action.field_to_increment]: state[action.field_to_increment] + 1,
+  'action_type_wparams',
+  (<span class="hljs-keyword">state</span>, action) =&gt; ({
+    ...<span class="hljs-keyword">state</span>,
+    [action.field_to_increment]: <span class="hljs-keyword">state</span>[action.field_to_increment] + <span class="hljs-number">1</span>,
   }),
   makeActionCreator(
-    &apos;action_type_wparams&apos;,
+    'action_type_wparams',
     (field_to_increment =&gt; ({ field_to_increment })),
   ),
-);</code>
-</code></pre><h4 id="registering-action-creators">Registering Action Creators</h4><p>Action creators can be registered on their own, too.</p>
-<p>As above, the function for generating the action is optional, so you only
-provide one if you need to add custom properties to the created action objects.</p>
-<p>This syntax also allows you to register thunks like you would&apos;ve in a standard
-app.</p>
-<pre><code><code class="source-code prettyprint">// Without explicit action creator
-vita.registerAction(&apos;action_type&apos;);
+);</code></pre>
+				<a href="#registering-action-creators" id="registering-action-creators" style="color: inherit; text-decoration: none;">
+					<h4>Registering Action Creators</h4>
+				</a>
+				<p>Action creators can be registered on their own, too.</p>
+				<p>As above, the function for generating the action is optional, so you only
+				provide one if you need to add custom properties to the created action objects.</p>
+				<p>This syntax also allows you to register thunks like you would&#39;ve in a standard
+				app.</p>
+				<pre><code><span class="hljs-comment">// Without explicit action creator</span>
+<span class="hljs-selector-tag">vita</span><span class="hljs-selector-class">.registerAction</span>(<span class="hljs-string">'action_type'</span>);
 
-// With explicit action creator
-vita.registerAction(&apos;action_type_wparams&apos;, (param) =&gt; ({ param }));
+<span class="hljs-comment">// With explicit action creator</span>
+<span class="hljs-selector-tag">vita</span><span class="hljs-selector-class">.registerAction</span>(<span class="hljs-string">'action_type_wparams'</span>, (param) =&gt; ({ param }));
 
-// With thunk
-vita.registerAction(
-  &apos;thunk&apos;,
-  () =&gt; (dispatch) =&gt; { /* Implementation omitted... */ },
-);</code>
-</code></pre><h4 id="registering-reducers">Registering Reducers</h4><p>Reducers can be registered on their own too. This would make sense in a
-context where you&apos;re subscribed to an event emitted from some other source in
-the app.</p>
-<pre><code><code class="source-code prettyprint">vita.registerReducer(
-  &apos;increment_counter&apos;,
-  (state) =&gt; ({ ...state, counter: state.counter + 1 }),
-);</code>
-</code></pre><p>We&apos;ve written some standard reducer functions that you might find useful in
-your apps. (<a href="(https://jsau-.github.io/redux-vita">See the docs for a complete
-list</a>)). Using these functions is
-completely optional - if they&apos;ll make your code less verbose, or less
-error-prone then do!</p>
-<p>Or, optionally, roll your own standard functions to fit
-your use-case! This concept lends itself to factory functions which could
-register all the action creators and reducers required to handle interacting
-with an API, for example.</p>
-<pre><code><code class="source-code prettyprint">vita.registerReducer(
-  &apos;decrement_counter&apos;,
-  (state) =&gt; reducerDecrementField(state, &apos;counter&apos;),
+<span class="hljs-comment">// With thunk</span>
+<span class="hljs-selector-tag">vita</span><span class="hljs-selector-class">.registerAction</span>(
+  <span class="hljs-string">'thunk'</span>,
+  () =&gt; (dispatch) =&gt; { <span class="hljs-comment">/* Implementation omitted... */</span> },
+);</code></pre>
+				<a href="#registering-reducers" id="registering-reducers" style="color: inherit; text-decoration: none;">
+					<h4>Registering Reducers</h4>
+				</a>
+				<p>Reducers can be registered on their own too. This would make sense in a
+					context where you&#39;re subscribed to an event emitted from some other source in
+				the app.</p>
+				<pre><code>vita.registerReducer(
+  'increment_counter',
+  (<span class="hljs-keyword">state</span>) =&gt; ({ ...<span class="hljs-keyword">state</span>, counter: <span class="hljs-keyword">state</span>.counter + <span class="hljs-number">1</span> }),
+);</code></pre><p>We&#39;ve written some standard reducer functions that you might find useful in
+					your apps. <a href="https://jsau-.github.io/redux-vita">See the docs for a complete
+					list</a>. Using these functions is
+					completely optional - if they&#39;ll make your code less verbose, or less
+				error-prone then do!</p>
+				<p>Or, optionally, roll your own standard functions to fit
+					your use-case! This concept lends itself to factory functions which could
+					register all the action creators and reducers required to handle interacting
+				with an API, for example.</p>
+				<pre><code>vita.registerReducer(
+  'decrement_counter',
+  (<span class="hljs-keyword">state</span>) =&gt; reducerDecrementField(<span class="hljs-keyword">state</span>, 'counter'),
 );
 
 vita.registerReducer(
-  &apos;increment_counter&apos;,
-  (state) =&gt; reducerIncrementField(state, &apos;counter&apos;),
+  'increment_counter',
+  (<span class="hljs-keyword">state</span>) =&gt; reducerIncrementField(<span class="hljs-keyword">state</span>, 'counter'),
 );
 
 vita.registerReducer(
-  &apos;clear_counter&apos;,
-  (state) =&gt; reducerClearField(state, &apos;counter&apos;),
+  'clear_counter',
+  (<span class="hljs-keyword">state</span>) =&gt; reducerClearField(<span class="hljs-keyword">state</span>, 'counter'),
 );
 
 vita.registerReducer(
-  &apos;maximise_counter&apos;,
-  (state) =&gt; reducerSetField(state, &apos;counter&apos;, 999),
+  'maximise_counter',
+  (<span class="hljs-keyword">state</span>) =&gt; reducerSetField(<span class="hljs-keyword">state</span>, 'counter', <span class="hljs-number">999</span>),
 );
 
 vita.registerReducer(
-  &apos;reset_form&apos;,
-  (state) =&gt; reducerSetManyFields(
-    state,
-    { field_one: &apos;default_one&apos;, field_two: &apos;default_two&apos; },
+  'reset_form',
+  (<span class="hljs-keyword">state</span>) =&gt; reducerSetM<span class="hljs-literal">any</span>Fields(
+    <span class="hljs-keyword">state</span>,
+    { field_one: 'default_one', field_two: 'default_two' },
   ),
 );
 
 vita.registerReducer(
-  &apos;toggle_counter_enabled&apos;,
-  (state) =&gt; reducerToggleBooleanField(state, &apos;counter_enabled&apos;),
-);</code>
-</code></pre><h4 id="getting-a-dispatchable-object">Getting a Dispatchable Object</h4><p>If your registered creator accepts no params just call <code>Vita.action</code>; any
-additional params are passed through to the creator function.</p>
-<pre><code><code class="source-code prettyprint">vita.registerAction(&apos;action_type&apos;);
-vita.registerAction(&apos;action_type_wparams&apos;, (param) =&gt; ({ param }));
+  'toggle_counter_enabled',
+  (<span class="hljs-keyword">state</span>) =&gt; reducerToggleBooleanField(<span class="hljs-keyword">state</span>, 'counter_enabled'),
+);</code></pre>
+				<a href="#getting-a-dispatchable-object" id="getting-a-dispatchable-object" style="color: inherit; text-decoration: none;">
+					<h4>Getting a Dispatchable Object</h4>
+				</a>
+				<p>If your registered creator accepts no params just call <code>Vita.action</code>; any
+				additional params are passed through to the creator function.</p>
+				<pre><code>vita.registerAction(<span class="hljs-string">'action_type'</span>);
+vita.registerAction(<span class="hljs-string">'action_type_wparams'</span>, (<span class="hljs-built_in">param</span>) =&gt; ({ <span class="hljs-built_in">param</span> }));
 
-// Returns { type: &apos;action_type&apos; };
-const action = vita.action(&apos;action_type&apos;);
+<span class="hljs-comment">// Returns { type: 'action_type' };</span>
+const <span class="hljs-built_in">action</span> = vita.<span class="hljs-built_in">action</span>(<span class="hljs-string">'action_type'</span>);
 
-// Returns { type: &apos;action_type&apos;, param: &apos;foo&apos; };
-const action_wparams = vita.action(&apos;action_type_wparams&apos;, &apos;foo&apos;);
+<span class="hljs-comment">// Returns { type: 'action_type', param: 'foo' };</span>
+const action_wparams = vita.<span class="hljs-built_in">action</span>(<span class="hljs-string">'action_type_wparams'</span>, <span class="hljs-string">'foo'</span>);
 
-dispatch(action);
-dispatch(action_wparams);</code>
-</code></pre><h4 id="registering-the-reducer-function">Registering the Reducer Function</h4><p>Instances of <code>Vita</code> expose a function <code>reduce</code>. This method has the same
-signature as a standard Redux reducer function, so you can just register it
-the way you would in a traditional Redux app.</p>
-<pre><code><code class="source-code prettyprint">combineReducers({ my_reducer_name: vita.reduce });</code>
-</code></pre><h2 id="contributing">Contributing</h2><p>While contributions are appreciated, they may be rejected if not in line with
-the intended project direction. It&apos;s recommended to check before undertaking a
-major piece of work and/or refactoring.</p>
-<p>Contributions should be based off the <code>develop</code> branch, and any pull requests
-made into <code>develop</code>.</p>
-<p>Note that this project uses <a href="https://travis-ci.org/">TravisCI</a> for continuous
-integration. Any pull requests failing automated tests will be rejected.</p>
-<h4 id="getting-started">Getting Started</h4><pre><code><code class="source-code prettyprint">// Install dependencies
+dispatch(<span class="hljs-built_in">action</span>);
+dispatch(action_wparams);</code></pre>
+				<a href="#registering-the-reducer-function" id="registering-the-reducer-function" style="color: inherit; text-decoration: none;">
+					<h4>Registering the Reducer Function</h4>
+				</a>
+				<p>Instances of <code>Vita</code> expose a function <code>reduce</code>. This method has the same
+					signature as a standard Redux reducer function, so you can just register it
+				the way you would in a traditional Redux app.</p>
+				<pre><code><span class="hljs-selector-tag">combineReducers</span>({ <span class="hljs-attribute">my_reducer_name</span>: vita.reduce });</code></pre>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>While contributions are appreciated, they may be rejected if not in line with
+					the intended project direction. It&#39;s recommended to check before undertaking a
+				major piece of work and/or refactoring.</p>
+				<p>Contributions should be based off the <code>develop</code> branch, and any pull requests
+				made into <code>develop</code>.</p>
+				<p>Note that this project uses <a href="https://travis-ci.org/">TravisCI</a> for continuous
+				integration. Any pull requests failing automated tests will be rejected.</p>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h4>Getting Started</h4>
+				</a>
+				<pre><code>// Install dependencies
 npm ci
 
-// Run tests
-npm run lint
-npm run test
+// <span class="hljs-keyword">Run</span><span class="bash"> tests</span>
+npm <span class="hljs-keyword">run</span><span class="bash"> check:types</span>
+npm <span class="hljs-keyword">run</span><span class="bash"> lint</span>
+npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span></span>
 
 // Build the library
-npm run build:es2015</code>
-</code></pre><h2 id="feedback-and-support">Feedback and Support</h2><p>For suggestions, issues, and/or support raise a GitHub issue!</p>
+npm <span class="hljs-keyword">run</span><span class="bash"> build</span></code></pre>
+				<a href="#feedback-and-support" id="feedback-and-support" style="color: inherit; text-decoration: none;">
+					<h2>Feedback and Support</h2>
+				</a>
+				<p>For suggestions, issues, and/or support raise a GitHub issue!</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_actionfactory_.html">&quot;<wbr>Action<wbr>Factory&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_actionobject_.html">&quot;<wbr>Action<wbr>Object&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_actiontype_.html">&quot;<wbr>Action<wbr>Type&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerstate_.html">&quot;<wbr>Reducer<wbr>State&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_vita_.html">&quot;<wbr>Vita&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_vita_unit_test_.html">&quot;<wbr>Vita.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_makeactioncreator_.html">&quot;make<wbr>Action<wbr>Creator&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_makeactioncreator_unit_test_.html">&quot;make<wbr>Action<wbr>Creator.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerdecrementfield_.html">&quot;reducer<wbr>Decrement<wbr>Field&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerdecrementfield_unit_test_.html">&quot;reducer<wbr>Decrement<wbr>Field.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerincrementfield_.html">&quot;reducer<wbr>Increment<wbr>Field&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerincrementfield_unit_test_.html">&quot;reducer<wbr>Increment<wbr>Field.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerremovefield_.html">&quot;reducer<wbr>Remove<wbr>Field&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerremovefield_unit_test_.html">&quot;reducer<wbr>Remove<wbr>Field.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerremovemanyfields_.html">&quot;reducer<wbr>Remove<wbr>Many<wbr>Fields&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducerremovemanyfields_unit_test_.html">&quot;reducer<wbr>Remove<wbr>Many<wbr>Fields.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducersetfield_.html">&quot;reducer<wbr>Set<wbr>Field&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducersetfield_unit_test_.html">&quot;reducer<wbr>Set<wbr>Field.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducersetmanyfields_.html">&quot;reducer<wbr>Set<wbr>Many<wbr>Fields&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducersetmanyfields_unit_test_.html">&quot;reducer<wbr>Set<wbr>Many<wbr>Fields.unit.test&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducertogglebooleanfield_.html">&quot;reducer<wbr>Toggle<wbr>Boolean<wbr>Field&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_reducertogglebooleanfield_unit_test_.html">&quot;reducer<wbr>Toggle<wbr>Boolean<wbr>Field.unit.test&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
 </div>
-</div>
-
-<footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
 </footer>
-
-<script src="script/search_index.js"></script>
-<script src="script/search.js"></script>
-<script src="script/pretty-print.js"></script>
-<script src="script/inherited-summary.js"></script>
-<script src="script/test-summary.js"></script>
-<script src="script/inner-link.js"></script>
-<script src="script/patch-for-local.js"></script>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

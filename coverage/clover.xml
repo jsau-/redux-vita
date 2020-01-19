@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1579447974513" clover="3.2.0">
+  <project timestamp="1579447974513" name="All files">
+    <metrics statements="102" coveredstatements="102" conditionals="30" coveredconditionals="30" methods="21" coveredmethods="21" elements="153" coveredelements="153" complexity="0" loc="102" ncloc="102" packages="1" files="9" classes="9"/>
+    <file name="Vita.ts" path="/home/travis/build/jsau-/redux-vita/src/Vita.ts">
+      <metrics statements="57" coveredstatements="57" conditionals="14" coveredconditionals="14" methods="12" coveredmethods="12"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="14" count="47" type="cond" truecount="2" falsecount="0"/>
+      <line num="15" count="25" type="stmt"/>
+      <line num="17" count="25" type="stmt"/>
+      <line num="18" count="25" type="stmt"/>
+      <line num="20" count="25" type="stmt"/>
+      <line num="21" count="25" type="stmt"/>
+      <line num="22" count="25" type="stmt"/>
+      <line num="23" count="25" type="stmt"/>
+      <line num="24" count="25" type="stmt"/>
+      <line num="25" count="25" type="stmt"/>
+      <line num="26" count="25" type="stmt"/>
+      <line num="27" count="25" type="stmt"/>
+      <line num="28" count="25" type="stmt"/>
+      <line num="29" count="25" type="stmt"/>
+      <line num="41" count="1" type="stmt"/>
+      <line num="43" count="8" type="stmt"/>
+      <line num="45" count="3" type="stmt"/>
+      <line num="47" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="48" count="1" type="stmt"/>
+      <line num="53" count="2" type="stmt"/>
+      <line num="61" count="1" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="63" count="1" type="stmt"/>
+      <line num="71" count="1" type="stmt"/>
+      <line num="72" count="1" type="stmt"/>
+      <line num="73" count="1" type="stmt"/>
+      <line num="83" count="1" type="stmt"/>
+      <line num="91" count="4" type="cond" truecount="4" falsecount="0"/>
+      <line num="93" count="4" type="stmt"/>
+      <line num="95" count="4" type="stmt"/>
+      <line num="98" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="99" count="3" type="stmt"/>
+      <line num="102" count="1" type="stmt"/>
+      <line num="114" count="1" type="stmt"/>
+      <line num="116" count="12" type="cond" truecount="4" falsecount="0"/>
+      <line num="118" count="12" type="stmt"/>
+      <line num="119" count="12" type="stmt"/>
+      <line num="132" count="1" type="stmt"/>
+      <line num="133" count="10" type="stmt"/>
+      <line num="134" count="10" type="stmt"/>
+      <line num="148" count="1" type="stmt"/>
+      <line num="153" count="4" type="stmt"/>
+      <line num="154" count="4" type="stmt"/>
+      <line num="155" count="4" type="stmt"/>
+      <line num="165" count="1" type="stmt"/>
+      <line num="166" count="5" type="stmt"/>
+      <line num="167" count="5" type="stmt"/>
+      <line num="177" count="1" type="stmt"/>
+      <line num="178" count="5" type="stmt"/>
+      <line num="179" count="5" type="stmt"/>
+      <line num="188" count="1" type="stmt"/>
+      <line num="189" count="2" type="stmt"/>
+      <line num="190" count="2" type="stmt"/>
+      <line num="191" count="2" type="stmt"/>
+      <line num="193" count="1" type="stmt"/>
+    </file>
+    <file name="makeActionCreator.ts" path="/home/travis/build/jsau-/redux-vita/src/makeActionCreator.ts">
+      <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <line num="1" count="2" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="20" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="21" count="1" type="stmt"/>
+      <line num="24" count="6" type="stmt"/>
+      <line num="25" count="2" type="stmt"/>
+      <line num="27" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="31" count="2" type="stmt"/>
+    </file>
+    <file name="reducerDecrementField.ts" path="/home/travis/build/jsau-/redux-vita/src/reducerDecrementField.ts">
+      <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="26" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+    </file>
+    <file name="reducerIncrementField.ts" path="/home/travis/build/jsau-/redux-vita/src/reducerIncrementField.ts">
+      <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="26" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+    </file>
+    <file name="reducerRemoveField.ts" path="/home/travis/build/jsau-/redux-vita/src/reducerRemoveField.ts">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+    </file>
+    <file name="reducerRemoveManyFields.ts" path="/home/travis/build/jsau-/redux-vita/src/reducerRemoveManyFields.ts">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+    </file>
+    <file name="reducerSetField.ts" path="/home/travis/build/jsau-/redux-vita/src/reducerSetField.ts">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+    </file>
+    <file name="reducerSetManyFields.ts" path="/home/travis/build/jsau-/redux-vita/src/reducerSetManyFields.ts">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="14" count="3" type="stmt"/>
+    </file>
+    <file name="reducerToggleBooleanField.ts" path="/home/travis/build/jsau-/redux-vita/src/reducerToggleBooleanField.ts">
+      <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="26" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

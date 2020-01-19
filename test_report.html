@@ -1,0 +1,127 @@
+<html><head><meta charset="utf-8"/><title>Test Report</title><style type="text/css">html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+body {
+	padding: 1rem;
+	font-size: 0.85rem;
+}
+#jesthtml-content {
+	margin-bottom: 2rem;
+}
+header {
+	display: flex;
+	align-items: center;
+}
+#title {
+	margin: 0;
+	flex-grow: 1;
+}
+#logo {
+	height: 4rem;
+}
+#timestamp {
+	font-weight: bold;
+	color: #666;
+	margin-bottom: 0.5rem;
+}
+#summary {
+	color: #999;
+	margin-bottom: 1rem;
+}
+.suite-info {
+	padding: 1rem;
+	background-color: #eee;
+	border-bottom: 2px solid #999;
+	color: #999;
+	display: flex;
+	align-items: center;
+}
+.suite-info .suite-path {
+	font-weight: bold;
+	word-break: break-all;
+	flex-grow: 1;
+}
+.suite-info .suite-time {
+	margin-left: 0.5rem;
+	padding: 0.2rem 0.3rem;
+	font-size: 0.75rem;
+}
+.suite-info .suite-time.warn {
+	background-color: #D8000C;
+	color: #fff;
+}
+.suite-table {
+	width: 100%;
+	font-size: 0.85rem;
+	margin-bottom: 1em;
+}
+.suite-table td {
+	padding: 0.5rem;
+}
+.suite-table tr.passed {
+	background-color: #DFF2BF;
+	color: #4F8A10;
+}
+.suite-table tr.pending {
+	background-color: #FEEFB3;
+	color: #9F6000;
+}
+.suite-table tr.failed {
+	background-color: #FFBABA;
+	color: #D8000C;
+}
+.suite-table td {
+	font-size: 0.85rem;
+	border-bottom: 1px solid #aaa;
+	vertical-align: top;
+}
+.suite-table td.suite {
+	font-weight: bold;
+	width: 20%;
+}
+.suite-table td.test {
+	font-style: italic;
+	width: 60%;
+}
+.suite-table td.test .failureMsg {
+	font-size: 1rem;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
+.suite-table td.result {
+	width: 20%;
+	text-align: right;
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+	margin-bottom: 2rem;
+	padding: 1rem;
+	background-color: #efefef;
+}
+.suite-consolelog-header {
+	font-weight: bold;
+}
+.suite-consolelog-item {
+	padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+	margin: 0;
+}
+.suite-consolelog-item-origin {
+	color: #777;
+	font-weight: bold;
+}
+.suite-consolelog-item-message {
+	color: #000;
+	font-size: 1rem;
+	padding: 0 0.5rem;
+}
+</style></head><body><div id="jesthtml-content"><header><h1 id="title">Test Report</h1></header><div id="metadata-container"><div id="timestamp">Start: 2020-01-19 15:32:49</div><div id="summary">46 tests -- 46 passed / 0 failed / 0 pending</div></div><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/Vita.unit.test.ts</div><div class="suite-time">3.507s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">Vita</td><td class="test">Should instantiate Vita with default params</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should cache default reducer state on instantiating</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should clear all action creators</td><td class="result">passed in 0.006s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should clear all reducers</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should get a dispatchable object for registered action creator</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should pass varargs to registered action creator</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should throw on dispatching unregistered action creator</td><td class="result">passed in 0.005s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return empty on reducing w/ no handler, default state</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return default state on reducing with no registed handler</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return curr state on reducing with no registered handler</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return result of reducer function for registered handler</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should register an action creator</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should register an action creator with default creator function</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return self on registering an action creator</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should register a reducer function</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should register a slice</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should create default action creator on registering slice</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return self on registering a slice</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return self on registering an reducer</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should unregister an action creator</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return self on unregistering an action creator</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should unregister a reducer</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return self on unregistering a reducer</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should unregister a slice</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">Vita</td><td class="test">Should return self on unregistering a slice</td><td class="result">passed in 0s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/reducerToggleBooleanField.unit.test.ts</div><div class="suite-time">0.226s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">reducerToggleBooleanField</td><td class="test">Should throw on field not existing</td><td class="result">passed in 0.004s</td></tr><tr class="passed"><td class="suite">reducerToggleBooleanField</td><td class="test">Should throw on field not being a boolean</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">reducerToggleBooleanField</td><td class="test">Should toggle a boolean field</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/reducerSetManyFields.unit.test.ts</div><div class="suite-time">0.123s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">reducerSetManyFields</td><td class="test">Should set non-existing fields</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">reducerSetManyFields</td><td class="test">Should overwrite existing fields</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">reducerSetManyFields</td><td class="test">Should return current state on no fields to set</td><td class="result">passed in 0s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/reducerIncrementField.unit.test.ts</div><div class="suite-time">0.128s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">reducerIncrementField</td><td class="test">Should throw on field not existing</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite">reducerIncrementField</td><td class="test">Should throw on field not being a number</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite">reducerIncrementField</td><td class="test">Should increment a field</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/reducerDecrementField.unit.test.ts</div><div class="suite-time">0.26s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">reducerDecrementField</td><td class="test">Should throw on field not existing</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite">reducerDecrementField</td><td class="test">Should throw on field not being a number</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">reducerDecrementField</td><td class="test">Should decrement a field</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/makeActionCreator.unit.test.ts</div><div class="suite-time">0.087s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">makeActionCreator</td><td class="test">Should throw if type is empty</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite">makeActionCreator</td><td class="test">Should create an action with type</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">makeActionCreator</td><td class="test">Should invoke the additional property creator if provided</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/reducerSetField.unit.test.ts</div><div class="suite-time">0.085s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">reducerSetField</td><td class="test">Should set a field</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">reducerSetField</td><td class="test">Should overwrite an existing field</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/reducerRemoveManyFields.unit.test.ts</div><div class="suite-time">0.129s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">reducerRemoveManyFields</td><td class="test">Should remove set fields</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite">reducerRemoveManyFields</td><td class="test">Shouldn't affect state without the field</td><td class="result">passed in 0s</td></tr></table><div class="suite-info"><div class="suite-path">/home/travis/build/jsau-/redux-vita/src/reducerRemoveField.unit.test.ts</div><div class="suite-time">0.078s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite">reducerRemoveField</td><td class="test">Should remove a set field</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite">reducerRemoveField</td><td class="test">Shouldn't affect state without the field</td><td class="result">passed in 0s</td></tr></table></div></body></html>
