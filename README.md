@@ -141,8 +141,8 @@ vita.registerReducer(
 ```
 
 We've written some standard reducer functions that you might find useful in
-your apps. ([See the docs for a complete
-list]((https://jsau-.github.io/redux-vita))). Using these functions is
+your apps. [See the docs for a complete
+list](https://jsau-.github.io/redux-vita). Using these functions is
 completely optional - if they'll make your code less verbose, or less
 error-prone then do!
 
