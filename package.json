@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "scripts": {
     "check:types": "tsc --noEmit",
-    "doc": "del-cli \"./docs/**/*\" && typedoc --out docs src",
+    "doc": "del-cli \"./docs/**/*\" && typedoc --out docs src --exclude src/**/*.unit.test.ts",
     "prebuild": "npm run doc && del-cli \"./build/**/*\"",
     "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly",
     "build:js": "babel src --out-dir build --extensions \".ts\"",
