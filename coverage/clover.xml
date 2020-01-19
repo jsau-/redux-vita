@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1579447974513" clover="3.2.0">
-  <project timestamp="1579447974513" name="All files">
+<coverage generated="1579449593936" clover="3.2.0">
+  <project timestamp="1579449593936" name="All files">
     <metrics statements="102" coveredstatements="102" conditionals="30" coveredconditionals="30" methods="21" coveredmethods="21" elements="153" coveredelements="153" complexity="0" loc="102" ncloc="102" packages="1" files="9" classes="9"/>
     <file name="Vita.ts" path="/home/travis/build/jsau-/redux-vita/src/Vita.ts">
       <metrics statements="57" coveredstatements="57" conditionals="14" coveredconditionals="14" methods="12" coveredmethods="12"/>
