@@ -20,7 +20,7 @@ jobs:
     - stage: deploy_to_github_pages
       if: type != cron
       before_deploy:
-        - cp ./coverage ./docs/coverage
+        - cp -R ./coverage ./docs/coverage
       deploy:
         provider: pages
         skip_cleanup: true
