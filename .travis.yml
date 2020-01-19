@@ -21,6 +21,7 @@ jobs:
       if: type != cron
       before_deploy:
         - cp -R ./coverage ./docs/coverage
+        - touch ./docs/.nojekyll
       deploy:
         provider: pages
         skip_cleanup: true
