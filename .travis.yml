@@ -4,7 +4,7 @@ sudo: false
 node_js:
   - 10
 before_script:
-  - npm run build:es2015
+  - npm run build
 install:
   - npm ci
 stages:
@@ -14,10 +14,13 @@ stages:
 jobs:
   include:
     - stage: test
+      script: npm run check:types
       script: npm run lint
       script: npm run test
     - stage: deploy_to_github_pages
       if: type != cron
+      before_deploy:
+        - cp ./coverage ./docs/coverage
       deploy:
         provider: pages
         skip_cleanup: true

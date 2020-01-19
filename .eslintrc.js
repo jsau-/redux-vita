@@ -1,21 +1,23 @@
 module.exports = {
   env: {
-    browser: true,
-    es6: true,
     jest: true,
+    node: true,
   },
-  extends: ['airbnb-base'],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parser: 'babel-eslint',
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint'
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
+    'project': './tsconfig.json',
+    'sourceType': 'module'
   },
-  plugins: ['import', 'jsdoc'],
+  plugins: ['@typescript-eslint'],
+  root: true,
   rules: {
+    '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],
+    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '[iI]gnored' }],
     camelcase: 'error',
     'capitalized-comments': 'error',
     'comma-dangle': ['error', 'always-multiline'],
@@ -23,46 +25,16 @@ module.exports = {
     complexity: 'error',
     'consistent-return': 'error',
     'default-case': 'error',
-    'func-style': ['error', 'expression', { allowArrowFunctions: true }],
     'eol-last': ['error', 'always'],
     'id-blacklist': ['error', 'data', 'err', 'e', 'cb', 'callback'],
     'id-length': ['error', { min: 2 }],
-    'id-match': [
-      'error',
-      '^(n|u)?(b|arr|int|date|enum|float|obj|str|map|func|on|get|mixed|selector|reducer|action|model)?([A-Z][a-z]+)*|[A-Z_]+$',
-      { onlyDeclarations: true },
-    ],
     'implicit-arrow-linebreak': ['off'],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'import/prefer-default-export': 'off',
     indent: ['error', 2],
-    'jsdoc/check-alignment': 'error',
-    'jsdoc/check-examples': 'error',
-    'jsdoc/check-indentation': 'error',
-    'jsdoc/check-param-names': 'error',
-    'jsdoc/check-syntax': 'error',
-    'jsdoc/check-tag-names': 'error',
-    'jsdoc/check-types': 'error',
-    'jsdoc/implements-on-classes': 'error',
-    'jsdoc/match-description': 'error',
-    'jsdoc/newline-after-description': 'error',
-    'jsdoc/no-undefined-types': 'error',
-    'jsdoc/require-hyphen-before-param-description': 'error',
-    'jsdoc/require-jsdoc': 'error',
-    'jsdoc/require-param': 'error',
-    'jsdoc/require-param-description': 'error',
-    'jsdoc/require-param-name': 'error',
-    'jsdoc/require-param-type': 'error',
-    'jsdoc/require-returns': 'error',
-    'jsdoc/require-returns-check': 'error',
-    'jsdoc/require-returns-description': 'error',
-    'jsdoc/require-returns-type': 'error',
-    'jsdoc/valid-types': 'error',
     'line-comment-position': ['error', { position: 'above' }],
     'linebreak-style': ['error', 'unix'],
     'max-classes-per-file': ['error', 1],
     'max-depth': 'error',
-    'max-len': ['error', 120],
+    'max-len': ['error', 80],
     'max-nested-callbacks': ['error', 5],
     'max-params': ['error', 10],
     'max-statements-per-line': ['error', { max: 1 }],
@@ -83,8 +55,23 @@ module.exports = {
     ],
     'no-var': 'error',
     'operator-linebreak': ['error', 'after'],
-    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    quotes: [
+      'error',
+      'single',
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
     'sort-keys': ['error', 'asc', { natural: true }],
     yoda: ['error', 'always'],
   },
+  settings: {
+    'import/extensions': ['.js','.jsx','.ts','.tsx'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts','.tsx']
+    },
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js','.jsx','.ts','.tsx']
+      }
+    }
+  }
 };
