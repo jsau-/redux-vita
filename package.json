@@ -47,7 +47,7 @@
     "eslint-plugin-prettier": "3.1.2",
     "jest": "24.9.0",
     "jest-html-reporter": "2.8.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "pre-commit": "1.2.2",
     "prettier": "1.19.1",
     "redux": "4.0.0",
